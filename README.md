@@ -8,7 +8,7 @@ Please start by adding the desired measurements into the spreadsheet.
 I'd be happy to hear about your instrument!
 
 ## Version History
-0.1 First attempt for pipes with 60mm diameter, made with tinkercad.com
+0.1 First attempt for pipes with 60mm diameter, made with tinkercad.com <br>
 0.2 Fully proportional pipe part as FreeCad file
 
 ## Desigh Thoughts
