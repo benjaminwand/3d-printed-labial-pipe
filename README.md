@@ -9,8 +9,8 @@ I'd be happy to hear about your instrument!
 
 ## Version history
 0.1 First attempt for pipes with 60mm diameter, made with tinkercad.com <br>
-0.2 Fully proportional pipe part as FreeCAD file
-0.2.3 Bug fixes, mostly for cases of very narrow labium
+0.2 Fully proportional pipe part as FreeCAD file <br>
+0.2.3 Bug fixes, mostly for cases of very narrow labium <br>
 0.3 Proportional FreeCAD file, with (along with the pipe) curved labium
 
 ## Design thoughts
