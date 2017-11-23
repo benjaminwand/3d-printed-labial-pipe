@@ -1,7 +1,7 @@
 # 3d-printed labial pipe
 
 ## General
-This is a FreeCAD file that will help you to print a part of a labial pipe, to be used with a piece of tube. Because most organ pipes don't fit into most 3d-printers.
+This is a collection of FreeCAD files that will help you to 3D-print a part of a labial pipe, to be used with a piece of tube. Because most organ pipes don't fit into most 3d-printers.
 
 Please start by adding the desired measurements into the spreadsheet.
 
@@ -11,7 +11,10 @@ I'd be happy to hear about your instrument!
 0.1 First attempt for pipes with 60mm diameter, made with tinkercad.com <br>
 0.2 Fully proportional pipe part as FreeCAD file <br>
 0.2.3 Bug fixes, mostly for cases of very narrow labium <br>
-0.3 Proportional FreeCAD file, with (along with the pipe) curved labium
+0.3 Proportional FreeCAD file, with (along with the pipe) curved labium <br>
+0.3.1 Curved labium pipe with minor bugfixes <br>
+0.4.1 creative approach that did not work <br>
+0.5 Back to straight labium, better proportions, especially for wide labium, and it is hollow in the ‘block’. Surprise: the labium doesn’t need to be at the end of the sounding tube in a flue
 
 ## Design thoughts
 I was pondering the design of flue pipes from wood and metal, and came to the conclusion that the design has a lot to do with the material. Wooden pipes are built angular because that is easier than woodturning, and metal pipes are made in a round shape because less soldering. So, what would be a good design for 3D-printing? Well, something with a flat base would be handy. But then, most 3D-printers can’t print large enough for most organ pipes, organ pipes get really large you know. So I decided to use tubes from the hardware store and only 3D-print the intricate part, therefore the 3D-printed organ pipes would be round. I made the outside hexagonal because that offers the best ratio of stablie vs. little space consuming.
@@ -26,6 +29,6 @@ http://orgelromantik.aeoline.de/2009/12/02/die-zehn-wichtigsten-tabellen-zu-pfei
 http://orgelromantik.aeoline.de/2011/01/14/orgel-stimmen-mit-dem-ipad/ <br>
 
 ## Future plans
-* Currently I'm printing a few pipes with different parameters to see which sounds how. Also I'm designing a pipe with a curved labium.
+* Currently I'm printing a few pipes with different parameters to see which sounds how. 
 * Next, I'll design a pipe part for organ pipes with inverted free reed. (Invention of Ernst Zacharias, see "Die dynamische Orgel." Instrumentenbau-Zeitschrift 1999, Heft 7-8, S. 26 and https://www.youtube.com/watch?v=3jkmdJ6xWm4)
 * I actually want to build a small organ.
