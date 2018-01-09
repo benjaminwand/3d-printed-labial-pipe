@@ -5,6 +5,8 @@ This is a collection of FreeCAD files that will help you to 3D-print a part of a
 
 Please start by adding the desired measurements into the spreadsheet.
 
+You probably want file 0.5 or 0.7.1.
+
 I'd be happy to hear about your instrument!
 
 ## Version history
@@ -15,7 +17,9 @@ I'd be happy to hear about your instrument!
 0.3.1 Curved labium pipe with minor bugfixes <br>
 0.4.1 creative approach that did not work <br>
 0.5 Back to straight labium, better proportions, especially for wide labium, and it is hollow in the ‘block’. Surprise: the labium doesn’t need to be at the end of the sounding tube in a flue <br>
-0.6 Experimental shape for the purpose of dividing long tubes, so far I can’t make sense of the pitch that comes out <br>
+0.6 Experimental shape for the purpose of dividing long tubes, so far I can’t make sense of the pitch that comes out but it does sound nice <br>
+0.7 like 0.5 with block chamfer <br>
+0.7.1 bugfix <br>
 
 ## Design thoughts
 I was pondering the design of flue pipes from wood and metal, and came to the conclusion that the design has a lot to do with the material. Wooden pipes are built angular because that is easier than woodturning, and metal pipes are made in a round shape because less soldering. So, what would be a good design for 3D-printing? Well, something with a flat base would be handy. But then, most 3D-printers can’t print large enough for most organ pipes, organ pipes get really large you know. So I decided to use tubes from the hardware store and only 3D-print the intricate part, therefore the 3D-printed organ pipes would be round. I made the outside hexagonal because that offers the best ratio of stablie vs. little space consuming.
