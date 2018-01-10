@@ -7,6 +7,8 @@ Please start by adding the desired measurements into the spreadsheet.
 
 You probably want file 0.5 or 0.7.1.
 
+I got the best printing results when slicing at a 45° angle and ‘support touching build plate’, so that there is no support structure under the labium.
+
 I'd be happy to hear about your instrument!
 
 ## Version history
