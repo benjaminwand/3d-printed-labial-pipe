@@ -25,16 +25,13 @@ I'd be happy to hear about your instrument!
 0.8 has ears and optional block chamfer <br>
 0.9 has boxbeard  and optional block chamfer <br>
 0.10 experimental transverse flute <br>
-0.10.1 bugfix for case of small inner tube diameter <br>
-0.10.a - 0.10.3 bugfixes <br>
-0.10.4 most elegant 0.10.x
-0.10.5 has adjustable labium angle
+0.10.4 most elegant 0.10.x<br>
+0.10.5 has adjustable labium angle <br>
 0.11 experimental transverse flute with different geometry <br>
-0.11.1 - 0.11.3 bugfixes <br>
+0.11.3 alternative <br>
 0.11.4 most elegant 0.11.x <br>
 0.11.5 has adjustable labium angle <br>
 0.12 ‘the owl’ flute with two tubes <br>
-0.12.1 - 0.12.3 bugfixes <br>
 0.12.4 most elegant 0.12.x <br>
 0.12.5 has adjustable labium angle <br>
 0.12.6 bugfix <br>
