@@ -17,7 +17,9 @@ I'd be happy to hear about your instrument!
 0.2.3 Bug fixes, mostly for cases of very narrow labium <br>
 0.3 Proportional FreeCAD file, with (along with the pipe) curved labium <br>
 0.3.1 Curved labium pipe with minor bugfixes <br>
+0.3.3 bugfix <br>
 0.4.1 creative approach that did not work <br>
+0.4.2 hope-never-dies similar approach <br>
 0.5 Back to straight labium, better proportions, especially for wide labium, and it is hollow in the ‘block’. Surprise: the labium doesn’t need to be at the end of the sounding tube in a flue <br>
 0.6 Experimental shape for the purpose of dividing long tubes, so far I can’t make sense of the pitch that comes out but it does sound nice <br>
 0.7 like 0.5 with optional block chamfer <br>
