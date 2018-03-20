@@ -59,5 +59,5 @@ http://orgelromantik.aeoline.de/2011/01/14/orgel-stimmen-mit-dem-ipad/ <br>
 
 ## Future plans
 * Currently I'm printing pipes with different parameters and filaments to see which sounds how and I continue designing flue pipes. 
-* Soon, I'll design a pipe part for organ pipes with inverted free reed. (Invention of Ernst Zacharias, see "Die dynamische Orgel." Instrumentenbau-Zeitschrift 1999, Heft 7-8, S. 26 and https://www.youtube.com/watch?v=3jkmdJ6xWm4)
+* Soon, I'll do tests on organ pipes with inverted free reed. https://github.com/benjaminwand/3d-printed-reversed-free-reed-pipe (Invention of Ernst Zacharias, see "Die dynamische Orgel." Instrumentenbau-Zeitschrift 1999, Heft 7-8, S. 26 and https://www.youtube.com/watch?v=3jkmdJ6xWm4)
 * I actually want to build a small organ.
