@@ -3,7 +3,7 @@
 ## General
 This is a collection of FreeCAD files that will help you to 3D-print a part of a labial pipe, to be used with a piece of tube. Because most organ pipes don't fit into most 3d-printers.
 
-Please start by adding the desired measurements into the spreadsheet.
+Please start by adding the desired measurements into the spreadsheet. If you don’t know which sizes to use, [webpipecalc](https://cuervo.phoenix.uberspace.de/webpipecalc/) can help. You are limited by the diameters of the tubes you can buy.
 
 I got the best printing results when slicing at a 45° angle and ‘support touching build plate’, so that there is no support structure under the labium.
 
@@ -56,6 +56,10 @@ https://de.wikipedia.org/wiki/Orgelpfeife#Intonation <br>
 http://orgelromantik.aeoline.de/2009/02/06/uber-labien-aufschnitte-und-kerne-der-labialpfeifen/ <br>
 http://orgelromantik.aeoline.de/2009/12/02/die-zehn-wichtigsten-tabellen-zu-pfeifenmasen/ <br>
 http://orgelromantik.aeoline.de/2011/01/14/orgel-stimmen-mit-dem-ipad/ <br>
+
+## Spectrogramm
+Looking at what you are doing (mac):
+ffmpeg -f avfoundation -i ":0" -lavfi showspectrum=s=1440x900:slide=rscroll -c:v rawvideo -r 25 -pix_fmt yuv420p -f matroska - | mpv -
 
 ## Future plans
 * Currently I'm printing pipes with different parameters and filaments to see which sounds how and I continue designing flue pipes. 
