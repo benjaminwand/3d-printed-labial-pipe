@@ -8,6 +8,8 @@ Please start by adding the desired measurements into the spreadsheet. Picking th
 I got the best printing results when slicing at a 45° angle and ‘support touching build plate’, so that there is no support structure under the labium. <br>
 ![https://cdn.thingiverse.com/renders/2a/03/54/e3/72/e935fcfeddd0d054e9dca2f05e988bd0_preview_featured.jpg](https://cdn.thingiverse.com/renders/2a/03/54/e3/72/e935fcfeddd0d054e9dca2f05e988bd0_preview_featured.jpg)
 
+[There are reversed free reed pipes as well.](https://github.com/benjaminwand/3d-printed-reversed-free-reed-pipe)
+
 I'd be happy to hear about your instrument!
 
 ## Versions
