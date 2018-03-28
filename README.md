@@ -69,5 +69,4 @@ ffmpeg -f avfoundation -i ":0" -lavfi showspectrum=s=1440x900:slide=rscroll -c:v
 
 ## Future plans
 * Currently I'm printing pipes with different parameters and filaments to see which sounds how and I continue designing flue pipes. 
-* Soon, I'll do tests on [organ pipes with inverted free reed.](https://github.com/benjaminwand/3d-printed-reversed-free-reed-pipe) (Invention of Ernst Zacharias, see "Die dynamische Orgel." Instrumentenbau-Zeitschrift 1999, Heft 7-8, S. 26 and https://www.youtube.com/watch?v=3jkmdJ6xWm4)
 * I actually want to build a small organ.
