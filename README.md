@@ -50,6 +50,7 @@ The development is ongoing, and not necessarily the latest file is the one you w
 0.14 new experimental traverse flute <br>
 0.14.2 bugfix for larger pipes <br>
 0.15 pipe with 45° labium, for the purpose of easier slicing <br>
+0.15.1 angular for larger pipes <br>
 
 ## Design thoughts
 I was pondering the design of flue pipes from wood and metal, and came to the conclusion that the design has a lot to do with the material. Wooden pipes are built angular because that is easier than woodturning, and metal pipes are made in a round shape because less soldering. So, what would be a good design for 3D-printing? Well, something with a flat base would be handy. But then, most 3D-printers can’t print large enough for most organ pipes, organ pipes get really large you know. So I decided to use tubes from the hardware store and only 3D-print the intricate part, therefore the 3D-printed organ pipes would be round. I made the outside hexagonal because that offers the best ratio of stability vs. little space consuming.
