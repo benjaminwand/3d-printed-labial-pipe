@@ -15,10 +15,12 @@ I'd be happy to hear about your instrument!
 
 ## Versions
 The development is ongoing, and not necessarily the latest file is the one you want. Every 0.x has distinct features and then bugfixes. You probably want file 
-* 0.5 (no block chamfer) or 
-* 0.7.1. (block chamfer) or 
+* 0.5.1 (no block chamfer) or 
+* 0.7.2 (block chamfer) or 
 * 0.8 (has ears) or 
-* 0.9 (has boxbeard) or 
+* 0.9.1 (has boxbeard) or 
+* 0.13.1 (curved labium) or
+* 0.16.1 (has nicks) or
 * 0.2.3 (is filled below the mouth).
 
 Currently I’m deploying two feature into some more pipes: adjustable flue and a more typical flue-pipe shape. Some have it, some don’t, if you want a specific pipe -> GitHub issue
