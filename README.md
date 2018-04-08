@@ -7,6 +7,7 @@ Please start by adding the desired measurements into the spreadsheet. Picking th
 
 I got the best printing results when slicing at a 45° angle and ‘support touching build plate’, so that there is no support structure under the labium. <br>
 ![https://cdn.thingiverse.com/renders/2a/03/54/e3/72/e935fcfeddd0d054e9dca2f05e988bd0_preview_featured.jpg](https://cdn.thingiverse.com/renders/2a/03/54/e3/72/e935fcfeddd0d054e9dca2f05e988bd0_preview_featured.jpg)
+(Since the whole point of 0.15 is not slicing it at a 45°angle, don’t slice it at a 45° angle.)
 
 [There are reversed free reed pipes as well.](https://github.com/benjaminwand/3d-printed-reversed-free-reed-pipe)
 
@@ -20,6 +21,8 @@ The development is ongoing, and not necessarily the latest file is the one you w
 * 0.9 (has boxbeard) or 
 * 0.2.3 (is filled below the mouth).
 
+Currently I’m deploying two feature into some more pipes: adjustable flue and a more typical flue-pipe shape. Some have it, some don’t, if you want a specific pipe -> GitHub issue
+
 0.1 First attempt for pipes with 60mm diameter, made with tinkercad.com , here for sentimental reasons<br>
 0.2 Fully proportional pipe part as FreeCAD file <br>
 0.2.3 Bug fixes, mostly for cases of very narrow labium <br>
@@ -29,11 +32,14 @@ The development is ongoing, and not necessarily the latest file is the one you w
 0.4.1 creative approach that did not work <br>
 0.4.2 now it makes tiny tones :) <br>
 0.5 Back to straight labium, better proportions, especially for wide labium, and it is hollow in the ‘block’. Surprise: the labium doesn’t need to be at the end of the sounding tube in a flue <br>
+0.5.1 like 0.5 but more flue pipe like outer shape <br>
 0.6 Experimental shape for the purpose of dividing long tubes, so far I can’t make sense of the pitch that comes out but it does sound nice <br>
 0.7 like 0.5 with optional block chamfer <br>
 0.7.1 bugfix <br>
+0.7.2 like 0.7.1 but more flue pipe like outer shape <br>
 0.8 has ears and optional block chamfer <br>
 0.9 has boxbeard  and optional block chamfer <br>
+0.9.1 like 0.9 but more flue pipe like outer shape <br>
 0.10 experimental transverse flute <br>
 0.10.4 most elegant 0.10.x<br>
 0.10.5 has adjustable labium angle <br>
