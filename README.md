@@ -25,42 +25,57 @@ The development is ongoing, and not necessarily the latest file is the one you w
 
 Currently I’m deploying two feature into some more pipes: adjustable flue and a more typical flue-pipe shape. Some have it, some don’t, if you want a specific pipe -> GitHub issue
 
-0.1 First attempt for pipes with 60mm diameter, made with tinkercad.com , here for sentimental reasons ![/pics/0.01.png](/pics/0.01.png =250x)<br>
-0.2 Fully proportional pipe part as FreeCAD file ![/pics/0.02.x.png](/pics/0.02.x.png)<br>
+0.1 First attempt for pipes with 60mm diameter, made with tinkercad.com , here for sentimental reasons <br>
+![/pics/0.01.png](/pics/0.01.png)<br>
+0.2 Fully proportional pipe part as FreeCAD file <br>
+![/pics/0.02.x.png](/pics/0.02.x.png)<br>
 0.2.3 Bug fixes, mostly for cases of very narrow labium <br>
-0.3 has (along the pipe) curved labium ![/pics/0.03.x.png](/pics/0.03.x.png)<br>
+0.3 has (along the pipe) curved labium <br>
+![/pics/0.03.x.png](/pics/0.03.x.png)<br>
 0.3.1 Curved labium pipe with minor bugfixes <br>
 0.3.3 bugfix, sounds much better <br>
-0.4.1 creative approach that did not work ![/pics/0.04.x.png](/pics/0.04.x.png)
-<br>
+0.4.1 creative approach that did not work <br>
+![/pics/0.04.x.png](/pics/0.04.x.png)<br>
 0.4.2 now it makes tiny tones :) <br>
-0.5 Back to straight labium, better proportions, especially for wide labium, and it is hollow in the ‘block’. Surprise: the labium doesn’t need to be at the end of the sounding tube in a flue ![/pics/0.05.x.png](/pics/0.05.x.png)<br>
+0.5 Back to straight labium, better proportions, especially for wide labium, and it is hollow in the ‘block’. Surprise: the labium doesn’t need to be at the end of the sounding tube in a flue <br>
+![/pics/0.05.x.png](/pics/0.05.x.png)<br>
 0.5.1 like 0.5 but more flue pipe like outer shape <br>
 0.6 Experimental shape for the purpose of dividing long tubes, so far I can’t make sense of the pitch that comes out but it does sound nice <br>
-0.7 like 0.5 with optional block chamfer <br>
+![/pics/0.06.x.png](/pics/0.06.x.png)<br>
+0.7 like 0.5 with optional block chamfer <br> 
+![/pics/0.07.x.png](/pics/0.07.x.png)<br>
 0.7.1 bugfix <br>
 0.7.2 like 0.7.1 but more flue pipe like outer shape <br>
-0.8 has ears and optional block chamfer <br>
-0.9 has boxbeard  and optional block chamfer <br>
+0.8 has ears and optional block chamfer <br> 
+![/pics/0.08.x.png](/pics/0.08.x.png) <br>
+0.9 has boxbeard  and optional block chamfer <br> 
+![/pics/0.09.x.png](/pics/0.09.x.png)<br>
 0.9.1 like 0.9 but more flue pipe like outer shape <br>
-0.10 experimental transverse flute <br>
+0.10 experimental transverse flute <br> 
+![/pics/0.10.x.png](/pics/0.10.x.png) <br>
 0.10.4 most elegant 0.10.x<br>
 0.10.5 has adjustable labium angle <br>
-0.11 experimental transverse flute with different geometry <br>
+0.11 experimental transverse flute with different geometry <br> 
+![/pics/0.11.x.png](/pics/0.11.x.png)<br>
 0.11.3 alternative <br>
 0.11.4 most elegant 0.11.x <br>
 0.11.5 has adjustable labium angle <br>
-0.12 ‘the owl’ flute with two tubes <br>
+0.12 ‘the owl’ flute with two tubes <br> 
+![/pics/0.12.x.png](/pics/0.12.x.png)<br>
 0.12.4 most elegant 0.12.x <br>
 0.12.5 has adjustable labium angle <br>
 0.12.6 bugfix <br>
 0.12.7 alternative <br>
-0.13 curved labium and hollow in the bottom <br>
-0.14 new experimental traverse flute <br>
+0.13 curved labium and hollow in the bottom <br> 
+![/pics/0.13.x.png](/pics/0.13.x.png) <br>
+0.14 new experimental traverse flute <br> 
+![/pics/0.14.x.png](/pics/0.14.x.png) <br>
 0.14.2 bugfix for larger pipes <br>
-0.15 pipe with 45° labium, for the purpose of easier slicing <br>
+0.15 pipe with 45° labium, for the purpose of easier slicing <br> 
+![/pics/0.15.x.png](/pics/0.15.x.png) <br>
 0.15.1 - 0.15.7 several ways of 45° labium <br>
-0.16 like 0.5 but has nicks <br>
+0.16 like 0.5 but has nicks <br> 
+![/pics/0.16.x.png](/pics/0.16.x.png) <br>
 
 ## Design thoughts
 I was pondering the design of flue pipes from wood and metal, and came to the conclusion that the design has a lot to do with the material. Wooden pipes are built angular because that is easier than woodturning, and metal pipes are made in a round shape because less soldering. So, what would be a good design for 3D-printing? Well, something with a flat base would be handy. But then, most 3D-printers can’t print large enough for most organ pipes, organ pipes get really large you know. So I decided to use tubes from the hardware store and only 3D-print the intricate part, therefore the 3D-printed organ pipes would be round. I made the outside hexagonal because that offers the best ratio of stability vs. little space consuming.
