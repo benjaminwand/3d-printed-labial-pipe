@@ -81,3 +81,6 @@ ffmpeg -f avfoundation -i ":0" -lavfi showspectrum=s=1440x900:slide=rscroll -c:v
 ## Future plans
 * Currently I'm printing pipes with different parameters and filaments to see which sounds how and I continue designing flue pipes. 
 * I actually want to build a small organ.
+
+## Screenshots
+![/pics/0.01.png](/pics/0.01.png) <br>
