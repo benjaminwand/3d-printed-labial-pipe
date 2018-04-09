@@ -25,7 +25,7 @@ The development is ongoing, and not necessarily the latest file is the one you w
 
 Currently I’m deploying two feature into some more pipes: adjustable flue and a more typical flue-pipe shape. Some have it, some don’t, if you want a specific pipe -> GitHub issue
 
-0.1 First attempt for pipes with 60mm diameter, made with tinkercad.com , here for sentimental reasons ![/pics/0.01.png](/pics/0.01.png)<br>
+0.1 First attempt for pipes with 60mm diameter, made with tinkercad.com , here for sentimental reasons ![/pics/0.01.png](/pics/0.01.png =250x)<br>
 0.2 Fully proportional pipe part as FreeCAD file ![/pics/0.02.x.png](/pics/0.02.x.png)<br>
 0.2.3 Bug fixes, mostly for cases of very narrow labium <br>
 0.3 has (along the pipe) curved labium ![/pics/0.03.x.png](/pics/0.03.x.png)<br>
