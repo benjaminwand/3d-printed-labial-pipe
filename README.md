@@ -83,6 +83,19 @@ ffmpeg -f avfoundation -i ":0" -lavfi showspectrum=s=1440x900:slide=rscroll -c:v
 * I actually want to build a small organ.
 
 ## Screenshots
-![/pics/0.01.png](/pics/0.01.png) <br>
+![/pics/0.01.png](/pics/0.01.png)
 ![/pics/0.02.x.png](/pics/0.02.x.png)
 ![/pics/0.03.x.png](/pics/0.03.x.png)
+![/pics/0.04.x.png](/pics/0.04.x.png)
+![/pics/0.05.x.png](/pics/0.05.x.png)
+![/pics/0.06.x.png](/pics/0.06.x.png)
+![/pics/0.07.x.png](/pics/0.07.x.png)
+![/pics/0.08.x.png](/pics/0.08.x.png)
+![/pics/0.09.x.png](/pics/0.09.x.png)
+![/pics/0.10.x.png](/pics/0.10.x.png)
+![/pics/0.11.x.png](/pics/0.11.x.png)
+![/pics/0.12.x.png](/pics/0.12.x.png)
+![/pics/0.13.x.png](/pics/0.13.x.png)
+![/pics/0.14.x.png](/pics/0.14.x.png)
+![/pics/0.15.x.png](/pics/0.15.x.png)
+![/pics/0.16.x.png](/pics/0.16.x.png)
