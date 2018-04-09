@@ -25,15 +25,16 @@ The development is ongoing, and not necessarily the latest file is the one you w
 
 Currently I’m deploying two feature into some more pipes: adjustable flue and a more typical flue-pipe shape. Some have it, some don’t, if you want a specific pipe -> GitHub issue
 
-0.1 First attempt for pipes with 60mm diameter, made with tinkercad.com , here for sentimental reasons<br>
-0.2 Fully proportional pipe part as FreeCAD file <br>
+0.1 First attempt for pipes with 60mm diameter, made with tinkercad.com , here for sentimental reasons ![/pics/0.01.png](/pics/0.01.png)<br>
+0.2 Fully proportional pipe part as FreeCAD file ![/pics/0.02.x.png](/pics/0.02.x.png)<br>
 0.2.3 Bug fixes, mostly for cases of very narrow labium <br>
-0.3 has (along the pipe) curved labium <br>
+0.3 has (along the pipe) curved labium ![/pics/0.03.x.png](/pics/0.03.x.png)<br>
 0.3.1 Curved labium pipe with minor bugfixes <br>
 0.3.3 bugfix, sounds much better <br>
-0.4.1 creative approach that did not work <br>
+0.4.1 creative approach that did not work ![/pics/0.04.x.png](/pics/0.04.x.png)
+<br>
 0.4.2 now it makes tiny tones :) <br>
-0.5 Back to straight labium, better proportions, especially for wide labium, and it is hollow in the ‘block’. Surprise: the labium doesn’t need to be at the end of the sounding tube in a flue <br>
+0.5 Back to straight labium, better proportions, especially for wide labium, and it is hollow in the ‘block’. Surprise: the labium doesn’t need to be at the end of the sounding tube in a flue ![/pics/0.05.x.png](/pics/0.05.x.png)<br>
 0.5.1 like 0.5 but more flue pipe like outer shape <br>
 0.6 Experimental shape for the purpose of dividing long tubes, so far I can’t make sense of the pitch that comes out but it does sound nice <br>
 0.7 like 0.5 with optional block chamfer <br>
@@ -81,21 +82,3 @@ ffmpeg -f avfoundation -i ":0" -lavfi showspectrum=s=1440x900:slide=rscroll -c:v
 ## Future plans
 * Currently I'm printing pipes with different parameters and filaments to see which sounds how and I continue designing flue pipes. 
 * I actually want to build a small organ.
-
-## Screenshots
-![/pics/0.01.png](/pics/0.01.png)
-![/pics/0.02.x.png](/pics/0.02.x.png)
-![/pics/0.03.x.png](/pics/0.03.x.png)
-![/pics/0.04.x.png](/pics/0.04.x.png)
-![/pics/0.05.x.png](/pics/0.05.x.png)
-![/pics/0.06.x.png](/pics/0.06.x.png)
-![/pics/0.07.x.png](/pics/0.07.x.png)
-![/pics/0.08.x.png](/pics/0.08.x.png)
-![/pics/0.09.x.png](/pics/0.09.x.png)
-![/pics/0.10.x.png](/pics/0.10.x.png)
-![/pics/0.11.x.png](/pics/0.11.x.png)
-![/pics/0.12.x.png](/pics/0.12.x.png)
-![/pics/0.13.x.png](/pics/0.13.x.png)
-![/pics/0.14.x.png](/pics/0.14.x.png)
-![/pics/0.15.x.png](/pics/0.15.x.png)
-![/pics/0.16.x.png](/pics/0.16.x.png)
