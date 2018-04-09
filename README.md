@@ -84,3 +84,5 @@ ffmpeg -f avfoundation -i ":0" -lavfi showspectrum=s=1440x900:slide=rscroll -c:v
 
 ## Screenshots
 ![/pics/0.01.png](/pics/0.01.png) <br>
+![/pics/0.02.x.png](/pics/0.02.x.png)
+![/pics/0.03.x.png](/pics/0.03.x.png)
