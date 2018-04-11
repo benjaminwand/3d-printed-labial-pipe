@@ -5,9 +5,8 @@ This is a collection of FreeCAD files that will help you to 3D-print a part of a
 
 Please start by adding the desired measurements into the spreadsheet. Picking the exact measurements for organ pipes is an advanced subject that includes experience and opinion. If you don’t know where to start, [webpipecalc](https://cuervo.phoenix.uberspace.de/webpipecalc/) can help. You are limited by the diameters of the tubes you can buy. 
 
-I got the best printing results when slicing at a 45° angle and ‘support touching build plate’, so that there is no support structure under the labium. <br>
+I got the best printing results when slicing at a 45° angle and ‘support touching build plate’, so that there is no support structure under the labium. (Since the whole point of 0.15 is not slicing it at a 45°angle, don’t slice it at a 45° angle.)<br>
 ![https://cdn.thingiverse.com/renders/2a/03/54/e3/72/e935fcfeddd0d054e9dca2f05e988bd0_preview_featured.jpg](https://cdn.thingiverse.com/renders/2a/03/54/e3/72/e935fcfeddd0d054e9dca2f05e988bd0_preview_featured.jpg)
-(Since the whole point of 0.15 is not slicing it at a 45°angle, don’t slice it at a 45° angle.)
 
 [There are reversed free reed pipes as well.](https://github.com/benjaminwand/3d-printed-reversed-free-reed-pipe)
 
