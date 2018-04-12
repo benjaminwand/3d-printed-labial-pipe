@@ -12,6 +12,9 @@ I got the best printing results when slicing at a 45° angle and ‘support touc
 
 I'd be happy to hear about your instrument!
 
+Licensed under CC-BY <br>
+https://creativecommons.org/licenses/by/4.0/legalcode
+
 ## Versions
 The development is ongoing, and not necessarily the latest file is the one you want. Every 0.x has distinct features and then bugfixes. You probably want file 
 * 0.5.1 (no block chamfer) or 
