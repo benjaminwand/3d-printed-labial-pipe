@@ -75,7 +75,7 @@ Currently I’m deploying two feature into some more pipes: adjustable flue and 
 0.14.2 bugfix for larger pipes <br>
 0.15 pipe with 45° labium, for the purpose of easier slicing <br> 
 ![/pics/0.15.x.png](/pics/0.15.x.png) <br>
-0.15.1 - 0.15.8 several ways of 45° labium <br>
+0.15.1 - 0.15.9 several ways of 45° labium <br>
 0.16 like 0.5 but has nicks <br> 
 ![/pics/0.16.x.png](/pics/0.16.x.png) <br>
 
