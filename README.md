@@ -78,6 +78,8 @@ Currently I’m deploying two feature into some more pipes: adjustable flue and 
 0.15.1 - 0.15.9 several ways of 45° labium <br>
 0.16 like 0.5 but has nicks <br> 
 ![/pics/0.16.x.png](/pics/0.16.x.png) <br>
+0.17 curved 45° labium <br>
+![/pics/0.17.x.png](/pics/0.17.x.png) <br>
 
 ## Design thoughts
 I was pondering the design of flue pipes from wood and metal, and came to the conclusion that the design has a lot to do with the material. Wooden pipes are built angular because that is easier than woodturning, and metal pipes are made in a round shape because less soldering. So, what would be a good design for 3D-printing? Well, something with a flat base would be handy. But then, most 3D-printers can’t print large enough for most organ pipes, organ pipes get really large you know. So I decided to use tubes from the hardware store and only 3D-print the intricate part, therefore the 3D-printed organ pipes would be round. I made the outside hexagonal because that offers the best ratio of stability vs. little space consuming.
