@@ -100,6 +100,13 @@ http://orgelromantik.aeoline.de/2011/01/14/orgel-stimmen-mit-dem-ipad/ <br>
 Looking at what you are doing (mac): <br>
 ffmpeg -f avfoundation -i ":0" -lavfi showspectrum=s=1440x900:slide=rscroll -c:v rawvideo -r 25 -pix_fmt yuv420p -f matroska - | mpv -
 
+## other files
+### flutes and labium only
+To figure out the generator sound/frequency <br>
+![/pics/straight.png](/pics/straight.png) <br>
+### tuning and misc
+Parametric tuning devices
+
 ## Future plans
 * Currently I'm printing pipes with different parameters and filaments to see which sounds how and I continue designing flue pipes. 
 * I actually want to build a small organ.
