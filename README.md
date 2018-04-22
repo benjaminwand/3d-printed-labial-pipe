@@ -25,7 +25,7 @@ The development is ongoing, and not necessarily the latest file is the one you w
 * 0.16.2 (has nicks) or
 * 0.2.3 (is filled below the mouth).
 
-Currently I’m deploying two feature into some more pipes: adjustable flue and a more typical flue-pipe shape. Some have it, some don’t, if you want a specific pipe -> GitHub issue
+At some point I became tired of deploying the latest features into all files, if you want a pipe with specific features -> GitHub issue
 
 0.1 First attempt for pipes with 60mm diameter, made with tinkercad.com , here for sentimental reasons <br>
 ![/pics/0.01.png](/pics/0.01.png)<br>
