@@ -9,12 +9,14 @@ innerTube = 11;
 minWallThickness = 1.2;
 floorThickness = 2;
 flueWidth = 0.8;
+flueSteps = 50;
 
 // calculations, don't touch in daily use
 labiumY = sin(labiumWidth * 180 / outerDiameter / PI) * outerDiameter;
 angle = labiumWidth * 360 / outerDiameter / PI;
 floor = (lengthFlue + floorThickness)*-1;
 tubeInsert = outerTube + 5;
+flueStepWidth = labiumWidth * 180 / (outerDiameter+flueWidth) / PI / flueSteps;
 
 // flueLength warning
 if (lengthFlue < outerTube * 2)
@@ -27,9 +29,9 @@ module cylinder_outer(height,radius,fn){  	//from https://en.wikibooks.org/wiki/
 module flueLoft(upperDiameter, lowerDiameter, loftCeiling, loftFloor) {
     union() {
         translate([0, (outerDiameter*-0.5), loftFloor]) cylinder (tubeInsert, d=lowerDiameter);
-        for (a = [(angle*-0.5) : 1.2 : (angle*0.5)])
+        for (a = [(angle*-0.5) : (angle/flueSteps) : (angle*0.5)])
             hull () {
-            rotate ([0, 0, a]) translate ([0, (outerDiameter*-0.5), loftCeiling]) cylinder (0.1, d=upperDiameter, $fn = 15);
+            rotate ([0, 0, a]) translate ([0, (outerDiameter*-0.5), loftCeiling]) cube ([flueStepWidth, upperDiameter, 0.1], center=true);
             translate ([0, (outerDiameter*-0.5), (loftFloor + tubeInsert)]) cylinder (0.1, d=lowerDiameter);
         };
     };
@@ -44,9 +46,8 @@ translate ([0, 0, floor]) union(){
     cylinder_outer(height, (outerDiameter*0.5+minWallThickness), 60);
 };
 
-
 // flue
-difference (){
+!difference (){
 flueLoft((flueWidth+minWallThickness), (outerTube+minWallThickness),0,floor);
 flueLoft(flueWidth, innerTube, 0.1, (floor-0.1));
 };
@@ -55,7 +56,6 @@ flueLoft(flueWidth, innerTube, 0.1, (floor-0.1));
 basicShape(100);
 
 /* todo:
-Grundform, hab schon cylinder_outer
 Labiumcut
 assembly
 */
