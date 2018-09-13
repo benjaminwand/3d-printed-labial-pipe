@@ -19,24 +19,30 @@ tubeInsert = outerTube + 5;
 if (lengthFlue < outerTube * 2)
     echo("lengthFlue is too short");
 
-function mundform(x) = sqrt(outerDiameter*outerDiameter/4 - x*x) * -1;
-
-union() {
-    translate([0, (outerDiameter*-0.5), floor]) cylinder (tubeInsert, d=innerTube);
-    for (a = [ (labiumY*-0.5) : 0.1 : (labiumY*0.5) ])
-        hull () {
-        translate([a, mundform(a), 0]) cylinder (0.1, d=flueWidth, $fn = 15);
-        translate ([0, (outerDiameter*-0.5), (floor + tubeInsert)]) cylinder (0.1, d=innerTube);
+module cylinder_outer(height,radius,fn){  	//from https://en.wikibooks.org/wiki/OpenSCAD_User_Manual/undersized_circular_objects
+   fudge = 1/cos(180/fn);
+   cylinder(h=height,r=radius*fudge,$fn=fn);}
+   
+module flueLoft(upperDiameter, lowerDiameter, loftCeiling, loftFloor) {
+    union() {
+        translate([0, (outerDiameter*-0.5), loftFloor]) cylinder (tubeInsert, d=lowerDiameter);
+        for (a = [(angle*-0.5) : 1.2 : (angle*0.5)])
+            hull () {
+            rotate ([0, 0, a]) translate ([0, (outerDiameter*-0.5), loftCeiling]) cylinder (0.1, d=upperDiameter, $fn = 15);
+            translate ([0, (outerDiameter*-0.5), (loftFloor + tubeInsert)]) cylinder (0.1, d=lowerDiameter);
+        };
     };
-};
+}
+
+difference (){
+flueLoft((flueWidth+minWallThickness), (outerTube+minWallThickness),0,floor);
+flueLoft(flueWidth, innerTube, 0.1, (floor-0.1));
+}
 
 /* todo:
-mach union modul, mit parametern
-build total flue
-Grundform
+Grundform, hab schon cylinder_outer
 Labiumcut
 assembly
 */
-
 
 echo(version=version());
