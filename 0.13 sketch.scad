@@ -9,13 +9,14 @@ innerTube = 11;
 minWallThickness = 1.2;
 floorThickness = 2;
 flueWidth = 0.8;
-flueSteps = 50;
+flueSteps = 30;
 
 // calculations, don't touch in daily use
 labiumY = sin(labiumWidth * 180 / outerDiameter / PI) * outerDiameter;
 angle = labiumWidth * 360 / outerDiameter / PI;
 floor = (lengthFlue + floorThickness)*-1;
 tubeInsert = outerTube + 5;
+pipeInsert = innerDiameter * 0.1 + 5;
 flueStepWidth = labiumWidth * 180 / (outerDiameter+flueWidth) / PI / flueSteps;
 
 // flueLength warning
@@ -39,21 +40,33 @@ module flueLoft(upperDiameter, lowerDiameter, loftCeiling, loftFloor) {
 
 module basicShape(height)
 translate ([0, 0, floor]) union(){
-    intersection (){
-        rotate ([0, 0, 30]) cylinder_outer(height, (outerDiameter*0.5+minWallThickness), 6);
-        translate ([0,0,50]) cube ([outerDiameter*2, (sqrt(3)*(outerDiameter*0.5+minWallThickness)), height], center = true);
+    difference(){
+	   	union(){
+	        intersection (){
+	            rotate ([0, 0, 30]) cylinder_outer(height, (outerDiameter*0.5+minWallThickness), 6);
+	            translate ([0,0,50]) cube ([outerDiameter*2, (sqrt(3)*(outerDiameter*0.5+minWallThickness)), height], center = true);
+	 	        };
+	        cylinder_outer(height, (outerDiameter*0.5+minWallThickness), 60);
+	    	};
+        union(){
+        	translate ([0, 0, floorThickness]) cylinder(h=height, d=innerDiameter, center=false);
+        	translate ([0, 0, (height - pipeInsert)]) cylinder(h=height, d=outerDiameter, center=false);
         };
-    cylinder_outer(height, (outerDiameter*0.5+minWallThickness), 60);
+    };
 };
 
 // flue
-!difference (){
+difference (){
 flueLoft((flueWidth+minWallThickness), (outerTube+minWallThickness),0,floor);
-flueLoft(flueWidth, innerTube, 0.1, (floor-0.1));
+    union(){
+    flueLoft(flueWidth, innerTube, 0.1, (floor-0.1));
+    translate ([0, (outerDiameter*-0.5), (floor-0.1)]) cylinder (pipeInsert, d=outerTube, center=false);
+    };
 };
 
 // Grundform
 basicShape(100);
+
 
 /* todo:
 Labiumcut
