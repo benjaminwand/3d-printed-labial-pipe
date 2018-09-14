@@ -11,9 +11,10 @@ floorThickness = 2;
 flueWidth = 0.8;
 flueSteps = 10;
 
-// proportions
+// proportions, are most lilely in the right place
 tubeInsert = outerTube + 2.5; // length
 pipeInsert = innerDiameter * 0.1 + 5; // length
+airSupplyY = outerDiameter*-0.5;
 
 // calculations, don't touch in daily use
 labiumY = sin(labiumWidth * 180 / outerDiameter / PI) * outerDiameter; 
@@ -49,11 +50,11 @@ translate ([0, 0, ground]) union(){
    
 module curvedFlueLoft(upperDiameter, lowerDiameter, loftCeiling, loftFloor){
     union(){
-        translate([0, (outerDiameter*-0.5), loftFloor]) cylinder (h=(tubeInsert+0.1), d=lowerDiameter);
+        translate([0, airSupplyY, loftFloor]) cylinder (h=(tubeInsert+0.1), d=lowerDiameter);
         for (a = [(angle*-0.5) : (angle/flueSteps) : (angle*0.5)])
             hull () {
-            rotate ([0, 0, a]) translate ([0, (outerDiameter*-0.5), loftCeiling]) cube ([flueStepWidth, upperDiameter, 0.1], center=true);
-            translate ([0, (outerDiameter*-0.5), (loftFloor + tubeInsert)]) cylinder (0.1, d=lowerDiameter);
+            rotate ([0, 0, a]) translate ([0, airSupplyY, loftCeiling]) cube ([flueStepWidth, upperDiameter, 0.1], center=true);
+            translate ([0, airSupplyY, (loftFloor + tubeInsert)]) cylinder (0.1, d=lowerDiameter);
         };
     };
 }
@@ -77,7 +78,7 @@ module innerCurvedLoft(){
 }
 
 module airSupplySpacer(){
-    translate ([0, (outerDiameter*-0.5), (ground-0.1)]) 
+    translate ([0, airSupplyY, (ground-0.1)]) 
     cylinder (tubeInsert, d=outerTube, center=false);
 }
 
