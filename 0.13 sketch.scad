@@ -4,17 +4,17 @@ innerDiameter = 36;
 labiumWidth = 35;
 outCut = 10;
 lengthFlue = 40; //coordinate this with the frequency
-outerTube = 14;
-innerTube = 11;
+outerTube = 10;
+innerTube = 8;
 minWallThickness = 1.2;
 floorThickness = 2;
 flueWidth = 0.8;
-flueSteps = 10;
+flueSteps = 20;
 
-// proportions, are most lilely in the right place
+// proportions, are most likely good like that
 tubeInsert = outerTube + 2.5;       // length
 pipeInsert = innerDiameter * 0.1 + 5; // length
-airSupplyY = outerDiameter*-0.5;    // y position of air supply
+airSupplyY = outerDiameter*-0.45;    // y position of air supply
 height = 85; // die 85 ist testweise, muss die Höhe noch entscheiden
 
 // calculations, don't touch in daily use
@@ -22,6 +22,10 @@ labiumY = sin(labiumWidth * 180 / outerDiameter / PI) * outerDiameter;
 angle = labiumWidth * 360 / outerDiameter / PI;
 ground = (lengthFlue + floorThickness)*-1;
 flueStepWidth = labiumWidth * 180 / (outerDiameter+flueWidth) / PI / flueSteps;
+soundingLength = height - pipeInsert - floorThickness;
+
+// announcing sounding length
+echo("the sounding length inside the model in mm:", soundingLength);
 
 // flueLength warning
 if (lengthFlue < outerTube * 2)
@@ -39,9 +43,9 @@ translate ([0, 0, ground]) union(){
 	        intersection(){
 	            rotate ([0, 0, 30]) cylinder_outer(height, (outerDiameter*0.5+minWallThickness), 6);
 	            translate ([0,0,(height/2)]) cube ([outerDiameter*2, (sqrt(3)*(outerDiameter*0.5+minWallThickness)), height], center = true);
-	 	        };
+	 	    };
 	        cylinder(height, d=(outerDiameter + 2* minWallThickness)); 
-	    	};
+	   	};
         union(){
         	translate ([0, 0, floorThickness]) cylinder(height, d=innerDiameter, center=false);
         	translate ([0, 0, (height - pipeInsert)]) cylinder(height, d=outerDiameter, center=false);
@@ -54,7 +58,7 @@ module curvedFlueLoft(upperDiameter, lowerDiameter, loftCeiling, loftFloor){
         translate([0, airSupplyY, loftFloor]) cylinder (h=(tubeInsert+0.1), d=lowerDiameter);
         for (a = [(angle*-0.5) : (angle/flueSteps) : (angle*0.5)])
             hull(){
-            rotate ([0, 0, a]) translate ([0, airSupplyY, loftCeiling]) cube ([flueStepWidth, upperDiameter, 0.1], center=true);
+            rotate ([0, 0, a]) translate ([0, (outerDiameter*-0.5), loftCeiling]) cube ([flueStepWidth, upperDiameter, 0.1], center=true);
             translate ([0, airSupplyY, (loftFloor + tubeInsert)]) cylinder (0.1, d=lowerDiameter);
         };
     };
@@ -98,7 +102,7 @@ difference(){
 
 /* todo:
 Labiumcut
-figure out scaling
+figure out polyhedron
 assembly
 height
 */
