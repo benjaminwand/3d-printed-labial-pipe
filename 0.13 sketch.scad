@@ -12,9 +12,10 @@ flueWidth = 0.8;
 flueSteps = 10;
 
 // proportions, are most lilely in the right place
-tubeInsert = outerTube + 2.5; // length
+tubeInsert = outerTube + 2.5;       // length
 pipeInsert = innerDiameter * 0.1 + 5; // length
-airSupplyY = outerDiameter*-0.5;
+airSupplyY = outerDiameter*-0.5;    // y position of air supply
+height = 85; // die 85 ist testweise, muss die Höhe noch entscheiden
 
 // calculations, don't touch in daily use
 labiumY = sin(labiumWidth * 180 / outerDiameter / PI) * outerDiameter; 
@@ -35,11 +36,11 @@ module basicShape(height)
 translate ([0, 0, ground]) union(){
     difference(){
 	   	union(){
-	        intersection (){
+	        intersection(){
 	            rotate ([0, 0, 30]) cylinder_outer(height, (outerDiameter*0.5+minWallThickness), 6);
-	            translate ([0,0,50]) cube ([outerDiameter*2, (sqrt(3)*(outerDiameter*0.5+minWallThickness)), height], center = true);
+	            translate ([0,0,(height/2)]) cube ([outerDiameter*2, (sqrt(3)*(outerDiameter*0.5+minWallThickness)), height], center = true);
 	 	        };
-	        cylinder_outer(height, (outerDiameter*0.5 + minWallThickness), 60);
+	        cylinder(height, d=(outerDiameter + 2* minWallThickness)); 
 	    	};
         union(){
         	translate ([0, 0, floorThickness]) cylinder(height, d=innerDiameter, center=false);
@@ -52,7 +53,7 @@ module curvedFlueLoft(upperDiameter, lowerDiameter, loftCeiling, loftFloor){
     union(){
         translate([0, airSupplyY, loftFloor]) cylinder (h=(tubeInsert+0.1), d=lowerDiameter);
         for (a = [(angle*-0.5) : (angle/flueSteps) : (angle*0.5)])
-            hull () {
+            hull(){
             rotate ([0, 0, a]) translate ([0, airSupplyY, loftCeiling]) cube ([flueStepWidth, upperDiameter, 0.1], center=true);
             translate ([0, airSupplyY, (loftFloor + tubeInsert)]) cylinder (0.1, d=lowerDiameter);
         };
@@ -85,7 +86,7 @@ module airSupplySpacer(){
 // logic
 difference(){
     union(){
-        basicShape(100); // die 100 ist testweise, muss die Höhe noch entscheiden
+        basicShape(height); 
         outerCurvedLoft();
     };
     union(){
@@ -94,11 +95,12 @@ difference(){
     };
 };
 
+
 /* todo:
-mal bzgl 
 Labiumcut
 figure out scaling
 assembly
+height
 */
 
 echo(version=version());
