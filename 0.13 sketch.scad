@@ -24,22 +24,12 @@ flueStepWidth = labiumWidth * 180 / (outerDiameter+flueWidth) / PI / flueSteps;
 // flueLength warning
 if (lengthFlue < outerTube * 2)
     echo("lengthFlue is too short");
-
+    
 module cylinder_outer(height,radius,fn){  	//from https://en.wikibooks.org/wiki/OpenSCAD_User_Manual/undersized_circular_objects
    fudge = 1/cos(180/fn);
-   cylinder(h=height,r=radius*fudge,$fn=fn);}
-   
-module curvedFlueLoft(upperDiameter, lowerDiameter, loftCeiling, loftFloor) {
-    union() {
-        translate([0, (outerDiameter*-0.5), loftFloor]) cylinder (h=(tubeInsert+0.1), d=lowerDiameter);
-        for (a = [(angle*-0.5) : (angle/flueSteps) : (angle*0.5)])
-            hull () {
-            rotate ([0, 0, a]) translate ([0, (outerDiameter*-0.5), loftCeiling]) cube ([flueStepWidth, upperDiameter, 0.1], center=true);
-            translate ([0, (outerDiameter*-0.5), (loftFloor + tubeInsert)]) cylinder (0.1, d=lowerDiameter);
-        };
-    };
+   cylinder(h=height,r=radius*fudge,$fn=fn);
 }
-
+   
 module basicShape(height)
 translate ([0, 0, ground]) union(){
     difference(){
@@ -56,23 +46,57 @@ translate ([0, 0, ground]) union(){
         };
     };
 };
+   
+module curvedFlueLoft(upperDiameter, lowerDiameter, loftCeiling, loftFloor){
+    union(){
+        translate([0, (outerDiameter*-0.5), loftFloor]) cylinder (h=(tubeInsert+0.1), d=lowerDiameter);
+        for (a = [(angle*-0.5) : (angle/flueSteps) : (angle*0.5)])
+            hull () {
+            rotate ([0, 0, a]) translate ([0, (outerDiameter*-0.5), loftCeiling]) cube ([flueStepWidth, upperDiameter, 0.1], center=true);
+            translate ([0, (outerDiameter*-0.5), (loftFloor + tubeInsert)]) cylinder (0.1, d=lowerDiameter);
+        };
+    };
+}
 
-// actuall flue pipe
-difference (){
-    union (){
-        basicShape(100); // Grundform
-        curvedFlueLoft((flueWidth+minWallThickness), (outerTube+2*minWallThickness),0,ground);
-        // aussen loft
+module outerCurvedLoft(){
+    curvedFlueLoft(    
+        upperDiameter = (flueWidth + minWallThickness), 
+        lowerDiameter = (outerTube + 2 * minWallThickness),
+        loftCeiling = 0,
+        loftFloor = ground
+    );
+}
+
+module innerCurvedLoft(){
+    curvedFlueLoft(
+        upperDiameter = flueWidth, 
+        lowerDiameter = innerTube, 
+        loftCeiling = 0.1, 
+        loftFloor = (ground-0.1)
+    ); 
+}
+
+module airSupplySpacer(){
+    translate ([0, (outerDiameter*-0.5), (ground-0.1)]) 
+    cylinder (tubeInsert, d=outerTube, center=false);
+}
+
+// logic
+difference(){
+    union(){
+        basicShape(100); // die 100 ist testweise, muss die Höhe noch entscheiden
+        outerCurvedLoft();
     };
     union(){
-        curvedFlueLoft(flueWidth, innerTube, 0.1, (ground-0.1)); // innen loft
-        translate ([0, (outerDiameter*-0.5), (ground-0.1)]) cylinder (tubeInsert, d=outerTube, center=false); // schlauch reinsteck zylinder
+        innerCurvedLoft(); 
+        airSupplySpacer();
     };
 };
 
-
 /* todo:
+mal bzgl 
 Labiumcut
+figure out scaling
 assembly
 */
 
