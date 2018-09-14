@@ -18,7 +18,7 @@ pipeInsert = innerDiameter * 0.1 + 5; // length
 // calculations, don't touch in daily use
 labiumY = sin(labiumWidth * 180 / outerDiameter / PI) * outerDiameter; 
 angle = labiumWidth * 360 / outerDiameter / PI;
-floor = (lengthFlue + floorThickness)*-1;
+ground = (lengthFlue + floorThickness)*-1;
 flueStepWidth = labiumWidth * 180 / (outerDiameter+flueWidth) / PI / flueSteps;
 
 // flueLength warning
@@ -29,7 +29,7 @@ module cylinder_outer(height,radius,fn){  	//from https://en.wikibooks.org/wiki/
    fudge = 1/cos(180/fn);
    cylinder(h=height,r=radius*fudge,$fn=fn);}
    
-module flueLoft(upperDiameter, lowerDiameter, loftCeiling, loftFloor) {
+module curvedFlueLoft(upperDiameter, lowerDiameter, loftCeiling, loftFloor) {
     union() {
         translate([0, (outerDiameter*-0.5), loftFloor]) cylinder (h=(tubeInsert+0.1), d=lowerDiameter);
         for (a = [(angle*-0.5) : (angle/flueSteps) : (angle*0.5)])
@@ -41,7 +41,7 @@ module flueLoft(upperDiameter, lowerDiameter, loftCeiling, loftFloor) {
 }
 
 module basicShape(height)
-translate ([0, 0, floor]) union(){
+translate ([0, 0, ground]) union(){
     difference(){
 	   	union(){
 	        intersection (){
@@ -61,12 +61,12 @@ translate ([0, 0, floor]) union(){
 difference (){
     union (){
         basicShape(100); // Grundform
-        flueLoft((flueWidth+minWallThickness), (outerTube+2*minWallThickness),0,floor);
+        curvedFlueLoft((flueWidth+minWallThickness), (outerTube+2*minWallThickness),0,ground);
         // aussen loft
     };
     union(){
-        flueLoft(flueWidth, innerTube, 0.1, (floor-0.1)); // innen loft
-        translate ([0, (outerDiameter*-0.5), (floor-0.1)]) cylinder (tubeInsert, d=outerTube, center=false); // schlauch reinsteck zylinder
+        curvedFlueLoft(flueWidth, innerTube, 0.1, (ground-0.1)); // innen loft
+        translate ([0, (outerDiameter*-0.5), (ground-0.1)]) cylinder (tubeInsert, d=outerTube, center=false); // schlauch reinsteck zylinder
     };
 };
 
