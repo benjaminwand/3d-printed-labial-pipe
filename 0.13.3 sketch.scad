@@ -21,7 +21,7 @@ pipeInsert = innerDiameter * 0.1 + 5; // length
 airSupplyY = outerDiameter*-0.45;    // y position of air supply
 height = 85; // die 85 ist testweise, muss die Höhe noch entscheiden
 
-// calculations, don't touch in daily use
+// calculations, don't touch in production use
 labiumX = sin(labiumWidth * 180 / outerDiameter / PI) * outerDiameter; 
 angle = labiumWidth * 360 / outerDiameter / PI;
 ground = (lengthFlue + floorThickness)*-1;
@@ -46,7 +46,7 @@ module curvedFlueLoft2(upperDiameter, lowerDiameter, loftCeiling, loftFloor){
 };
 
 // logic
-difference(){
+%difference(){
     union(){
         basicShape(height); 
         outerCurvedLoft2();
