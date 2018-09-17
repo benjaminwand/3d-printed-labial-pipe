@@ -47,36 +47,22 @@ module curvedFlueLoft2(upperDiameter, lowerDiameter, loftCeiling, loftFloor){
 
 
 
-
 //Spielplatz
 
-function func4(a, b) = [a, b];
-function alpha(c) = (360 * (c+0.5) / flueSteps);
+function alpha(c) = (360 * (c-0.5) / flueSteps); //starts with 1 on unit circle
 function xLowerFlue(c) = cos(alpha(c))*(outerTube/2+minWallThickness);
-function yLowerFlue(c) = (sin(alpha(c))*(outerTube/2+minWallThickness) + airSupplyY);
-
+function yLowerFlue(c) = sin(alpha(c))*(outerTube/2+minWallThickness) + airSupplyY;
 
 polygon(points=
-    [[xLowerFlue(0), yLowerFlue(0)], 
-    [xLowerFlue(1), yLowerFlue(1)], 
-    [xLowerFlue(2), yLowerFlue(2)],
-    [xLowerFlue(3), yLowerFlue(3)],
-    [xLowerFlue(3), yLowerFlue(3)],
-    [xLowerFlue(4), yLowerFlue(4)],
-    [xLowerFlue(5), yLowerFlue(5)],
-    [xLowerFlue(6), yLowerFlue(6)],
-    [xLowerFlue(7), yLowerFlue(7)]]
-    );
+    [ 
+for (i =[1 : flueSteps]) makeSquareBracket(xLowerFlue(i), yLowerFlue(i))
+    ]);
 
+//for (d =[1 : flueSteps])echo(d);   
 
-//polygon(points=punkte());
+function makeSquareBracket(a, b) = [a, b];
 
-//for (c= [0 : (flueSteps-1)]{e = [ (sin(alpha)) , (cos(alpha)) ];
-  //  echo(e));
-
-//for (d =[0 : flueSteps])echo(d);   
-
-
+for (i =[1 : flueSteps]) echo(makeSquareBracket(xLowerFlue(i), yLowerFlue(i)));
 
 
 
