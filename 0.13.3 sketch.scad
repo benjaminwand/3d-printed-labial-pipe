@@ -41,9 +41,44 @@ module curvedFlueLoft2(upperDiameter, lowerDiameter, loftCeiling, loftFloor){
         	translate([0, airSupplyY, loftFloor]) cylinder(h=0.1, d=lowerDiameter, center=true);
         	translate([0, airSupplyY, (ground + tubeInsert)])cylinder(h=0.1, d=lowerDiameter, center=true);
         }
-        //polyhedron (points, triangles, convexity);
+        //polyhedron (points, faces, convexity);
     };
 };
+
+
+
+
+//Spielplatz
+
+function func4(a, b) = [a, b];
+function alpha(c) = (360 * (c+0.5) / flueSteps);
+function xLowerFlue(c) = cos(alpha(c))*(outerTube/2+minWallThickness);
+function yLowerFlue(c) = (sin(alpha(c))*(outerTube/2+minWallThickness) + airSupplyY);
+
+
+polygon(points=
+    [[xLowerFlue(0), yLowerFlue(0)], 
+    [xLowerFlue(1), yLowerFlue(1)], 
+    [xLowerFlue(2), yLowerFlue(2)],
+    [xLowerFlue(3), yLowerFlue(3)],
+    [xLowerFlue(3), yLowerFlue(3)],
+    [xLowerFlue(4), yLowerFlue(4)],
+    [xLowerFlue(5), yLowerFlue(5)],
+    [xLowerFlue(6), yLowerFlue(6)],
+    [xLowerFlue(7), yLowerFlue(7)]]
+    );
+
+
+//polygon(points=punkte());
+
+//for (c= [0 : (flueSteps-1)]{e = [ (sin(alpha)) , (cos(alpha)) ];
+  //  echo(e));
+
+//for (d =[0 : flueSteps])echo(d);   
+
+
+
+
 
 // logic
 %difference(){
