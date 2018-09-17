@@ -49,21 +49,13 @@ module curvedFlueLoft2(upperDiameter, lowerDiameter, loftCeiling, loftFloor){
 
 //Spielplatz
 
+function makeSquareBracket(a, b) = [a, b];
 function alpha(c) = (360 * (c-0.5) / flueSteps); //starts with 1 on unit circle
 function xLowerFlue(c) = cos(alpha(c))*(outerTube/2+minWallThickness);
 function yLowerFlue(c) = sin(alpha(c))*(outerTube/2+minWallThickness) + airSupplyY;
 
 polygon(points=
-    [ 
-for (i =[1 : flueSteps]) makeSquareBracket(xLowerFlue(i), yLowerFlue(i))
-    ]);
-
-//for (d =[1 : flueSteps])echo(d);   
-
-function makeSquareBracket(a, b) = [a, b];
-
-for (i =[1 : flueSteps]) echo(makeSquareBracket(xLowerFlue(i), yLowerFlue(i)));
-
+    [for (i =[1 : flueSteps]) makeSquareBracket(xLowerFlue(i), yLowerFlue(i))]);
 
 
 // logic
