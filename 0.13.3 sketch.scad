@@ -7,13 +7,13 @@ outerDiameter = 40;
 innerDiameter = 36;
 labiumWidth = 35;
 outCut = 10;
-lengthFlue = 40; //coordinate this with the frequency
+lengthFlue = 40; // coordinate this with the frequency
 outerTube = 16;
 innerTube = 13;
 minWallThickness = 1.2;
 floorThickness = 2;
 flueWidth = 0.8;
-flueSteps = 10; 
+flueSteps = 18;  // flue seems to behave weird for some values
 
 // proportions, are most likely good like that
 tubeInsert = outerTube + 2.5;       // length
@@ -47,30 +47,52 @@ module curvedFlueLoft2(upperDiameter, lowerDiameter, loftCeiling, loftFloor){
 
 
 
-//Spielplatz
+//Polygon rund
 
 function makeSquareBracket(a, b) = [a, b];
+function makeSquareBracket1(a) = [a];
+function makeSquareBracket3(a, b, c) = [a, b, c];
 function alpha(c) = (360 * (0.5*c-0.25) / flueSteps); //starts with 1 on unit circle
 function xLowerFlue(i) = cos(alpha(i))*(outerTube/2+minWallThickness);
 function yLowerFlue(i) = sin(alpha(i))*(outerTube/2+minWallThickness) + airSupplyY;
 twoFlueSteps=2*flueSteps;
-
 polygon(points=
-    [for (i =[1 : twoFlueSteps]) makeSquareBracket(xLowerFlue(i), yLowerFlue(i))]);
+    [for (i =[1 : twoFlueSteps]) concat(xLowerFlue(i), yLowerFlue(i))]);
+    
+//Polygon Schlitz
     
 function xUpperInnerFlue(i) = cos(i)*(outerDiameter/2-flueWidth/2);
 function yUpperInnerFlue(i) = sin(i)*(outerDiameter/2-flueWidth/2);
 function xUpperOuterFlue(i) = cos(i)*(outerDiameter/2+flueWidth/2);
 function yUpperOuterFlue(i) = sin(i)*(outerDiameter/2+flueWidth/2);
+polygon(points=[
+    for (i =[(270-angle*0.5) : (angle/flueSteps) : (270+angle*0.5)]) 
+        concat(xUpperInnerFlue(i), yUpperInnerFlue(i)),
+    for (i =[(270+angle*0.5) : (angle/flueSteps*-1) : (270-angle*0.5)]) 
+        concat(xUpperOuterFlue(i), yUpperOuterFlue(i))
+]);
+/*
+upperPoints=(concat(
+    for (i =[(270-angle*0.5) : (angle/flueSteps) : (270+angle*0.5)]) 
+        concat(xUpperInnerFlue(i), yUpperInnerFlue(i), loftCeiling),
+    for (i =[(270+angle*0.5) : (angle/flueSteps*-1) : (270-angle*0.5)]) 
+        concat(xUpperOuterFlue(i), yUpperOuterFlue(i), loftCeiling)
+));
+echo(upperPoints);
+    
+lowerPoints=concat(
+    for (i =[1 : twoFlueSteps]) 
+        concat(xLowerFlue(i), yLowerFlue(i), ground+tubeInsert)
+);
 
-polygon(points=
-    [
-    for (i =[(270-angle*0.5) : (angle/flueSteps) : (270+angle*0.5)]) makeSquareBracket(xUpperInnerFlue(i), yUpperInnerFlue(i)),
-    for (i =[(270+angle*0.5) : (angle/flueSteps*-1) : (270-angle*0.5)]) makeSquareBracket(xUpperOuterFlue(i), yUpperOuterFlue(i))
-    ]);
+polyhedron(points=[
+    for (i=[1 : (flueSteps*4)])    
+        
+];
 
+*/
 
-*outerCurvedLoft();
+%outerCurvedLoft();
 
 // logic
 *difference(){
