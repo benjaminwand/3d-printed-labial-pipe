@@ -13,7 +13,7 @@ innerTube = 13;
 minWallThickness = 1.2;
 floorThickness = 2;
 flueWidth = 0.8;
-flueSteps = 8; 
+flueSteps = 10; 
 
 // proportions, are most likely good like that
 tubeInsert = outerTube + 2.5;       // length
@@ -50,16 +50,30 @@ module curvedFlueLoft2(upperDiameter, lowerDiameter, loftCeiling, loftFloor){
 //Spielplatz
 
 function makeSquareBracket(a, b) = [a, b];
-function alpha(c) = (360 * (c-0.5) / flueSteps); //starts with 1 on unit circle
-function xLowerFlue(c) = cos(alpha(c))*(outerTube/2+minWallThickness);
-function yLowerFlue(c) = sin(alpha(c))*(outerTube/2+minWallThickness) + airSupplyY;
+function alpha(c) = (360 * (0.5*c-0.25) / flueSteps); //starts with 1 on unit circle
+function xLowerFlue(i) = cos(alpha(i))*(outerTube/2+minWallThickness);
+function yLowerFlue(i) = sin(alpha(i))*(outerTube/2+minWallThickness) + airSupplyY;
+twoFlueSteps=2*flueSteps;
 
 polygon(points=
-    [for (i =[1 : flueSteps]) makeSquareBracket(xLowerFlue(i), yLowerFlue(i))]);
+    [for (i =[1 : twoFlueSteps]) makeSquareBracket(xLowerFlue(i), yLowerFlue(i))]);
+    
+function xUpperInnerFlue(i) = cos(i)*(outerDiameter/2-flueWidth/2);
+function yUpperInnerFlue(i) = sin(i)*(outerDiameter/2-flueWidth/2);
+function xUpperOuterFlue(i) = cos(i)*(outerDiameter/2+flueWidth/2);
+function yUpperOuterFlue(i) = sin(i)*(outerDiameter/2+flueWidth/2);
 
+polygon(points=
+    [
+    for (i =[(270-angle*0.5) : (angle/flueSteps) : (270+angle*0.5)]) makeSquareBracket(xUpperInnerFlue(i), yUpperInnerFlue(i)),
+    for (i =[(270+angle*0.5) : (angle/flueSteps*-1) : (270-angle*0.5)]) makeSquareBracket(xUpperOuterFlue(i), yUpperOuterFlue(i))
+    ]);
+
+
+*outerCurvedLoft();
 
 // logic
-%difference(){
+*difference(){
     union(){
         basicShape(height); 
         outerCurvedLoft2();
