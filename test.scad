@@ -30,7 +30,7 @@ soundingLength = height - pipeInsert - floorThickness;
 
 
 // functions for the flue polyhedron
-function alpha(c) = (360 * (0.5*c-0.25) / flueSteps); //starts with 1 on unit circle
+function alpha(c) = (360 * (0.5*c+0.25) / flueSteps); //starts with 0 on unit circle
 function xLowerFlue(i) = cos(alpha(i))*outerTube/2;
 function yLowerFlue(i) = sin(alpha(i))*outerTube/2 + airSupplyY;
     
@@ -47,6 +47,8 @@ upperPoints=[
         concat(xUpperOuterFlue(i), yUpperOuterFlue(i), 0)
 ];
 //echo(upperPoints=upperPoints);
+    
+
 
 lowerPoints=[
     for (i =[1 : (2*flueSteps)]) 
@@ -54,28 +56,18 @@ lowerPoints=[
 ];
 //echo(lowerPoints=lowerPoints);    
 
-/*
-function alternating_points(i) = (
+
+function alternating_points(i) = [
     upperPoints[i],
     lowerPoints[i]
-);
-
-fluePolyhedronPoints=[
-    for (i=[1 : (2*flueSteps)]) alternating_points(i-1)
 ];
-echo(fluePolyhedronPoints=fluePolyhedronPoints);
-*/
-
-function alternating_points(i) = (
-    upperPoints[i],
-    lowerPoints[i]
-);
-
+    
 fluePolyhedronPoints=[
-    for (i=[1 : (2*flueSteps)]) {    
-        upperPoints[i-1],
-        lowerPoints[i-1];
-    }
+    for (i=[0 : (4*flueSteps-1)]) 
+        if (i%2 == 0)
+            alternating_points(i/2)[0]
+        else
+            alternating_points(i/2-1)[1]
 ];
 echo(fluePolyhedronPoints=fluePolyhedronPoints);
 

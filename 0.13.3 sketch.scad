@@ -35,7 +35,7 @@ echo(str("the sounding length inside the model in mm: ", soundingLength));
 if (lengthFlue < outerTube * 2)
     echo("lengthFlue is too short");
 
-module curvedFlueLoft2(upperDiameter, lowerDiameter, loftCeiling, loftFloor){
+module curvedFlueLoft2(upperDiameter, lowerDiameter, loftFloor){
     union(){
         hull(){
         	translate([0, airSupplyY, loftFloor]) 
@@ -47,27 +47,21 @@ module curvedFlueLoft2(upperDiameter, lowerDiameter, loftCeiling, loftFloor){
     };
 };
 
-//Polygon rund
-
-function alpha(c) = (360 * (0.5*c-0.25) / flueSteps); //starts with 1 on unit circle
-function xLowerFlue(i) = cos(alpha(i))*lowerDiameter/2;
-function yLowerFlue(i) = sin(alpha(i))*lowerDiameter/2 + airSupplyY;
-
-
-
-//Polygon Schlitz
+// functions for the flue polyhedron
+function alpha(c) = (360 * (0.5*c+0.25) / flueSteps); //starts with 0 on unit circle
+function xLowerFlue(i) = cos(alpha(i))*outerTube/2;
+function yLowerFlue(i) = sin(alpha(i))*outerTube/2 + airSupplyY;
     
-function xUpperInnerFlue(i) = cos(i)*(outerDiameter-upperDiameter)/2;
-function yUpperInnerFlue(i) = sin(i)*(outerDiameter-upperDiameter)/2;
-function xUpperOuterFlue(i) = cos(i)*(outerDiameter+upperDiameter)/2;
-function yUpperOuterFlue(i) = sin(i)*(outerDiameter+upperDiameter)/2;
-   
+function xUpperInnerFlue(i) = cos(i)*(outerDiameter-flueWidth)/2;
+function yUpperInnerFlue(i) = sin(i)*(outerDiameter-flueWidth)/2;
+function xUpperOuterFlue(i) = cos(i)*(outerDiameter+flueWidth)/2;
+function yUpperOuterFlue(i) = sin(i)*(outerDiameter+flueWidth)/2;
 
 upperPoints=[
     for (i =[(270-angle*0.5) : (angle/flueSteps) : (270+angle*0.5)]) 
-        concat(xUpperInnerFlue(i), yUpperInnerFlue(i), loftCeiling),
+        concat(xUpperInnerFlue(i), yUpperInnerFlue(i), 0),
     for (i =[(270+angle*0.5) : (angle/flueSteps*-1) : (270-angle*0.5)]) 
-        concat(xUpperOuterFlue(i), yUpperOuterFlue(i), loftCeiling)
+        concat(xUpperOuterFlue(i), yUpperOuterFlue(i), 0)
 ];
 
 lowerPoints=[
@@ -76,12 +70,14 @@ lowerPoints=[
 ];
 
 fluePolyhedronPoints=[
-    for (i=[1 : (2*flueSteps)]) 
-        concat(
-        upperPoints[i-1],
-        lowerPoints[i-1]
-    )
+    for (i=[0 : (4*flueSteps-1)]) 
+        if (i%2 == 0)
+            upperPoints[i/2]
+        else
+            lowerPoints[(i-1)/2]
 ];
+        
+echo(fluePolyhedronPoints=fluePolyhedronPoints);
 
 fluePolyhedronFaces = [
     [for (i= [0 : flueSteps-1]) (2*i)],
@@ -94,10 +90,11 @@ module fluePolyhedron() {polyhedron(
     points = fluePolyhedronPoints,
     faces = fluePolyhedronFaces);
 };
-fluePolyhedron();
+
+// fluePolyhedron();
 
 // logic
-*difference(){
+difference(){
     union(){
         basicShape(height); 
         outerCurvedLoft2();
@@ -130,4 +127,7 @@ polygon(points=[
     for (i =[(270-angle*0.5) : (angle/flueSteps) : (270+angle*0.5)]) 
         concat(xUpperOuterFlue(i), yUpperOuterFlue(i))
 ]);
+
+
+
  */
