@@ -42,8 +42,8 @@ module curvedFlueLoft2(upperDiameter, lowerDiameter, loftCeiling, loftFloor){
                 cylinder(h=0.1, d=lowerDiameter, center=true);
         	translate([0, airSupplyY, (ground + tubeInsert)])
                 cylinder(h=0.1, d=lowerDiameter, center=true);
-        }
-        //fluePolyhedron;
+        };
+        fluePolyhedron();
     };
 };
 
@@ -53,23 +53,16 @@ function alpha(c) = (360 * (0.5*c-0.25) / flueSteps); //starts with 1 on unit ci
 function xLowerFlue(i) = cos(alpha(i))*lowerDiameter/2;
 function yLowerFlue(i) = sin(alpha(i))*lowerDiameter/2 + airSupplyY;
 
-polygon(points=
-    [for (i =[1 : (2*flueSteps)]) concat(xLowerFlue(i), yLowerFlue(i))]);
-    
+
+
 //Polygon Schlitz
     
 function xUpperInnerFlue(i) = cos(i)*(outerDiameter-upperDiameter)/2;
 function yUpperInnerFlue(i) = sin(i)*(outerDiameter-upperDiameter)/2;
 function xUpperOuterFlue(i) = cos(i)*(outerDiameter+upperDiameter)/2;
 function yUpperOuterFlue(i) = sin(i)*(outerDiameter+upperDiameter)/2;
-    
-polygon(points=[
-    for (i =[(270+angle*0.5) : (angle/flueSteps*-1) : (270-angle*0.5)]) 
-        concat(xUpperInnerFlue(i), yUpperInnerFlue(i)),
-    for (i =[(270-angle*0.5) : (angle/flueSteps) : (270+angle*0.5)]) 
-        concat(xUpperOuterFlue(i), yUpperOuterFlue(i))
-]);
- 
+   
+
 upperPoints=[
     for (i =[(270-angle*0.5) : (angle/flueSteps) : (270+angle*0.5)]) 
         concat(xUpperInnerFlue(i), yUpperInnerFlue(i), loftCeiling),
@@ -90,14 +83,18 @@ fluePolyhedronPoints=[
     )
 ];
 
-   /*
-fluePolyhedron( points=fluePolyhedronPoints,
-            faces, 
-            convexity
-)
-*/
+fluePolyhedronFaces = [
+    [for (i= [0 : flueSteps-1]) (2*i)],
+    [for (i= [0 : flueSteps-1]) (2*i+1)],
+    for (i= [1: (flueSteps*4)]) 
+        concat(i % (flueSteps*4), (i+1) % (flueSteps*4), (i+2) % (flueSteps*4))
+];
 
-%outerCurvedLoft();
+module fluePolyhedron() {polyhedron( 
+    points = fluePolyhedronPoints,
+    faces = fluePolyhedronFaces);
+};
+fluePolyhedron();
 
 // logic
 *difference(){
@@ -113,14 +110,24 @@ fluePolyhedron( points=fluePolyhedronPoints,
 
 
 /* todo:
+polyhedron troubleshooting
 Labiumcut
-polyhedron: 
-    alternatingly taking an item from upperPoints and lowerPoints
-    faces
-    convexity
-    assembly
 assembly
 height
 */
 
 echo(version=version());
+
+
+//deprecated
+/*
+polygon(points=
+    [for (i =[1 : (2*flueSteps)]) concat(xLowerFlue(i), yLowerFlue(i))]);
+
+polygon(points=[
+    for (i =[(270+angle*0.5) : (angle/flueSteps*-1) : (270-angle*0.5)]) 
+        concat(xUpperInnerFlue(i), yUpperInnerFlue(i)),
+    for (i =[(270-angle*0.5) : (angle/flueSteps) : (270+angle*0.5)]) 
+        concat(xUpperOuterFlue(i), yUpperOuterFlue(i))
+]);
+ */
