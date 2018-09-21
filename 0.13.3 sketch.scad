@@ -13,7 +13,7 @@ innerTube = 13;
 minWallThickness = 1.2;
 floorThickness = 2;
 flueWidth = 0.8;
-flueSteps = 10;  // flue seems to behave weird for some values
+flueSteps = 11;  // flue seems to behave weird for some values
 
 // proportions, are most likely good like that
 tubeInsert = outerTube + 2.5;       // length
@@ -48,7 +48,7 @@ module curvedFlueLoft2(upperDiameter, lowerDiameter, loftFloor){
 };
 
 // functions for the flue polyhedron
-function alpha(c) = (360 * (0.5*c+0.25) / flueSteps); //starts with 0 on unit circle
+function alpha(c) = (360 * (0.5*c-0.25) / flueSteps); //starts with 1 on unit circle
 function xLowerFlue(i) = cos(alpha(i))*outerTube/2;
 function yLowerFlue(i) = sin(alpha(i))*outerTube/2 + airSupplyY;
     
@@ -58,9 +58,9 @@ function xUpperOuterFlue(i) = cos(i)*(outerDiameter+flueWidth)/2;
 function yUpperOuterFlue(i) = sin(i)*(outerDiameter+flueWidth)/2;
 
 upperPoints=[
-    for (i =[(270-angle*0.5) : (angle/flueSteps) : (270+angle*0.5)]) 
-        concat(xUpperInnerFlue(i), yUpperInnerFlue(i), 0),
     for (i =[(270+angle*0.5) : (angle/flueSteps*-1) : (270-angle*0.5)]) 
+        concat(xUpperInnerFlue(i), yUpperInnerFlue(i), 0),
+    for (i =[(270-angle*0.5) : (angle/flueSteps) : (270+angle*0.5)]) 
         concat(xUpperOuterFlue(i), yUpperOuterFlue(i), 0)
 ];
 
@@ -94,7 +94,7 @@ module fluePolyhedron() {polyhedron(
 // fluePolyhedron();
 
 // logic
-difference(){
+%difference(){
     union(){
         basicShape(height); 
         outerCurvedLoft2();
@@ -104,6 +104,15 @@ difference(){
         airSupplySpacer();
     };
 };
+
+// test
+difference(){
+    outerCurvedLoft2();
+    innerCurvedLoft2();
+};
+
+for (i= [0 : 4*flueSteps-1])
+    color("red") translate(fluePolyhedronPoints[i]) circle(0.5);
 
 
 /* todo:
