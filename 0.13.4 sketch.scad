@@ -43,19 +43,42 @@ module curvedFlueLoft2(upperDiameter, lowerDiameter, loftCeiling, loftFloor){
         	translate([0, airSupplyY, (ground + tubeInsert)])
                 cylinder(h=0.1, d=lowerDiameter, center=true);
         };
-        fluePolyhedron();
+        polyhedron( 
+            points = [
+            for (i=[0 : (4*flueSteps-1)]) 
+                if (i%2 == 0)
+                    [
+for (i =[(270+angle*0.5) : (angle/flueSteps*-1) : (270-angle*0.5)]) 
+    concat(xUpperInnerFlue(i,upperDiameter), yUpperInnerFlue(i,upperDiameter), loftCeiling),
+for (i =[(270-angle*0.5) : (angle/flueSteps) : (270+angle*0.5)]) 
+    concat(xUpperOuterFlue(i,upperDiameter), yUpperOuterFlue(i,upperDiameter), loftCeiling)
+                    ][i/2]
+                else
+                    [
+for (i =[1 : (2*flueSteps)]) 
+    concat(xLowerFlue(i,lowerDiameter), yLowerFlue(i,lowerDiameter), ground+tubeInsert) 
+                    ][(i-1)/2]                 // ground+tubeInsert-0.1 für anti-koplanar?
+            ],
+            faces = [
+                [for (i= [0 : 2 : flueSteps-1]) i],
+                [for (i= [flueSteps-1 : -2 : 0]) i],
+                for (i= [1: (flueSteps*4)]) 
+                    concat(i % (flueSteps*4), 
+                        (i+1) % (flueSteps*4), 
+                        (i+2) % (flueSteps*4))
+            ]);
     };
 };
 
 // functions for the flue polyhedron
 function alpha(c) = (360 * (0.5*c-0.25) / flueSteps); //starts with 1 on unit circle
-function xLowerFlue(i) = cos(alpha(i))*outerTube/2;
-function yLowerFlue(i) = sin(alpha(i))*outerTube/2 + airSupplyY;
+function xLowerFlue(i,lowerDiameter) = cos(alpha(i))*lowerDiameter/2;
+function yLowerFlue(i,lowerDiameter) = sin(alpha(i))*lowerDiameter/2 + airSupplyY;
     
-function xUpperInnerFlue(i) = cos(i)*(outerDiameter-flueWidth)/2;
-function yUpperInnerFlue(i) = sin(i)*(outerDiameter-flueWidth)/2;
-function xUpperOuterFlue(i) = cos(i)*(outerDiameter+flueWidth)/2;
-function yUpperOuterFlue(i) = sin(i)*(outerDiameter+flueWidth)/2;
+function xUpperInnerFlue(i,upperDiameter) = cos(i)*(outerDiameter-upperDiameter)/2;
+function yUpperInnerFlue(i,upperDiameter) = sin(i)*(outerDiameter-upperDiameter)/2;
+function xUpperOuterFlue(i,upperDiameter) = cos(i)*(outerDiameter+upperDiameter)/2;
+function yUpperOuterFlue(i,upperDiameter) = sin(i)*(outerDiameter+upperDiameter)/2;
 
 upperPoints=[
     for (i =[(270+angle*0.5) : (angle/flueSteps*-1) : (270-angle*0.5)]) 
@@ -77,7 +100,6 @@ fluePolyhedronPoints=[
             lowerPoints[(i-1)/2]
 ];
         
-echo(fluePolyhedronPoints=fluePolyhedronPoints);
 
 fluePolyhedronFaces = [
     [for (i= [0 : 2 : flueSteps-1]) i],
@@ -86,12 +108,11 @@ fluePolyhedronFaces = [
         concat(i % (flueSteps*4), (i+1) % (flueSteps*4), (i+2) % (flueSteps*4))
 ];
 
-module fluePolyhedron() {polyhedron( 
+module fluePolyhedron(upperDiameter, lowerDiameter, loftCeiling) {polyhedron( 
     points = fluePolyhedronPoints,
     faces = fluePolyhedronFaces);
 };
 
-// fluePolyhedron();
 
 // logic
 *difference(){
@@ -106,13 +127,10 @@ module fluePolyhedron() {polyhedron(
 };
 
 // test
-difference(){
-    outerCurvedLoft2();
-    innerCurvedLoft2();
-};
 
-for (i= [0 : 4*flueSteps-1])
-    color( c = [i/(4*flueSteps-1), (4*flueSteps-1-i)/(4*flueSteps-1), 1, 1] ) translate(fluePolyhedronPoints[i]) circle(0.5);
+%color("red")outerCurvedLoft2();
+color("blue")innerCurvedLoft2();
+
 
 
 /* todo:
@@ -124,19 +142,3 @@ height
 
 echo(version=version());
 
-
-//deprecated
-/*
-polygon(points=
-    [for (i =[1 : (2*flueSteps)]) concat(xLowerFlue(i), yLowerFlue(i))]);
-
-polygon(points=[
-    for (i =[(270+angle*0.5) : (angle/flueSteps*-1) : (270-angle*0.5)]) 
-        concat(xUpperInnerFlue(i), yUpperInnerFlue(i)),
-    for (i =[(270-angle*0.5) : (angle/flueSteps) : (270+angle*0.5)]) 
-        concat(xUpperOuterFlue(i), yUpperOuterFlue(i))
-]);
-
-
-
- */
