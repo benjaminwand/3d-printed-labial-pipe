@@ -13,7 +13,7 @@ innerTube = 13;
 minWallThickness = 1.2;
 floorThickness = 2;
 flueWidth = 0.8;
-flueSteps = 11;  // flue seems to behave weird for some values
+flueSteps = 17;  // flue seems to behave weird for some values
 
 // proportions, are most likely good like that
 tubeInsert = outerTube + 2.5;       // length
@@ -40,7 +40,7 @@ module curvedFlueLoft2(upperDiameter, lowerDiameter, loftCeiling, loftFloor){
         hull(){
         	translate([0, airSupplyY, loftFloor]) 
                 cylinder(h=0.1, d=lowerDiameter, center=true);
-        	translate([0, airSupplyY, (ground + tubeInsert)])
+        	translate([0, airSupplyY, (ground + tubeInsert + 0.1)])
                 cylinder(h=0.1, d=lowerDiameter, center=true);
         };
     //    fluePolyhedron();
