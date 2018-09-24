@@ -3,14 +3,18 @@ translate ([0, 0, ground]) union(){
     difference(){
 	   	union(){
 	        intersection(){
-	            rotate ([0, 0, 30]) cylinder_outer(height, (outerDiameter*0.5+minWallThickness), 6);
-	            translate ([0,0,(height/2)]) cube ([outerDiameter*2, (sqrt(3)*(outerDiameter*0.5+minWallThickness)), height], center = true);
+	            rotate ([0, 0, 30]) 
+                    cylinder_outer(height, (outerDiameter*0.5+minWallThickness), 6);
+	            translate ([0,0,(height/2)]) 
+                    cube ([outerDiameter*2, (sqrt(3)*(outerDiameter*0.5+minWallThickness)), height], center = true);
 	 	    };
 	        cylinder(height, d=(outerDiameter + 2* minWallThickness)); 
 	   	};
         union(){
-        	translate ([0, 0, floorThickness]) cylinder(height, d=innerDiameter, center=false);
-        	translate ([0, 0, (height - pipeInsert)]) cylinder(height, d=outerDiameter, center=false);
+        	translate ([0, 0, floorThickness]) 
+                cylinder(height, d=innerDiameter, center=false);
+        	translate ([0, 0, (height - pipeInsert)]) 
+                cylinder(height, d=outerDiameter, center=false);
         };
     };
 };
