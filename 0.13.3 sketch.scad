@@ -1,6 +1,7 @@
 // flue pippe. work in progress.
 
 include <common.scad>
+include <loft.scad>
 
 // variables
 outerDiameter = 40;
@@ -13,7 +14,8 @@ innerTube = 13;
 minWallThickness = 1.2;
 floorThickness = 2;
 flueWidth = 0.8;
-flueSteps = 11;  // flue seems to behave weird for some values
+flueSteps = 11;  
+number_of_layers = 5 ;   // .. of the flue loft
 
 // proportions, are most likely good like that
 tubeInsert = outerTube + 2.5;       // length
@@ -35,66 +37,55 @@ echo(str("the sounding length inside the model in mm: ", soundingLength));
 if (lengthFlue < outerTube * 2)
     echo("lengthFlue is too short");
 
-module curvedFlueLoft2(upperDiameter, lowerDiameter, loftCeiling, loftFloor){
-    union(){
-        hull(){
-        	translate([0, airSupplyY, loftFloor]) 
-                cylinder(h=0.1, d=lowerDiameter, center=true);
-        	translate([0, airSupplyY, (ground + tubeInsert)])
-                cylinder(h=0.1, d=lowerDiameter, center=true);
-        };
-        fluePolyhedron();
-    };
-};
-
-// functions for the flue polyhedron
+// inner flue loft calculations
 function alpha(c) = (360 * (0.5*c-0.25) / flueSteps); //starts with 1 on unit circle
-function xLowerFlue(i) = cos(alpha(i))*outerTube/2;
-function yLowerFlue(i) = sin(alpha(i))*outerTube/2 + airSupplyY;
+function xLowerInnerFlue(i) = cos(alpha(i))*innerTube/2;
+function yLowerInnerFlue(i) = -sin(alpha(i))*innerTube/2 + airSupplyY;
     
-function xUpperInnerFlue(i) = cos(i)*(outerDiameter-flueWidth)/2;
-function yUpperInnerFlue(i) = sin(i)*(outerDiameter-flueWidth)/2;
-function xUpperOuterFlue(i) = cos(i)*(outerDiameter+flueWidth)/2;
-function yUpperOuterFlue(i) = sin(i)*(outerDiameter+flueWidth)/2;
+function xUpperInnerFlue1(i) = cos(i)*(outerDiameter-flueWidth)/2;
+function yUpperInnerFlue1(i) = sin(i)*(outerDiameter-flueWidth)/2;
+function xUpperOuterFlue1(i) = cos(i)*(outerDiameter+flueWidth)/2;
+function yUpperOuterFlue1(i) = sin(i)*(outerDiameter+flueWidth)/2;
 
-upperPoints=[
-    for (i =[(270+angle*0.5) : (angle/flueSteps*-1) : (270-angle*0.5)]) 
-        concat(xUpperInnerFlue(i), yUpperInnerFlue(i), 0),
-    for (i =[(270-angle*0.5) : (angle/flueSteps) : (270+angle*0.5)]) 
-        concat(xUpperOuterFlue(i), yUpperOuterFlue(i), 0)
+flueloft_upper_inner_points=[
+    for (i =[(270+angle*0.5) : (angle/(flueSteps-1)*-1) : (270-angle*0.5)]) 
+        concat(xUpperOuterFlue1(i), yUpperOuterFlue1(i), 0.1),
+    for (i =[(270-angle*0.5) : (angle/(flueSteps-1)) : (270+angle*0.5)]) 
+        concat(xUpperInnerFlue1(i), yUpperInnerFlue1(i), 0.1)
 ];
 
-lowerPoints=[
+flueloft_lower_inner_points=[
     for (i =[1 : (2*flueSteps)]) 
-        concat(xLowerFlue(i), yLowerFlue(i), ground+tubeInsert)
+        concat(xLowerInnerFlue(i), yLowerInnerFlue(i), ground+tubeInsert)
 ];
 
-fluePolyhedronPoints=[
-    for (i=[0 : (4*flueSteps-1)]) 
-        if (i%2 == 0)
-            upperPoints[i/2]
-        else
-            lowerPoints[(i-1)/2]
+// outer flue loft calculations
+function xLowerOuterFlue(i) = cos(alpha(i))*(outerTube/2+minWallThickness);
+function yLowerOuterFlue(i) = -sin(alpha(i))*(outerTube/2+minWallThickness) + airSupplyY;
+    
+function xUpperInnerFlue2(i) = cos(i)*((outerDiameter-flueWidth)/2-minWallThickness);
+function yUpperInnerFlue2(i) = sin(i)*((outerDiameter-flueWidth)/2-minWallThickness);
+function xUpperOuterFlue2(i) = cos(i)*((outerDiameter+flueWidth)/2+minWallThickness);
+function yUpperOuterFlue2(i) = sin(i)*((outerDiameter+flueWidth)/2+minWallThickness);
+
+flueloft_upper_outer_points=[
+    for (i =[(270+angle*0.5) : (angle/(flueSteps-1)*-1) : (270-angle*0.5)]) 
+        concat(xUpperOuterFlue2(i), yUpperOuterFlue2(i), 0),
+    for (i =[(270-angle*0.5) : (angle/(flueSteps-1)) : (270+angle*0.5)]) 
+        concat(xUpperInnerFlue2(i), yUpperInnerFlue2(i), 0)
 ];
-        
-echo(fluePolyhedronPoints=fluePolyhedronPoints);
+//echo(flueloft_upper_outer_points=flueloft_upper_outer_points);
 
-fluePolyhedronFaces = [
-    [for (i= [0 : 2 : flueSteps-1]) i],
-    [for (i= [flueSteps-1 : -2 : 0]) i],
-    for (i= [1: (flueSteps*4)]) 
-        concat(i % (flueSteps*4), (i+1) % (flueSteps*4), (i+2) % (flueSteps*4))
+flueloft_lower_outer_points=[
+    for (i =[1 : (2*flueSteps)]) 
+        concat(xLowerOuterFlue(i), yLowerOuterFlue(i), ground+tubeInsert)
 ];
 
-module fluePolyhedron() {polyhedron( 
-    points = fluePolyhedronPoints,
-    faces = fluePolyhedronFaces);
-};
 
-// fluePolyhedron();
+
 
 // logic
-*difference(){
+difference(){
     union(){
         basicShape(height); 
         outerCurvedLoft2();
@@ -106,37 +97,29 @@ module fluePolyhedron() {polyhedron(
 };
 
 // test
-difference(){
+*difference(){
     outerCurvedLoft2();
     innerCurvedLoft2();
 };
 
-for (i= [0 : 4*flueSteps-1])
-    color( c = [i/(4*flueSteps-1), (4*flueSteps-1-i)/(4*flueSteps-1), 1, 1] ) translate(fluePolyhedronPoints[i]) circle(0.5);
-
-
-/* todo:
-polyhedron troubleshooting
-Labiumcut
-assembly
-height
-*/
-
-echo(version=version());
-
-
-//deprecated
 /*
-polygon(points=
-    [for (i =[1 : (2*flueSteps)]) concat(xLowerFlue(i), yLowerFlue(i))]);
+// Colorful spheres on every point, for debugging purposes.
+many_colors = 20;                // Choose as you like, influences the rainbow.
+size_debug_sphere = 1;          // Depends on the size of your model.
+        
+for (i= [0 : 2*flueSteps -1 ])
+    color([cos(many_colors*i)/2+0.5, 
+        -sin(many_colors*i)/2+0.5, 
+        -cos(many_colors*i)/2+0.5, 
+        1])
+    translate(flueloft_upper_inner_points[i]) sphere(size_debug_sphere);
 
-polygon(points=[
-    for (i =[(270+angle*0.5) : (angle/flueSteps*-1) : (270-angle*0.5)]) 
-        concat(xUpperInnerFlue(i), yUpperInnerFlue(i)),
-    for (i =[(270-angle*0.5) : (angle/flueSteps) : (270+angle*0.5)]) 
-        concat(xUpperOuterFlue(i), yUpperOuterFlue(i))
-]);
+for (i= [0 : 2*flueSteps -1 ])
+    color([cos(many_colors*i)/2+0.5, 
+        -sin(many_colors*i)/2+0.5, 
+        -cos(many_colors*i)/2+0.5, 
+        1])
+    translate(flueloft_lower_inner_points[i]) sphere(size_debug_sphere);
 
-
-
- */
+echo(version = version());
+*/
