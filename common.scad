@@ -56,24 +56,31 @@ module innerCurvedLoft(){
         loftFloor = (ground-0.1)
     ); 
 }
-    
+
 module outerCurvedLoft2(){
-    curvedFlueLoft2(    
-        upperDiameter = (flueWidth + minWallThickness), 
-        lowerDiameter = (outerTube + 2 * minWallThickness),
-        loftCeiling = 0,
-        loftFloor = ground
-    );
-}
+    union(){
+        hull(){
+        	translate([0, airSupplyY, ground]) 
+                cylinder(h=0.1, d=(outerTube + 2 * minWallThickness), center=true);
+        	translate([0, airSupplyY, (ground + tubeInsert)])
+                cylinder(h=0.1, d=(outerTube + 2 * minWallThickness), center=true);
+        };
+        loft(flueloft_upper_outer_points, flueloft_lower_outer_points, number_of_layers);
+    };
+};
 
 module innerCurvedLoft2(){
-    curvedFlueLoft2(
-        upperDiameter = flueWidth, 
-        lowerDiameter = innerTube, 
-        loftCeiling = 0.1, 
-        loftFloor = (ground-0.1)
-    ); 
-}
+    union(){
+        hull(){
+        	translate([0, airSupplyY, ground-0.1]) 
+                cylinder(h=0.1, d=innerTube, center=true);
+        	translate([0, airSupplyY, (ground + tubeInsert + 0.1)])
+                cylinder(h=0.1, d=innerTube, center=true);
+        };
+        loft(flueloft_upper_inner_points, flueloft_lower_inner_points, number_of_layers);
+    };
+};
+
 
 module airSupplySpacer(){
     translate ([0, airSupplyY, (ground-0.1)]) 
