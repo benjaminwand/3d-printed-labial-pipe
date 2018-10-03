@@ -13,7 +13,7 @@ innerTube = 13;
 minWallThickness = 1.2;
 floorThickness = 2;
 flueWidth = 0.8;
-flueSteps = 11;  // flue seems to behave weird for some values
+flueSteps = 11;  
 
 // proportions, are most likely good like that
 tubeInsert = outerTube + 2.5;       // length
