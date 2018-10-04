@@ -1,6 +1,8 @@
 // flue pippe. work in progress.
 
-include <common.scad>
+include <OpenSCAD_support/common.scad>
+include <OpenSCAD_support/curved_flue_hull.scad>
+include <OpenSCAD_support/curved_labium_cut.scad>
 
 // variables
 outerDiameter = 40;
@@ -19,14 +21,23 @@ flueSteps = 8;
 tubeInsert = outerTube + 2.5;       // length
 pipeInsert = innerDiameter * 0.1 + 5; // length
 airSupplyY = outerDiameter*-0.45;    // y position of air supply
-height = 85; // die 85 ist testweise, muss die Höhe noch entscheiden
+height = floorThickness
+    + lengthFlue
+    + outCut 
+    + outerDiameter *0.4; 
 
 // calculations, don't touch in production use
 labiumX = sin(labiumWidth * 180 / outerDiameter / PI) * outerDiameter; 
-angle = labiumWidth * 360 / outerDiameter / PI;
+labium_angle = labiumWidth * 360 / outerDiameter / PI;
 ground = (lengthFlue + floorThickness)*-1;
 flueStepWidth = labiumWidth * 180 / (outerDiameter+flueWidth) / PI / flueSteps;
 soundingLength = height - pipeInsert - floorThickness;
+labium_polygon_points = 
+    [[0,0],
+    [0, outCut + outerDiameter],
+    [-outerDiameter/2, outCut],
+    [-outerDiameter, outCut + outerDiameter],
+    [-outerDiameter,0]];
 
 // announcing sounding length
 echo("the sounding length inside the model in mm:", soundingLength);
@@ -42,17 +53,10 @@ difference(){
         outerCurvedLoft();
     };
     union(){
+        curved_labium_cut();
         innerCurvedLoft(); 
         airSupplySpacer();
     };
 };
-
-
-/* todo:
-Labiumcut
-figure out polyhedron
-assembly
-height
-*/
 
 echo(version=version());

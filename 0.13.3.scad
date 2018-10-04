@@ -1,7 +1,9 @@
 // flue pippe. work in progress.
 
-include <common.scad>
-include <loft.scad>
+include <OpenSCAD_support/common.scad>
+include <OpenSCAD_support/loft.scad>
+include <OpenSCAD_support/curved_flue_polyhedron.scad>
+include <OpenSCAD_support/curved_labium_cut.scad>
 
 // variables
 outerDiameter = 40;
@@ -21,14 +23,23 @@ number_of_layers = 5 ;   // .. of the flue loft
 tubeInsert = outerTube + 2.5;       // length
 pipeInsert = innerDiameter * 0.1 + 5; // length
 airSupplyY = outerDiameter*-0.45;    // y position of air supply
-height = 85; // die 85 ist testweise, muss die Höhe noch entscheiden
-
+height = floorThickness
+    + lengthFlue
+    + outCut 
+    + outerDiameter *0.4; 
+    
 // calculations, don't touch in production use
 labiumX = sin(labiumWidth * 180 / outerDiameter / PI) * outerDiameter; 
-angle = labiumWidth * 360 / outerDiameter / PI;
+labium_angle = labiumWidth * 360 / outerDiameter / PI;
 ground = (lengthFlue + floorThickness)*-1;
 flueStepWidth = labiumWidth * 180 / (outerDiameter+flueWidth) / PI / flueSteps;
 soundingLength = height - pipeInsert - floorThickness;
+labium_polygon_points = 
+    [[0,0],
+    [0, outCut + outerDiameter],
+    [-outerDiameter/2, outCut],
+    [-outerDiameter, outCut + outerDiameter],
+    [-outerDiameter,0]];
 
 // announcing sounding length
 echo(str("the sounding length inside the model in mm: ", soundingLength));
@@ -48,9 +59,9 @@ function xUpperOuterFlue1(i) = cos(i)*(outerDiameter+flueWidth)/2;
 function yUpperOuterFlue1(i) = sin(i)*(outerDiameter+flueWidth)/2;
 
 flueloft_upper_inner_points=[
-    for (i =[(270+angle*0.5) : (angle/(flueSteps-1)*-1) : (270-angle*0.5)]) 
+    for (i =[(270+labium_angle*0.5) : (labium_angle/(flueSteps-1)*-1) : (270-labium_angle*0.5)]) 
         concat(xUpperOuterFlue1(i), yUpperOuterFlue1(i), 0.1),
-    for (i =[(270-angle*0.5) : (angle/(flueSteps-1)) : (270+angle*0.5)]) 
+    for (i =[(270-labium_angle*0.5) : (labium_angle/(flueSteps-1)) : (270+labium_angle*0.5)]) 
         concat(xUpperInnerFlue1(i), yUpperInnerFlue1(i), 0.1)
 ];
 
@@ -69,20 +80,16 @@ function xUpperOuterFlue2(i) = cos(i)*((outerDiameter+flueWidth)/2+minWallThickn
 function yUpperOuterFlue2(i) = sin(i)*((outerDiameter+flueWidth)/2+minWallThickness);
 
 flueloft_upper_outer_points=[
-    for (i =[(270+angle*0.5) : (angle/(flueSteps-1)*-1) : (270-angle*0.5)]) 
+    for (i =[(270+labium_angle*0.5) : (labium_angle/(flueSteps-1)*-1) : (270-labium_angle*0.5)]) 
         concat(xUpperOuterFlue2(i), yUpperOuterFlue2(i), 0),
-    for (i =[(270-angle*0.5) : (angle/(flueSteps-1)) : (270+angle*0.5)]) 
+    for (i =[(270-labium_angle*0.5) : (labium_angle/(flueSteps-1)) : (270+labium_angle*0.5)]) 
         concat(xUpperInnerFlue2(i), yUpperInnerFlue2(i), 0)
 ];
-//echo(flueloft_upper_outer_points=flueloft_upper_outer_points);
 
 flueloft_lower_outer_points=[
     for (i =[1 : (2*flueSteps)]) 
         concat(xLowerOuterFlue(i), yLowerOuterFlue(i), ground+tubeInsert)
 ];
-
-
-
 
 // logic
 difference(){
@@ -91,35 +98,10 @@ difference(){
         outerCurvedLoft2();
     };
     union(){
+        curved_labium_cut();
         innerCurvedLoft2(); 
         airSupplySpacer();
     };
 };
 
-// test
-*difference(){
-    outerCurvedLoft2();
-    innerCurvedLoft2();
-};
-
-/*
-// Colorful spheres on every point, for debugging purposes.
-many_colors = 20;                // Choose as you like, influences the rainbow.
-size_debug_sphere = 1;          // Depends on the size of your model.
-        
-for (i= [0 : 2*flueSteps -1 ])
-    color([cos(many_colors*i)/2+0.5, 
-        -sin(many_colors*i)/2+0.5, 
-        -cos(many_colors*i)/2+0.5, 
-        1])
-    translate(flueloft_upper_inner_points[i]) sphere(size_debug_sphere);
-
-for (i= [0 : 2*flueSteps -1 ])
-    color([cos(many_colors*i)/2+0.5, 
-        -sin(many_colors*i)/2+0.5, 
-        -cos(many_colors*i)/2+0.5, 
-        1])
-    translate(flueloft_lower_inner_points[i]) sphere(size_debug_sphere);
-
 echo(version = version());
-*/
