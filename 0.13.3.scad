@@ -16,7 +16,7 @@ innerTube = 13;
 minWallThickness = 1.2;
 floorThickness = 2;
 flueWidth = 0.75;
-// is funny for some numbers for flueSteps, don't knw why: 5, 7-9, 13, 15-17, 21-26, 29, 30 ..
+// flueSteps is funny for some numbers, don't know why: 5, 7-9, 13, 15-17, 21-26, 29, 30 ..
 flueSteps = 20;      
 number_of_layers = 8 ;   // .. of the flue loft
 

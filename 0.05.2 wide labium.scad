@@ -56,7 +56,7 @@ if (labium_angle < 60)
 // logic
 difference(){
     union(){
-        basicShape(height); 
+        basicShapeFlat(height); 
         straight_flue_fill();
         straight_labium_fill();
         outer_straight_flue();
@@ -67,8 +67,5 @@ difference(){
         airSupplySpacer();
     };
 };
-  
-//rotate ([0,0,30])
-//cylinder_outer(height, (outerDiameter*0.5+minWallThickness), 6);
 
 echo(version = version());

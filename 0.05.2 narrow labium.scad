@@ -7,7 +7,7 @@ include <OpenSCAD_support/straight_flue.scad>
 // variables
 outerDiameter = 40;
 innerDiameter = 36;
-labiumWidth = 30;
+labiumWidth = 20;
 outCut = 10;
 lengthFlue = 40; // coordinate this with the frequency
 outerTube = 11;
@@ -28,7 +28,9 @@ height = floorThickness
 labium_angle = labiumWidth * 360 / outerDiameter / PI;
 ground = (lengthFlue + floorThickness)*-1;
 soundingLength = height - pipeInsert - floorThickness;
-airSupplyY = sqrt((outerDiameter+2*minWallThickness)*(outerDiameter+2*minWallThickness) - labiumWidth*labiumWidth)/-2;
+airSupplyY = 
+    sqrt((outerDiameter+2*minWallThickness)*(outerDiameter+2*minWallThickness) 
+    - labiumWidth*labiumWidth)/-2;
 labium_polygon_points = 
     [[0,0],
     [0, outCut - 2*airSupplyY],
@@ -57,7 +59,7 @@ if (labium_angle > 60)
 // logic
 difference(){
     union(){
-        basicShape(height); 
+        basicShapeFlat(height); 
         straight_flue_fill();
         straight_labium_fill();
         outer_straight_flue();

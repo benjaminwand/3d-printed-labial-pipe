@@ -40,10 +40,10 @@ module inner_straight_flue(){
 }
 
 module straight_flue_fill(){
-    translate ([0, 0, ground])
-        intersection(){
-            cylinder(height, d=(outerDiameter + 2* minWallThickness));
-            translate([labiumWidth*-0.5, airSupplyY - outerDiameter + minWallThickness + flueWidth, 0])
-                cube([labiumWidth, outerDiameter, floorThickness + lengthFlue]);
-        }   
+translate ([0, 0, ground])
+    intersection(){
+        cylinder(height, d=(outerDiameter + 2* minWallThickness));
+        translate([labiumWidth*-0.5, airSupplyY + 0.5 * flueWidth, 0])
+            cube([labiumWidth, minWallThickness, floorThickness + lengthFlue]);
+    } 
 }
