@@ -4,6 +4,7 @@ include <OpenSCAD_support/common.scad>
 include <OpenSCAD_support/loft.scad>
 include <OpenSCAD_support/curved_flue_polyhedron.scad>
 include <OpenSCAD_support/curved_labium_cut.scad>
+include <OpenSCAD_support/pipe_version.scad>
 
 // variables
 outerDiameter = 40;
@@ -104,5 +105,8 @@ difference(){
         airSupplySpacer();
     };
 };
+
+// version number
+version_number ("0.13.2");
 
 echo(version = version());

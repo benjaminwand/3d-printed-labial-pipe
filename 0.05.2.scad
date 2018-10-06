@@ -3,13 +3,14 @@
 include <OpenSCAD_support/common.scad>
 include <OpenSCAD_support/straight_labium.scad>
 include <OpenSCAD_support/straight_flue.scad>
+include <OpenSCAD_support/pipe_version.scad>
 
 // variables
-outerDiameter = 40;
-innerDiameter = 36;
-labiumWidth = 30;
-outCut = 10;
-lengthFlue = 40; // coordinate this with the frequency
+outerDiameter = 25;
+innerDiameter = 23;
+labiumWidth = 16;
+outCut = 4;
+lengthFlue = 25; // coordinate this with the frequency
 outerTube = 11;
 innerTube = 8;
 minWallThickness = 1.2;
@@ -66,5 +67,8 @@ difference(){
         airSupplySpacer();
     };
 };
+
+// version number
+version_number ("0.5.2");
 
 echo(version = version());
