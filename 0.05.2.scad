@@ -7,7 +7,7 @@ include <OpenSCAD_support/straight_flue.scad>
 // variables
 outerDiameter = 40;
 innerDiameter = 36;
-labiumWidth = 30;
+labiumWidth = 10;
 outCut = 10;
 lengthFlue = 40; // coordinate this with the frequency
 outerTube = 11;
@@ -22,7 +22,10 @@ pipeInsert = innerDiameter * 0.1 + 5; // length
 height = floorThickness
     + lengthFlue
     + outCut 
-    + outerDiameter *0.5; 
+    + outerDiameter *0.3
+    + labiumWidth *0.3; 
+    
+echo(height=height);
     
 // calculations, don't touch in production use
 labium_angle = labiumWidth * 360 / outerDiameter / PI;
