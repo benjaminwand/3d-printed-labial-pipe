@@ -28,7 +28,10 @@ height = floorThickness
 labium_angle = labiumWidth * 360 / outerDiameter / PI;
 ground = (lengthFlue + floorThickness)*-1;
 soundingLength = height - pipeInsert - floorThickness;
-airSupplyY = 1/cos(30) * (outerDiameter*-0.5 - minWallThickness) + labiumWidth * tan(30) * 0.5; 
+airSupplyY = labium_angle > 60 ? 
+    1/cos(30) * (outerDiameter*-0.5 - minWallThickness) + labiumWidth * tan(30) * 0.5 : 
+    sqrt((outerDiameter+2*minWallThickness)*(outerDiameter+2*minWallThickness) 
+    - labiumWidth*labiumWidth)/-2; 
 labium_polygon_points = 
     [[0,0],
     [0, outCut - 2*airSupplyY],
@@ -46,12 +49,6 @@ echo(str("the sounding length inside the model in mm: ", soundingLength));
 // flueLength warning
 if (lengthFlue < outerTube * 2)
     echo("lengthFlue is too short");
-
-// labium width warning
-if (labium_angle > 60)
-    echo("regarding the labium width, you have the right file");
-if (labium_angle < 60)
-    echo("use narrow labium file");
 
 // logic
 difference(){
