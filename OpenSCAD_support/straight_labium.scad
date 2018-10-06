@@ -20,6 +20,6 @@ module straight_labium_fill(){
             rotate([90, 0, 90])
                 linear_extrude(labiumWidth, $fn=50) 
                     polygon(points = labium_plus_points);
-        cylinder(outerDiameter/2, d=outerDiameter);
+        cylinder(outerDiameter, d=outerDiameter);
     }
 }
