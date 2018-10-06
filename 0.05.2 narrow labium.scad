@@ -25,6 +25,7 @@ height = floorThickness
     + outerDiameter *0.5; 
     
 // calculations, don't touch in production use
+labium_angle = labiumWidth * 360 / outerDiameter / PI;
 ground = (lengthFlue + floorThickness)*-1;
 soundingLength = height - pipeInsert - floorThickness;
 airSupplyY = sqrt((outerDiameter+2*minWallThickness)*(outerDiameter+2*minWallThickness) - labiumWidth*labiumWidth)/-2;
@@ -39,12 +40,19 @@ labium_plus_points =
     [airSupplyY + minWallThickness, outCut + 2*minWallThickness],
     [airSupplyY, outCut],];
 
+
 // announcing sounding length
 echo(str("the sounding length inside the model in mm: ", soundingLength));
 
 // flueLength warning
 if (lengthFlue < outerTube * 2)
     echo("lengthFlue is too short");
+
+// labium width warning
+if (labium_angle < 60)
+    echo("regarding the labium width, you have the right file");
+if (labium_angle > 60)
+    echo("use wide labium file");
 
 // logic
 difference(){
