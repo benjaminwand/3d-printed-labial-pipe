@@ -6,11 +6,11 @@ include <OpenSCAD_support/straight_flue.scad>
 include <OpenSCAD_support/pipe_version.scad>
 
 // variables
-outerDiameter = 25;
-innerDiameter = 23;
-labiumWidth = 16;
-outCut = 4;
-lengthFlue = 25; // coordinate this with the frequency
+outerDiameter = 40;
+innerDiameter = 36;
+labiumWidth = 40;
+outCut = 8;
+lengthFlue = 40; // coordinate this with the frequency
 outerTube = 11;
 innerTube = 8;
 minWallThickness = 1.2;
@@ -23,7 +23,7 @@ pipeInsert = innerDiameter * 0.1 + 5; // length
 height = floorThickness
     + lengthFlue
     + outCut 
-    + outerDiameter *0.3
+    + innerDiameter *0.4
     + labiumWidth *0.4; 
     
 // calculations, don't touch in production use
