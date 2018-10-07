@@ -23,8 +23,8 @@ module curvedFlueLoft(upperDiameter, lowerDiameter, loftCeiling, loftFloor){
 
 module outerCurvedLoft(){
     curvedFlueLoft(    
-        upperDiameter = (flueWidth + minWallThickness), 
-        lowerDiameter = (outerTube + 2 * minWallThickness),
+        upperDiameter = flueWidth + 2 * minWallThickness, 
+        lowerDiameter = outerTube + 2 * minWallThickness,
         loftCeiling = 0,
         loftFloor = ground
     );
