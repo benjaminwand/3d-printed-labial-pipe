@@ -24,11 +24,11 @@ number_of_layers = 8 ;   // .. of the flue loft
 // proportions, are most likely good like that
 tubeInsert = outerTube + 2.5;       // length
 pipeInsert = innerDiameter * 0.1 + 5; // length
-airSupplyY = outerDiameter*-0.45;    // y position of air supply
+airSupplyY = outerDiameter * -0.45;    // y position of air supply
 height = floorThickness
     + lengthFlue
     + outCut 
-    + outerDiameter *0.4; 
+    + outerDiameter * 0.4; 
     
 // calculations, don't touch in production use
 labiumX = sin(labiumWidth * 180 / outerDiameter / PI) * outerDiameter; 
@@ -37,11 +37,11 @@ ground = (lengthFlue + floorThickness)*-1;
 flueStepWidth = labiumWidth * 180 / (outerDiameter+flueWidth) / PI / flueSteps;
 soundingLength = height - pipeInsert - floorThickness;
 labium_polygon_points = 
-    [[0,0],
+    [[0, 0],
     [0, outCut + outerDiameter],
     [-outerDiameter/2, outCut],
     [-outerDiameter, outCut + outerDiameter],
-    [-outerDiameter,0]];
+    [-outerDiameter, 0]];
 
 // announcing sounding length
 echo(str("the sounding length inside the model in mm: ", soundingLength));
@@ -51,7 +51,7 @@ if (lengthFlue < outerTube * 2)
     echo("lengthFlue is too short");
 
 // inner flue loft calculations
-function alpha(c) = (360 * (0.5*c-0.25) / flueSteps); //starts with 1 on unit circle
+function alpha(step) = (360 * (0.5 * step - 0.25) / flueSteps); 
 function xLowerInnerFlue(i) = cos(alpha(i))*innerTube/2;
 function yLowerInnerFlue(i) = -sin(alpha(i))*innerTube/2 + airSupplyY;
     
@@ -61,7 +61,7 @@ function xUpperOuterFlue1(i) = cos(i)*(outerDiameter+flueWidth)/2;
 function yUpperOuterFlue1(i) = sin(i)*(outerDiameter+flueWidth)/2;
 
 flueloft_upper_inner_points=[
-    for (i =[(270+labium_angle*0.5) : (labium_angle/(flueSteps-1)*-1) : (270-labium_angle*0.5)]) 
+    for (i =[(270+labium_angle*0.5) : ( - labium_angle/(flueSteps-1)) : (270-labium_angle*0.5)]) 
         concat(xUpperOuterFlue1(i), yUpperOuterFlue1(i), 0.1),
     for (i =[(270-labium_angle*0.5) : (labium_angle/(flueSteps-1)) : (270+labium_angle*0.5)]) 
         concat(xUpperInnerFlue1(i), yUpperInnerFlue1(i), 0.1)
@@ -82,7 +82,7 @@ function xUpperOuterFlue2(i) = cos(i)*((outerDiameter+flueWidth)/2+minWallThickn
 function yUpperOuterFlue2(i) = sin(i)*((outerDiameter+flueWidth)/2+minWallThickness);
 
 flueloft_upper_outer_points=[
-    for (i =[(270+labium_angle*0.5) : (labium_angle/(flueSteps-1)*-1) : (270-labium_angle*0.5)]) 
+    for (i =[(270+labium_angle*0.5) : ( - labium_angle/(flueSteps-1)) : (270-labium_angle*0.5)]) 
         concat(xUpperOuterFlue2(i), yUpperOuterFlue2(i), 0),
     for (i =[(270-labium_angle*0.5) : (labium_angle/(flueSteps-1)) : (270+labium_angle*0.5)]) 
         concat(xUpperInnerFlue2(i), yUpperInnerFlue2(i), 0)
@@ -107,6 +107,6 @@ difference(){
 };
 
 // version number
-version_number ("0.13.2");
+version_number ("0.13.3");
 
 echo(version = version());

@@ -3,6 +3,7 @@
 include <OpenSCAD_support/common.scad>
 include <OpenSCAD_support/curved_flue_hull.scad>
 include <OpenSCAD_support/curved_labium_cut.scad>
+include <OpenSCAD_support/pipe_version.scad>
 
 // variables
 outerDiameter = 40;
@@ -58,5 +59,8 @@ difference(){
         airSupplySpacer();
     };
 };
+
+// version number
+version_number ("0.13.2");
 
 echo(version=version());
