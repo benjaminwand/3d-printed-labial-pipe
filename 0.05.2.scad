@@ -8,7 +8,7 @@ include <OpenSCAD_support/pipe_version.scad>
 // variables
 outerDiameter = 40;
 innerDiameter = 36;
-labiumWidth = 40;
+labiumWidth = 30;
 outCut = 8;
 lengthFlue = 40; // coordinate this with the frequency
 outerTube = 11;

@@ -43,7 +43,7 @@ module straight_flue_fill(){
 translate ([0, 0, ground])
     intersection(){
         cylinder(height, d=(outerDiameter + 2* minWallThickness));
-        translate([labiumWidth*-0.5, airSupplyY - 0.5 * flueWidth - minWallThickness, 0])
-            cube([labiumWidth, flueWidth + 2*minWallThickness, floorThickness + lengthFlue]);
+        translate([labiumWidth*-0.5, airSupplyY  - minWallThickness, 0])
+            cube([labiumWidth, 2*minWallThickness, floorThickness + lengthFlue]);
     } 
 }

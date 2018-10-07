@@ -36,7 +36,7 @@ translate ([0, 0, ground]) union(){
                 cylinder(height, d=innerDiameter, center=false);
             translate ([0, 0, (height - pipeInsert)]) 
                 cylinder(height, d=outerDiameter, center=false);
-            translate([outerDiameter*-1, airSupplyY - outerDiameter - minWallThickness - flueWidth*0.5, -0.1])
+            translate([outerDiameter*-1, airSupplyY - outerDiameter - minWallThickness, -0.1])
                 cube([outerDiameter*2, outerDiameter, floorThickness + lengthFlue + 0.2]);
         };
     };
