@@ -33,7 +33,7 @@ labiumX = sin(labiumWidth * 180 / outerDiameter / PI) * outerDiameter;
 labium_angle_45 = labiumWidth * 360 / outerDiameter / PI / sqrt(2);
 ground = (lengthFlue + floorThickness)*-1;
 soundingLength = height - pipeInsert - floorThickness;
-labium_polygon_points =         // hier dran arbeiten!!
+labium_polygon_points = 
     [[-outCut/sqrt(2), -outerDiameter/4, -outCut/sqrt(2)],
     [outerDiameter/2-outCut/sqrt(2), -outerDiameter/4, outerDiameter/2-outCut/sqrt(2)],
     [0, -outerDiameter/2, 0],
@@ -149,6 +149,9 @@ fill_lower_points = [flueloft_lower_outer_points[0],
     };
 };
 
+// version number
+vertical_version_number ("0.17 sketch");
+
 //rainbows
 module rainbow 
     (points,		    // A vector of points, the only must-have
@@ -172,5 +175,4 @@ echo(version = version());
 /*
 todo:
 * elliptical labium cut polyhedron 
-* version tag (vertial machen)
 */
