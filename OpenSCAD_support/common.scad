@@ -8,13 +8,13 @@ translate ([0, 0, ground]) union(){
 	            translate ([0,0,(height/2)]) 
                     cube ([outerDiameter*2, (sqrt(3)*(outerDiameter*0.5+minWallThickness)), height], center = true);
 	 	    };
-	        cylinder(height, d=(outerDiameter + 2* minWallThickness)); 
+	        cylinder(height, d=(outerDiameter + 2* minWallThickness), $fn=(30+outerDiameter)); 
 	   	};
         union(){
         	translate ([0, 0, floorThickness]) 
-                cylinder(height, d=innerDiameter, center=false);
+                cylinder(height, d=innerDiameter, center=false, $fn=(10+outerDiameter));
         	translate ([0, 0, (height - pipeInsert)]) 
-                cylinder(height, d=outerDiameter, center=false);
+                cylinder(height, d=outerDiameter, center=false, $fn=(10+outerDiameter));
         };
     };
 };
@@ -29,15 +29,28 @@ translate ([0, 0, ground]) union(){
                 translate ([0,0,(height/2)]) 
                     cube ([outerDiameter*2, (sqrt(3)*(outerDiameter*0.5+minWallThickness)), height], center = true);
             };
-            cylinder(height, d=(outerDiameter + 2* minWallThickness)); 
+            cylinder(height, d=(outerDiameter + 2* minWallThickness), $fn=(30+outerDiameter)); 
         };
         union(){
             translate ([0, 0, floorThickness]) 
-                cylinder(height, d=innerDiameter, center=false);
+                cylinder(height, d=innerDiameter, center=false, $fn=(10+outerDiameter));
             translate ([0, 0, (height - pipeInsert)]) 
-                cylinder(height, d=outerDiameter, center=false);
+                cylinder(height, d=outerDiameter, center=false, $fn=(10+outerDiameter));
             translate([outerDiameter*-1, airSupplyY - outerDiameter - minWallThickness, -0.1])
                 cube([outerDiameter*2, outerDiameter, floorThickness + lengthFlue + 0.2]);
+        };
+    };
+};
+
+module basicShapeRound(height)
+translate ([0, 0, ground]) union(){
+    difference(){   
+	    cylinder(height, d=(outerDiameter + 2* minWallThickness), $fn=(30+outerDiameter)); 
+        union(){
+        	translate ([0, 0, floorThickness]) 
+                cylinder(height, d=innerDiameter, center=false, $fn=(10+outerDiameter));
+        	translate ([0, 0, (height - pipeInsert)]) 
+                cylinder(height, d=outerDiameter, center=false, $fn=(10+outerDiameter));
         };
     };
 };
@@ -49,5 +62,5 @@ module cylinder_outer(height,radius,fn){  	//from https://en.wikibooks.org/wiki/
    
 module airSupplySpacer(){
     translate ([0, airSupplyY, (ground-0.1)]) 
-    cylinder (tubeInsert, d=outerTube, center=false);
+    cylinder (tubeInsert, d=outerTube, center=false, $fn=(20+outerTube));
 }

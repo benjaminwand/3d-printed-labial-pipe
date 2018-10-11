@@ -4,6 +4,7 @@ include <OpenSCAD_support/common.scad>
 include <OpenSCAD_support/loft.scad>
 include <OpenSCAD_support/curved_flue_polyhedron.scad>
 include <OpenSCAD_support/curved_labium_cut.scad>
+include <OpenSCAD_support/pipe_version.scad>
 
 // variables
 outerDiameter = 40;
@@ -16,7 +17,6 @@ innerTube = 13;
 minWallThickness = 1.2;
 floorThickness = 2;
 flueWidth = 0.75;
-// flueSteps is funny for some numbers, don't know why: 5, 7-9, 13, 15-17, 21-26, 29, 30 ..
 flueSteps = 20;      
 number_of_layers = 8 ;   // .. of the flue loft
 
@@ -40,7 +40,7 @@ labium_polygon_points =
     [0, outCut + outerDiameter],
     [-outerDiameter/2, outCut],
     [-outerDiameter, outCut + outerDiameter],
-    [-outerDiameter,0]];
+    [-outerDiameter, 0]];
 
 // announcing sounding length
 echo(str("the sounding length inside the model in mm: ", soundingLength));
@@ -95,7 +95,7 @@ flueloft_lower_outer_points=[
 // logic
 difference(){
     union(){
-        basicShape(height); 
+        basicShapeRound(height); 
         outerCurvedLoft2();
     };
     union(){

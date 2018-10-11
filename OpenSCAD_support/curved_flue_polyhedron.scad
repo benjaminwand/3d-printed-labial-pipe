@@ -3,10 +3,10 @@
 module outerCurvedLoft2(){
     union(){
         hull(){
-        	translate([0, airSupplyY, ground]) 
-                cylinder(h=0.1, d=(outerTube + 2 * minWallThickness), center=true);
-        	translate([0, airSupplyY, (ground + tubeInsert)])
-                cylinder(h=0.1, d=(outerTube + 2 * minWallThickness), center=true);
+        	translate([0, airSupplyY, ground]) rotate([0, 0, 90/flueSteps])
+                cylinder(h=0.1, d=(outerTube + 2 * minWallThickness), center=true, $fn=(2*flueSteps));
+        	translate([0, airSupplyY, (ground + tubeInsert)])rotate([0, 0, 90/flueSteps])
+                cylinder(h=0.1, d=(outerTube + 2 * minWallThickness), center=true, $fn=(2*flueSteps));
         };
         loft(flueloft_upper_outer_points, flueloft_lower_outer_points, number_of_layers);
     };

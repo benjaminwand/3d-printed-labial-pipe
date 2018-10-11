@@ -3,14 +3,14 @@
 module curvedFlueLoft(upperDiameter, lowerDiameter, loftCeiling, loftFloor){
     union(){
         // tube
-        hull(){
+        hull($fn=(20+outerTube)){
         	translate([0, airSupplyY, loftFloor]) 
                 cylinder(h=0.01, d=lowerDiameter, center=true);
         	translate([0, airSupplyY, (ground + tubeInsert)])
                 cylinder(h=0.01, d=lowerDiameter, center=true);
         }
         // straight flue
-            hull(){
+            hull($fn=(20+outerTube)){
             translate ([labiumWidth*-0.45, airSupplyY, loftCeiling]) 
                 cylinder (0.01, d=upperDiameter);
             translate ([labiumWidth*0.45, airSupplyY, loftCeiling]) 

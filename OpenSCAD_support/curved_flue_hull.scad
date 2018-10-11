@@ -3,7 +3,7 @@
 module curvedFlueLoft(upperDiameter, lowerDiameter, loftCeiling, loftFloor){
     union(){
         // tube
-        hull(){
+        hull($fn=(30+outerTube)){
         	translate([0, airSupplyY, loftFloor]) 
                 cylinder(h=0.01, d=lowerDiameter, center=true);
         	translate([0, airSupplyY, (ground + tubeInsert)])
