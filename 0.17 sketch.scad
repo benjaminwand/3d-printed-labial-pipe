@@ -16,8 +16,8 @@ outerTube = 16;
 innerTube = 13;
 minWallThickness = 1.2;
 floorThickness = 2;
-flueWidth = 1.5;
-flueSteps = 19;         // only works for few values of flueSteps, zb 31
+flueWidth = 0.8;
+flueSteps = 20;         // only works well for few values of flueSteps, zb 20
 
 number_of_layers = 8 ;   // .. of the flue loft
 
@@ -95,13 +95,13 @@ function yUpperOuterFlue2(i) = sin(i)*((outerDiameter+flueWidth)/2+minWallThickn
 function zUpperOuterFlue2(i) = -cos(i)*((outerDiameter+flueWidth)/2+minWallThickness);
 
 flueloft_upper_outer_points=[
-    for (i =[(270+labium_angle_45*0.5) : (-labium_angle_45/(flueSteps-1)) : (270-labium_angle_45*0.5)]) 
+    for (i =[(270+labium_angle_45*0.55) : (-labium_angle_45*1.1/(flueSteps-1)) : (270-labium_angle_45*0.55)]) 
         concat(
             xUpperOuterFlue2(i) - outCut/sqrt(2), 
             yUpperOuterFlue2(i), 
             zUpperOuterFlue2(i) - outCut/sqrt(2)
         ),
-    for (i =[(270-labium_angle_45*0.5) : (labium_angle_45/(flueSteps-1)) : (270+labium_angle_45*0.5)]) 
+    for (i =[(270-labium_angle_45*0.55) : (labium_angle_45*1.1/(flueSteps-1)) : (270+labium_angle_45*0.55)]) 
         concat(
             xUpperInnerFlue2(i) - outCut/sqrt(2), 
             yUpperInnerFlue2(i), 
@@ -136,6 +136,7 @@ difference(){
     union(){
         basicShapeRound(height); 
         outer_elliptic_loft();
+//        elliptic_looft_fill();
     };
     union(){
  //       curved_labium_cut();
@@ -143,10 +144,6 @@ difference(){
         airSupplySpacer(x=airSupplyY);
     };
 };
-
-
- //       inner_elliptic_loft(); 
-
 
 //rainbows
 module rainbow 
