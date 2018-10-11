@@ -34,11 +34,11 @@ labium_angle_45 = labiumWidth * 360 / outerDiameter / PI / sqrt(2);
 ground = (lengthFlue + floorThickness)*-1;
 soundingLength = height - pipeInsert - floorThickness;
 labium_polygon_points =         // hier dran arbeiten!!
-    [[0,0],
-    [0, outCut + outerDiameter],
-    [-outerDiameter/2, outCut],
-    [-outerDiameter, outCut + outerDiameter],
-    [-outerDiameter, 0]];
+    [[-outCut/sqrt(2), -outerDiameter/4, -outCut/sqrt(2)],
+    [outerDiameter/2-outCut/sqrt(2), -outerDiameter/4, outerDiameter/2-outCut/sqrt(2)],
+    [0, -outerDiameter/2, 0],
+    [outerDiameter/2-outCut/sqrt(2) , -outerDiameter*3/4, outerDiameter/2-outCut/sqrt(2)],
+    [-outCut/sqrt(2) , -outerDiameter*3/4, -outCut/sqrt(2)]];
 
 // announcing sounding length
 echo(str("the sounding length inside the model in mm: ", soundingLength));
@@ -133,10 +133,10 @@ fill_upper_points = [flueloft_upper_outer_points[0],
 fill_lower_points = [flueloft_lower_outer_points[0],
     flueloft_lower_outer_points[round(flueSteps/2)],
     flueloft_lower_outer_points[flueSteps-1],
-    [0, 0, ground + tubeInsert]];
+    [-outCut, 0, ground + tubeInsert]];
 
 // logic
-difference(){
+%difference(){
     union(){
         basicShapeRound(height); 
         outer_elliptic_loft();
@@ -163,15 +163,14 @@ for (i= [0 : len(points)-1 ])
     translate(points[i]) sphere(size_sphere);
 }
 
-//rainbow(labium_line);
-//rainbow(flueloft_lower_outer_points);
-//rainbow(elliptic_loft_fill_upper_points);
+rainbow(labium_line);
+rainbow(labium_polygon_points);
+//rainbow(fill_upper_points);
 
 echo(version = version());
 
 /*
 todo:
-* 3d labium_polygon_points
-* labium cut polyhedron 
+* elliptical labium cut polyhedron 
 * version tag (vertial machen)
 */
