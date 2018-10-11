@@ -95,9 +95,9 @@ flueloft_lower_outer_points=[
     
 // labium line calculation
     
-function x_labium_line(i) = cos(alpha(i))*outerDiameter/2;
-function y_labium_line(i) = -sin(alpha(i))*outerDiameter/2;
-function z_labium_line(i) = -cos(alpha(i))*outerDiameter/2;
+function x_labium_line(i) = cos(i)*outerDiameter/2;
+function y_labium_line(i) = sin(i)*outerDiameter/2;
+function z_labium_line(i) = -cos(i)*outerDiameter/2;
     
 labium_line=[
     for (i =[(270+labium_angle_45*0.5) : (-labium_angle_45/flueSteps) : (270-labium_angle_45*0.5)]) 
@@ -134,3 +134,11 @@ rainbow(labium_line);
 
 
 echo(version = version());
+
+/*
+todo:
+* range for labium points
+* 3d labium_polygon_points
+* labium cut polyhedron
+* change upper flue points
+*/
