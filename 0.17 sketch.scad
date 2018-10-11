@@ -3,7 +3,6 @@
 include <OpenSCAD_support/common.scad>
 include <OpenSCAD_support/loft.scad>
 include <OpenSCAD_support/0.17_flue_polyhedron.scad>
-include <OpenSCAD_support/curved_labium_cut.scad>
 include <OpenSCAD_support/pipe_version.scad>
 
 // variables
@@ -31,12 +30,10 @@ height = floorThickness
     
 // calculations, don't touch in production use
 labiumX = sin(labiumWidth * 180 / outerDiameter / PI) * outerDiameter; 
-labium_angle = labiumWidth * 360 / outerDiameter / PI;
 labium_angle_45 = labiumWidth * 360 / outerDiameter / PI / sqrt(2);
 ground = (lengthFlue + floorThickness)*-1;
-flueStepWidth = labiumWidth * 180 / (outerDiameter+flueWidth) / PI / flueSteps;
 soundingLength = height - pipeInsert - floorThickness;
-labium_polygon_points = 
+labium_polygon_points =         // hier dran arbeiten!!
     [[0,0],
     [0, outCut + outerDiameter],
     [-outerDiameter/2, outCut],
@@ -114,7 +111,6 @@ flueloft_lower_outer_points=[
 ];
     
 // labium line calculation
-    
 function x_labium_line(i) = cos(i)*outerDiameter/2;
 function y_labium_line(i) = sin(i)*outerDiameter/2;
 function z_labium_line(i) = -cos(i)*outerDiameter/2;
@@ -130,14 +126,14 @@ labium_line=[
     
 // elliptic loft filler
 fill_upper_points = [flueloft_upper_outer_points[0],
-            flueloft_upper_outer_points[round(flueSteps/2)],
-            flueloft_upper_outer_points[flueSteps-1],
-            [-outCut/sqrt(2), 0, -outCut/sqrt(2)]];
+    flueloft_upper_outer_points[round(flueSteps/2)],
+    flueloft_upper_outer_points[flueSteps-1],
+    [-outCut/sqrt(2), 0, -outCut/sqrt(2)]];
 
 fill_lower_points = [flueloft_lower_outer_points[0],
-            flueloft_lower_outer_points[round(flueSteps/2)],
-            flueloft_lower_outer_points[flueSteps-1],
-            [0, 0, ground + tubeInsert]];
+    flueloft_lower_outer_points[round(flueSteps/2)],
+    flueloft_lower_outer_points[flueSteps-1],
+    [0, 0, ground + tubeInsert]];
 
 // logic
 difference(){
@@ -152,10 +148,6 @@ difference(){
         airSupplySpacer(x=airSupplyY);
     };
 };
-
-   //     loft(fill_upper_points, fill_lower_points, number_of_layers);
-
-
 
 //rainbows
 module rainbow 
@@ -172,7 +164,7 @@ for (i= [0 : len(points)-1 ])
 }
 
 //rainbow(labium_line);
-rainbow(flueloft_lower_outer_points);
+//rainbow(flueloft_lower_outer_points);
 //rainbow(elliptic_loft_fill_upper_points);
 
 echo(version = version());
@@ -180,5 +172,6 @@ echo(version = version());
 /*
 todo:
 * 3d labium_polygon_points
-* labium cut polyhedron
+* labium cut polyhedron 
+* version tag (vertial machen)
 */
