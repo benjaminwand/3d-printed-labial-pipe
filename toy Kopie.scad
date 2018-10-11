@@ -2,7 +2,7 @@
 
 include <OpenSCAD_support/common.scad>
 include <OpenSCAD_support/loft.scad>
-include <OpenSCAD_support/curved_flue_polyhedron.scad>
+include <OpenSCAD_support/0.17_flue_polyhedron.scad>
 include <OpenSCAD_support/curved_labium_cut.scad>
 include <OpenSCAD_support/pipe_version.scad>
 
@@ -11,13 +11,13 @@ outerDiameter = 40;
 innerDiameter = 36;
 labiumWidth = 35;
 outCut = 10;
-lengthFlue = 40; // coordinate this with the frequency
+lengthFlue = 40;
 outerTube = 16;
 innerTube = 13;
 minWallThickness = 1.2;
 floorThickness = 2;
 flueWidth = 1.5;
-flueSteps = 20;      
+flueSteps = 20;         // does it work with all numbers here?
 number_of_layers = 8 ;   // .. of the flue loft
 
 // proportions, are most likely good like that
@@ -26,8 +26,8 @@ pipeInsert = innerDiameter * 0.1 + 5; // length
 airSupplyY = outerDiameter*-0.45;    // y position of air supply
 height = floorThickness
     + lengthFlue
-    + outCut 
-    + outerDiameter *0.4; 
+    + outCut / sqrt(2)
+    + outerDiameter / sqrt(2); 
     
 // calculations, don't touch in production use
 labiumX = sin(labiumWidth * 180 / outerDiameter / PI) * outerDiameter; 
@@ -52,7 +52,7 @@ if (lengthFlue < outerTube * 2)
 
 // inner flue loft calculations
 function alpha(c) = (360 * (0.5*c-0.25) / flueSteps); //starts with 1 on unit circle
-function xLowerInnerFlue(i) = cos(alpha(i))*innerTube/2;
+function xLowerInnerFlue(i) = cos(alpha(i))*innerTube/2 + airSupplyY;
 function yLowerInnerFlue(i) = -sin(alpha(i))*innerTube/2 + airSupplyY;
     
 function xUpperInnerFlue1(i) = cos(i)*(outerDiameter-flueWidth)/2;
@@ -73,7 +73,7 @@ flueloft_lower_inner_points=[
 ];
 
 // outer flue loft calculations
-function xLowerOuterFlue(i) = cos(alpha(i))*(outerTube/2+minWallThickness);
+function xLowerOuterFlue(i) = cos(alpha(i))*(outerTube/2+minWallThickness) + airSupplyY;
 function yLowerOuterFlue(i) = -sin(alpha(i))*(outerTube/2+minWallThickness) + airSupplyY;
     
 function xUpperInnerFlue2(i) = cos(i)*((outerDiameter-flueWidth)/2-minWallThickness);
@@ -108,12 +108,12 @@ labium_line=[
 %difference(){
     union(){
         basicShapeRound(height); 
-        outerCurvedLoft2();
+        outer_elliptic_loft();
     };
     union(){
         curved_labium_cut();
-        innerCurvedLoft2(); 
-        airSupplySpacer();
+        inner_elliptic_loft(); 
+        airSupplySpacer(x=airSupplyY);
     };
 };
 

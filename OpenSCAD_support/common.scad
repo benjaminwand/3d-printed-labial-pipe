@@ -60,7 +60,7 @@ module cylinder_outer(height,radius,fn){  	//from https://en.wikibooks.org/wiki/
    cylinder(h=height,r=radius*fudge,$fn=fn);
 }
    
-module airSupplySpacer(){
-    translate ([0, airSupplyY, (ground-0.1)]) 
+module airSupplySpacer(x=0){
+    translate ([x, airSupplyY, (ground-0.1)]) 
     cylinder (tubeInsert, d=outerTube, center=false, $fn=(20+outerTube));
 }
