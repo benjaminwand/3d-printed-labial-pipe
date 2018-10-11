@@ -16,7 +16,7 @@ outerTube = 16;
 innerTube = 13;
 minWallThickness = 1.2;
 floorThickness = 2;
-flueWidth = 0.75;
+flueWidth = 1.5;
 flueSteps = 20;      
 number_of_layers = 8 ;   // .. of the flue loft
 
@@ -32,6 +32,7 @@ height = floorThickness
 // calculations, don't touch in production use
 labiumX = sin(labiumWidth * 180 / outerDiameter / PI) * outerDiameter; 
 labium_angle = labiumWidth * 360 / outerDiameter / PI;
+labium_angle_45 = labiumWidth * 360 / outerDiameter / PI / sqrt(2);
 ground = (lengthFlue + floorThickness)*-1;
 flueStepWidth = labiumWidth * 180 / (outerDiameter+flueWidth) / PI / flueSteps;
 soundingLength = height - pipeInsert - floorThickness;
@@ -91,9 +92,20 @@ flueloft_lower_outer_points=[
     for (i =[1 : (2*flueSteps)]) 
         concat(xLowerOuterFlue(i), yLowerOuterFlue(i), ground+tubeInsert)
 ];
+    
+// labium line calculation
+    
+function x_labium_line(i) = cos(alpha(i))*outerDiameter/2;
+function y_labium_line(i) = -sin(alpha(i))*outerDiameter/2;
+function z_labium_line(i) = -cos(alpha(i))*outerDiameter/2;
+    
+labium_line=[
+    for (i =[(270+labium_angle_45*0.5) : (-labium_angle_45/flueSteps) : (270-labium_angle_45*0.5)]) 
+        concat(x_labium_line(i), y_labium_line(i), z_labium_line(i))
+];
 
 // logic
-difference(){
+%difference(){
     union(){
         basicShapeRound(height); 
         outerCurvedLoft2();
@@ -104,5 +116,21 @@ difference(){
         airSupplySpacer();
     };
 };
+
+module rainbow 
+    (points,		    // A vector of points, the only must-have
+	many_colors = 20,   // Determins width of gradient
+	size_sphere = 1)    // Depends on the size of your model
+{
+for (i= [0 : len(points)-1 ])
+    color([cos(many_colors*i)/2+0.5, 
+        -sin(many_colors*i)/2+0.5, 
+        -cos(many_colors*i)/2+0.5, 
+        1])
+    translate(points[i]) sphere(size_sphere);
+}
+
+rainbow(labium_line);
+
 
 echo(version = version());
