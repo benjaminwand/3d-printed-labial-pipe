@@ -18,7 +18,6 @@ minWallThickness = 1.2;
 floorThickness = 2;
 flueWidth = 0.8;
 flueSteps = 20;         // only works well for few values of flueSteps, zb 20
-
 number_of_layers = 8 ;   // .. of the flue loft
 
 // proportions, are most likely good like that
@@ -109,7 +108,6 @@ flueloft_upper_outer_points=[
         )
 ];
    
-
 flueloft_lower_outer_points=[
     for (i =[1 : (2*flueSteps)]) 
         concat(xLowerOuterFlue(i), yLowerOuterFlue(i), ground+tubeInsert)
@@ -129,14 +127,24 @@ labium_line=[
             z_labium_line(i)
         )
 ];
-   
+    
+// elliptic loft filler
+fill_upper_points = [flueloft_upper_outer_points[0],
+            flueloft_upper_outer_points[round(flueSteps/2)],
+            flueloft_upper_outer_points[flueSteps-1],
+            [-outCut/sqrt(2), 0, -outCut/sqrt(2)]];
+
+fill_lower_points = [flueloft_lower_outer_points[0],
+            flueloft_lower_outer_points[round(flueSteps/2)],
+            flueloft_lower_outer_points[flueSteps-1],
+            [0, 0, ground + tubeInsert]];
 
 // logic
 difference(){
     union(){
         basicShapeRound(height); 
         outer_elliptic_loft();
-//        elliptic_looft_fill();
+        elliptic_loft_fill();
     };
     union(){
  //       curved_labium_cut();
@@ -144,6 +152,10 @@ difference(){
         airSupplySpacer(x=airSupplyY);
     };
 };
+
+   //     loft(fill_upper_points, fill_lower_points, number_of_layers);
+
+
 
 //rainbows
 module rainbow 
@@ -160,9 +172,8 @@ for (i= [0 : len(points)-1 ])
 }
 
 //rainbow(labium_line);
-//rainbow(flueloft_upper_outer_points);
-//rainbow(flueloft_lower_outer_points);
-
+rainbow(flueloft_lower_outer_points);
+//rainbow(elliptic_loft_fill_upper_points);
 
 echo(version = version());
 
@@ -170,5 +181,4 @@ echo(version = version());
 todo:
 * 3d labium_polygon_points
 * labium cut polyhedron
-* beard/filler polyhedron/form
 */
