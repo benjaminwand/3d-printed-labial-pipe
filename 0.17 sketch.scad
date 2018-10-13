@@ -54,23 +54,23 @@ function yLowerInnerFlue(i) = -sin(alpha(i))*innerTube/2 + airSupplyY;
     
 function xUpperInnerFlue1(i) = cos(i)*(outerDiameter-flueWidth)/2;
 function yUpperInnerFlue1(i) = sin(i)*(outerDiameter-flueWidth)/2;
-function zUpperInnerFlue1(i) = -cos(i)*(outerDiameter+flueWidth)/2;
+function zUpperInnerFlue1(i) = -cos(i)*(outerDiameter-flueWidth)/2;
 function xUpperOuterFlue1(i) = cos(i)*(outerDiameter+flueWidth)/2;
 function yUpperOuterFlue1(i) = sin(i)*(outerDiameter+flueWidth)/2;
-function zUpperOuterFlue1(i) = -cos(i)*(outerDiameter-flueWidth)/2;
+function zUpperOuterFlue1(i) = -cos(i)*(outerDiameter+flueWidth)/2;
 
 flueloft_upper_inner_points = [
     for (i =[(270+labium_angle_45*0.5) : (-labium_angle_45/(flueSteps-1)) : (270-labium_angle_45*0.5)]) 
         concat(
             xUpperOuterFlue1(i) - (outCut-0.1)/sqrt(2), 
             yUpperOuterFlue1(i), 
-            zUpperInnerFlue1(i) - (outCut-0.1)/sqrt(2)
+            zUpperOuterFlue1(i) - (outCut-0.1)/sqrt(2)
         ),
     for (i =[(270-labium_angle_45*0.5) : (labium_angle_45/(flueSteps-1)) : (270+labium_angle_45*0.5)]) 
         concat(
             xUpperInnerFlue1(i) - (outCut-0.1)/sqrt(2), 
             yUpperInnerFlue1(i), 
-            zUpperOuterFlue1(i) - (outCut-0.1)/sqrt(2)
+            zUpperInnerFlue1(i) - (outCut-0.1)/sqrt(2)
         )
 ];
     
@@ -197,11 +197,12 @@ for (i= [0 : len(points)-1 ])
 }
 
 rainbow(labium_line);
-rainbow(labium_polygon_points);
 rainbow(lower_inner_labium_cut);
 rainbow(lower_outer_labium_cut);
 rainbow(upper_inner_labium_cut);
 rainbow(upper_outer_labium_cut);
+
+rainbow(labium_polygon_points);
 
 echo(version = version());
 
