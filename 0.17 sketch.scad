@@ -148,6 +148,32 @@ lower_outer_labium_cut=[
             y_lower_outer_labium_cut(i), 
             z_lower_outer_labium_cut(i))
 ];
+    
+// upper inner labium cut
+function x_upper_inner_labium_cut(i) = cos(i)*outerDiameter/4 + outerDiameter/2 - outCut / sqrt(2);
+function y_upper_inner_labium_cut(i) = sin(i)*outerDiameter/4;
+function z_upper_inner_labium_cut(i) = -cos(i)*outerDiameter/4 + outerDiameter/2 - outCut / sqrt(2); 
+    
+upper_inner_labium_cut=[
+    for (i =[(270+labium_angle_45*0.5) : (-labium_angle_45/flueSteps) : (270-labium_angle_45*0.5)]) 
+        concat(
+            x_upper_inner_labium_cut(i), 
+            y_upper_inner_labium_cut(i), 
+            z_upper_inner_labium_cut(i))
+];
+    
+// upper outer labium cut
+function x_upper_outer_labium_cut(i) = cos(i)*outerDiameter*3/4 + outerDiameter/2 - outCut / sqrt(2);
+function y_upper_outer_labium_cut(i) = sin(i)*outerDiameter*3/4;
+function z_upper_outer_labium_cut(i) = -cos(i)*outerDiameter*3/4 + outerDiameter/2 - outCut / sqrt(2); 
+    
+upper_outer_labium_cut=[
+    for (i =[(270+labium_angle_45*0.5) : (-labium_angle_45/flueSteps) : (270-labium_angle_45*0.5)]) 
+        concat(
+            x_upper_outer_labium_cut(i), 
+            y_upper_outer_labium_cut(i), 
+            z_upper_outer_labium_cut(i))
+];
 
     
 // elliptic loft filler
@@ -197,6 +223,8 @@ rainbow(labium_line);
 rainbow(labium_polygon_points);
 rainbow(lower_inner_labium_cut);
 rainbow(lower_outer_labium_cut);
+rainbow(upper_inner_labium_cut);
+rainbow(upper_outer_labium_cut);
 
 echo(version = version());
 
