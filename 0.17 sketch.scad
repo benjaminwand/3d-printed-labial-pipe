@@ -44,7 +44,7 @@ labium_polygon_points =
 echo(str("the sounding length inside the model in mm: ", soundingLength));
 
 // flueLength warning
-if ((lengthFlue + floorThickness) < (tubeInsert + sqrt(labiumWidth) + sqrt(outCut)))
+if ((lengthFlue + floorThickness) < (tubeInsert + labiumWidth/2/sqrt(2) + outCut/sqrt(2)))
     echo("(lengthFlue + floorThickness) is too short");
 
 // inner flue loft calculations
@@ -147,6 +147,7 @@ fill_lower_points = [flueloft_lower_outer_points[0],
         airSupplySpacer(x=airSupplyY);
     };
 };
+
 
 // version number
 vertical_version_number ("0.17 sketch");
