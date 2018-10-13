@@ -10,7 +10,7 @@ outerDiameter = 40;
 innerDiameter = 36;
 labiumWidth = 35;
 outCut = 10;
-lengthFlue = 45;
+lengthFlue = 40;
 outerTube = 16;
 innerTube = 13;
 minWallThickness = 1.2;
@@ -22,7 +22,7 @@ number_of_layers = 8 ;   // .. of the flue loft
 // proportions, are most likely good like that
 tubeInsert = outerTube + 2.5;       // length
 pipeInsert = innerDiameter * 0.1 + 5; // length
-airSupplyY = outerDiameter*-0.45;    // y position of air supply
+airSupplyY = -outerDiameter/2/sqrt(2);    // y position of air supply
 height = floorThickness
     + lengthFlue
     + outCut / sqrt(2)
@@ -44,8 +44,8 @@ labium_polygon_points =
 echo(str("the sounding length inside the model in mm: ", soundingLength));
 
 // flueLength warning
-if (lengthFlue < (tubeInsert + sqrt(labiumWidth) + sqrt(outCut)))
-    echo("lengthFlue is too short");
+if ((lengthFlue + floorThickness) < (tubeInsert + sqrt(labiumWidth) + sqrt(outCut)))
+    echo("(lengthFlue + floorThickness) is too short");
 
 // inner flue loft calculations
 function alpha(c) = (360 * (0.5*c-0.25) / flueSteps); //starts with 1 on unit circle
@@ -120,8 +120,7 @@ labium_line=[
         concat(
             x_labium_line(i), 
             y_labium_line(i), 
-            z_labium_line(i)
-        )
+            z_labium_line(i))
 ];
     
 // elliptic loft filler
