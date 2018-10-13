@@ -49,65 +49,53 @@ if ((lengthFlue + floorThickness) < (tubeInsert + labiumWidth/2/sqrt(2) + outCut
 
 // inner flue loft calculations
 function alpha(c) = (360 * (0.5*c-0.25) / flueSteps); //starts with 1 on unit circle
-function xLowerInnerFlue(i) = cos(alpha(i))*innerTube/2 + airSupplyY;
-function yLowerInnerFlue(i) = -sin(alpha(i))*innerTube/2 + airSupplyY;
-    
-function xUpperInnerFlue1(i) = cos(i)*(outerDiameter-flueWidth)/2;
-function yUpperInnerFlue1(i) = sin(i)*(outerDiameter-flueWidth)/2;
-function zUpperInnerFlue1(i) = -cos(i)*(outerDiameter-flueWidth)/2;
-function xUpperOuterFlue1(i) = cos(i)*(outerDiameter+flueWidth)/2;
-function yUpperOuterFlue1(i) = sin(i)*(outerDiameter+flueWidth)/2;
-function zUpperOuterFlue1(i) = -cos(i)*(outerDiameter+flueWidth)/2;
 
 flueloft_upper_inner_points = [
     for (i =[(270+labium_angle_45*0.5) : (-labium_angle_45/(flueSteps-1)) : (270-labium_angle_45*0.5)]) 
         concat(
-            xUpperOuterFlue1(i) - (outCut-0.1)/sqrt(2), 
-            yUpperOuterFlue1(i), 
-            zUpperOuterFlue1(i) - (outCut-0.1)/sqrt(2)
+            cos(i)*(outerDiameter+flueWidth)/2 - (outCut-0.1)/sqrt(2), 
+            sin(i)*(outerDiameter+flueWidth)/2, 
+            -cos(i)*(outerDiameter+flueWidth)/2 - (outCut-0.1)/sqrt(2)
         ),
     for (i =[(270-labium_angle_45*0.5) : (labium_angle_45/(flueSteps-1)) : (270+labium_angle_45*0.5)]) 
         concat(
-            xUpperInnerFlue1(i) - (outCut-0.1)/sqrt(2), 
-            yUpperInnerFlue1(i), 
-            zUpperInnerFlue1(i) - (outCut-0.1)/sqrt(2)
+            cos(i)*(outerDiameter-flueWidth)/2 - (outCut-0.1)/sqrt(2), 
+            sin(i)*(outerDiameter-flueWidth)/2, 
+            -cos(i)*(outerDiameter-flueWidth)/2 - (outCut-0.1)/sqrt(2)
         )
 ];
     
 flueloft_lower_inner_points=[
     for (i =[1 : (2*flueSteps)]) 
-        concat(xLowerInnerFlue(i), yLowerInnerFlue(i), ground+tubeInsert)
+        concat(
+            cos(alpha(i))*innerTube/2 + airSupplyY, 
+            -sin(alpha(i))*innerTube/2 + airSupplyY, 
+            ground+tubeInsert)
 ];
 
 // outer flue loft calculations
-function xLowerOuterFlue(i) = cos(alpha(i))*(outerTube/2+minWallThickness) + airSupplyY;
-function yLowerOuterFlue(i) = -sin(alpha(i))*(outerTube/2+minWallThickness) + airSupplyY;
-    
-function xUpperInnerFlue2(i) = cos(i)*((outerDiameter-flueWidth)/2-minWallThickness);
-function yUpperInnerFlue2(i) = sin(i)*((outerDiameter-flueWidth)/2-minWallThickness);
-function zUpperInnerFlue2(i) = -cos(i)*((outerDiameter-flueWidth)/2-minWallThickness);
-function xUpperOuterFlue2(i) = cos(i)*((outerDiameter+flueWidth)/2+minWallThickness);
-function yUpperOuterFlue2(i) = sin(i)*((outerDiameter+flueWidth)/2+minWallThickness);
-function zUpperOuterFlue2(i) = -cos(i)*((outerDiameter+flueWidth)/2+minWallThickness);
 
 flueloft_upper_outer_points=[
     for (i =[(270+labium_angle_45*0.55) : (-labium_angle_45*1.1/(flueSteps-1)) : (270-labium_angle_45*0.55)]) 
         concat(
-            xUpperOuterFlue2(i) - outCut/sqrt(2), 
-            yUpperOuterFlue2(i), 
-            zUpperOuterFlue2(i) - outCut/sqrt(2)
+            cos(i)*((outerDiameter+flueWidth)/2+minWallThickness) - outCut/sqrt(2), 
+            sin(i)*((outerDiameter+flueWidth)/2+minWallThickness), 
+            -cos(i)*((outerDiameter+flueWidth)/2+minWallThickness) - outCut/sqrt(2)
         ),
     for (i =[(270-labium_angle_45*0.55) : (labium_angle_45*1.1/(flueSteps-1)) : (270+labium_angle_45*0.55)]) 
         concat(
-            xUpperInnerFlue2(i) - outCut/sqrt(2), 
-            yUpperInnerFlue2(i), 
-            zUpperInnerFlue2(i) - outCut/sqrt(2)
+            cos(i)*((outerDiameter-flueWidth)/2-minWallThickness) - outCut/sqrt(2), 
+            sin(i)*((outerDiameter-flueWidth)/2-minWallThickness), 
+            -cos(i)*((outerDiameter-flueWidth)/2-minWallThickness) - outCut/sqrt(2)
         )
 ];
    
 flueloft_lower_outer_points=[
     for (i =[1 : (2*flueSteps)]) 
-        concat(xLowerOuterFlue(i), yLowerOuterFlue(i), ground+tubeInsert)
+        concat(
+            cos(alpha(i))*(outerTube/2+minWallThickness) + airSupplyY, 
+            -sin(alpha(i))*(outerTube/2+minWallThickness) + airSupplyY, 
+            ground+tubeInsert)
 ];
     
 // elliptic loft filler
@@ -209,4 +197,5 @@ echo(version = version());
 /*
 todo:
 * elliptical labium cut polyhedron 
+* bugfix because it cuts the pipe
 */
