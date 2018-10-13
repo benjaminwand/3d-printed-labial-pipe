@@ -110,72 +110,6 @@ flueloft_lower_outer_points=[
         concat(xLowerOuterFlue(i), yLowerOuterFlue(i), ground+tubeInsert)
 ];
     
-// labium line calculation
-function x_labium_line(i) = cos(i)*outerDiameter/2;
-function y_labium_line(i) = sin(i)*outerDiameter/2;
-function z_labium_line(i) = -cos(i)*outerDiameter/2;
-    
-labium_line=[
-    for (i =[(270+labium_angle_45*0.5) : (-labium_angle_45/flueSteps) : (270-labium_angle_45*0.5)]) 
-        concat(
-            x_labium_line(i), 
-            y_labium_line(i), 
-            z_labium_line(i))
-];
-    
-// lower inner labium cut
-function x_lower_inner_labium_cut(i) = cos(i)*outerDiameter/4 - outCut / sqrt(2);
-function y_lower_inner_labium_cut(i) = sin(i)*outerDiameter/4;
-function z_lower_inner_labium_cut(i) = -cos(i)*outerDiameter/4 - outCut / sqrt(2); 
-    
-lower_inner_labium_cut=[
-    for (i =[(270+labium_angle_45*0.5) : (-labium_angle_45/flueSteps) : (270-labium_angle_45*0.5)]) 
-        concat(
-            x_lower_inner_labium_cut(i), 
-            y_lower_inner_labium_cut(i), 
-            z_lower_inner_labium_cut(i))
-];
-    
-// lower outer labium cut
-function x_lower_outer_labium_cut(i) = cos(i)*outerDiameter*3/4 - outCut / sqrt(2);
-function y_lower_outer_labium_cut(i) = sin(i)*outerDiameter*3/4;
-function z_lower_outer_labium_cut(i) = -cos(i)*outerDiameter*3/4 - outCut / sqrt(2); 
-    
-lower_outer_labium_cut=[
-    for (i =[(270+labium_angle_45*0.5) : (-labium_angle_45/flueSteps) : (270-labium_angle_45*0.5)]) 
-        concat(
-            x_lower_outer_labium_cut(i), 
-            y_lower_outer_labium_cut(i), 
-            z_lower_outer_labium_cut(i))
-];
-    
-// upper inner labium cut
-function x_upper_inner_labium_cut(i) = cos(i)*outerDiameter/4 + outerDiameter/2 - outCut / sqrt(2);
-function y_upper_inner_labium_cut(i) = sin(i)*outerDiameter/4;
-function z_upper_inner_labium_cut(i) = -cos(i)*outerDiameter/4 + outerDiameter/2 - outCut / sqrt(2); 
-    
-upper_inner_labium_cut=[
-    for (i =[(270+labium_angle_45*0.5) : (-labium_angle_45/flueSteps) : (270-labium_angle_45*0.5)]) 
-        concat(
-            x_upper_inner_labium_cut(i), 
-            y_upper_inner_labium_cut(i), 
-            z_upper_inner_labium_cut(i))
-];
-    
-// upper outer labium cut
-function x_upper_outer_labium_cut(i) = cos(i)*outerDiameter*3/4 + outerDiameter/2 - outCut / sqrt(2);
-function y_upper_outer_labium_cut(i) = sin(i)*outerDiameter*3/4;
-function z_upper_outer_labium_cut(i) = -cos(i)*outerDiameter*3/4 + outerDiameter/2 - outCut / sqrt(2); 
-    
-upper_outer_labium_cut=[
-    for (i =[(270+labium_angle_45*0.5) : (-labium_angle_45/flueSteps) : (270-labium_angle_45*0.5)]) 
-        concat(
-            x_upper_outer_labium_cut(i), 
-            y_upper_outer_labium_cut(i), 
-            z_upper_outer_labium_cut(i))
-];
-
-    
 // elliptic loft filler
 fill_upper_points = [flueloft_upper_outer_points[0],
     flueloft_upper_outer_points[round(flueSteps/2)],
@@ -186,6 +120,49 @@ fill_lower_points = [flueloft_lower_outer_points[0],
     flueloft_lower_outer_points[round(flueSteps/2)],
     flueloft_lower_outer_points[flueSteps-1],
     [-outCut, 0, ground + tubeInsert]];
+    
+labium_line=[
+    for (i =[(270+labium_angle_45*0.5) : (-labium_angle_45/flueSteps) : (270-labium_angle_45*0.5)]) 
+        concat(
+            cos(i)*outerDiameter/2, 
+            sin(i)*outerDiameter/2, 
+            -cos(i)*outerDiameter/2)
+];
+    
+lower_inner_labium_cut=[
+    for (i =[(270+labium_angle_45*0.5) : (-labium_angle_45/flueSteps) : (270-labium_angle_45*0.5)]) 
+        concat(
+            cos(i)*outerDiameter/4 - outCut / sqrt(2), 
+            sin(i)*outerDiameter/4, 
+            -cos(i)*outerDiameter/4 - outCut / sqrt(2))
+];
+
+lower_outer_labium_cut=[
+    for (i =[(270+labium_angle_45*0.5) : (-labium_angle_45/flueSteps) : (270-labium_angle_45*0.5)]) 
+        concat(
+            cos(i)*outerDiameter*3/4 - outCut / sqrt(2), 
+            sin(i)*outerDiameter*3/4, 
+            -cos(i)*outerDiameter*3/4 - outCut / sqrt(2))
+];
+    
+upper_inner_labium_cut=[
+    for (i =[(270+labium_angle_45*0.5) : (-labium_angle_45/flueSteps) : (270-labium_angle_45*0.5)]) 
+        concat(
+            cos(i)*outerDiameter/4 + outerDiameter/2 - outCut / sqrt(2), 
+            sin(i)*outerDiameter/4, 
+            -cos(i)*outerDiameter/4 + outerDiameter/2 - outCut / sqrt(2))
+];
+    
+upper_outer_labium_cut=[
+    for (i =[(270+labium_angle_45*0.5) : (-labium_angle_45/flueSteps) : (270-labium_angle_45*0.5)]) 
+        concat(
+            cos(i)*outerDiameter*3/4 + outerDiameter/2 - outCut / sqrt(2), 
+            sin(i)*outerDiameter*3/4, 
+            -cos(i)*outerDiameter*3/4 + outerDiameter/2 - outCut / sqrt(2))
+];
+
+    
+
 
 // logic
 %difference(){
