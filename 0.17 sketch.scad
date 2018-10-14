@@ -150,6 +150,19 @@ upper_outer_labium_cut=[
             -cos(i)*outerDiameter*3/4 + outerDiameter/2 - outCut / sqrt(2))
 ];
 
+labium_cut_points=[
+		for (i = [0 : flueSteps - 1])
+            for (j = [0:4])
+                if (j%5 == 0) lower_inner_labium_cut[i]
+                else if (j%5 == 1) upper_inner_labium_cut[i]
+                else if (j%5 == 2) labium_line[i]
+                else if (j%5 == 3) upper_outer_labium_cut[i]
+                else lower_outer_labium_cut[i]
+                
+	];
+
+//polyhedron(points=labium_cut_points, 
+	//faces=[]);
     
 
 
@@ -174,7 +187,7 @@ vertical_version_number ("0.17 sketch");
 //rainbows
 module rainbow 
     (points,		    // A vector of points, the only must-have
-	many_colors = 31,   // Determins width of gradient
+	many_colors = 10,   // Determins width of gradient
 	size_sphere = 1)    // Depends on the size of your model
 {
 for (i= [0 : len(points)-1 ])
@@ -185,13 +198,7 @@ for (i= [0 : len(points)-1 ])
     translate(points[i]) sphere(size_sphere);
 }
 
-rainbow(labium_line);
-rainbow(lower_inner_labium_cut);
-rainbow(lower_outer_labium_cut);
-rainbow(upper_inner_labium_cut);
-rainbow(upper_outer_labium_cut);
-
-rainbow(labium_polygon_points);
+rainbow(labium_cut_points);
 
 echo(version = version());
 
