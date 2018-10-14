@@ -84,7 +84,7 @@ flueloft_upper_outer_points=[
             sin(i)*((outerDiameter+flueWidth)/2+minWallThickness), 
             -cos(i)*((outerDiameter+flueWidth)/2+minWallThickness) - outCut/sqrt(2)
         ),
-    for (i =[(270-labium_angle_45*0.45) : (labium_angle_45*0.9/(flueSteps-1)) : (270+labium_angle_45*0.445)]) 
+    for (i =[(270-labium_angle_45*0.45) : (labium_angle_45*0.9/(flueSteps-1)) : (270+labium_angle_45*0.45)]) 
         concat(
             cos(i)*((outerDiameter-flueWidth)/2-minWallThickness) - outCut/sqrt(2), 
             sin(i)*((outerDiameter-flueWidth)/2-minWallThickness), 
