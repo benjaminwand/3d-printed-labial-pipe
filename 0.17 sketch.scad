@@ -33,6 +33,7 @@ height = floorThickness
 labiumX = sin(labiumWidth * 180 / outerDiameter / PI) * outerDiameter; 
 labium_angle_45 = labiumWidth * 360 / outerDiameter / PI / sqrt(2);
 ground = (lengthFlue + floorThickness)*-1;
+airSupplyX = (ground + tubeInsert) / sqrt(2);
 soundingLength = height - pipeInsert - floorThickness;
 labium_polygon_points = 
     [[-outCut/sqrt(2), -outerDiameter/4, -outCut/sqrt(2)],
@@ -52,13 +53,13 @@ if ((lengthFlue + floorThickness) < (tubeInsert + labiumWidth/2/sqrt(2) + outCut
 function alpha(c) = (360 * (0.5*c-0.25) / flueSteps); //starts with 1 on unit circle
 
 flueloft_upper_inner_points = [
-    for (i =[(270+labium_angle_45*0.5) : (-labium_angle_45/(flueSteps-1)) : (270-labium_angle_45*0.5)]) 
+    for (i =[(270+labium_angle_45*0.4) : (-labium_angle_45*0.8/(flueSteps-1)) : (270-labium_angle_45*0.4)]) 
         concat(
             cos(i)*(outerDiameter+flueWidth)/2 - (outCut-0.1)/sqrt(2), 
             sin(i)*(outerDiameter+flueWidth)/2, 
             -cos(i)*(outerDiameter+flueWidth)/2 - (outCut-0.1)/sqrt(2)
         ),
-    for (i =[(270-labium_angle_45*0.5) : (labium_angle_45/(flueSteps-1)) : (270+labium_angle_45*0.5)]) 
+    for (i =[(270-labium_angle_45*0.4) : (labium_angle_45*0.8/(flueSteps-1)) : (270+labium_angle_45*0.4)]) 
         concat(
             cos(i)*(outerDiameter-flueWidth)/2 - (outCut-0.1)/sqrt(2), 
             sin(i)*(outerDiameter-flueWidth)/2, 
@@ -77,13 +78,13 @@ flueloft_lower_inner_points=[
 // outer flue loft calculations
 
 flueloft_upper_outer_points=[
-    for (i =[(270+labium_angle_45*0.55) : (-labium_angle_45*1.1/(flueSteps-1)) : (270-labium_angle_45*0.55)]) 
+    for (i =[(270+labium_angle_45*0.45) : (-labium_angle_45*0.9/(flueSteps-1)) : (270-labium_angle_45*0.45)]) 
         concat(
             cos(i)*((outerDiameter+flueWidth)/2+minWallThickness) - outCut/sqrt(2), 
             sin(i)*((outerDiameter+flueWidth)/2+minWallThickness), 
             -cos(i)*((outerDiameter+flueWidth)/2+minWallThickness) - outCut/sqrt(2)
         ),
-    for (i =[(270-labium_angle_45*0.55) : (labium_angle_45*1.1/(flueSteps-1)) : (270+labium_angle_45*0.55)]) 
+    for (i =[(270-labium_angle_45*0.45) : (labium_angle_45*0.9/(flueSteps-1)) : (270+labium_angle_45*0.445)]) 
         concat(
             cos(i)*((outerDiameter-flueWidth)/2-minWallThickness) - outCut/sqrt(2), 
             sin(i)*((outerDiameter-flueWidth)/2-minWallThickness), 
@@ -188,7 +189,7 @@ difference(){
     union(){
  //       curved_labium_cut();
         inner_elliptic_loft(); 
-        airSupplySpacer(x=airSupplyY);
+        airSupplySpacer(x=airSupplyX);
         elliptic_labium_cut();
     };
 };
