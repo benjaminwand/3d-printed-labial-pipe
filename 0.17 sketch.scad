@@ -3,7 +3,7 @@
 include <OpenSCAD_support/common.scad>
 include <OpenSCAD_support/loft.scad>
 include <OpenSCAD_support/elliptic_flue_polyhedron.scad>
-include <OpenSCAD_support/elliptic_labium.scad>
+//include <OpenSCAD_support/elliptic_labium.scad>
 include <OpenSCAD_support/pipe_version.scad>
 
 // variables
@@ -110,8 +110,10 @@ fill_lower_points = [flueloft_lower_outer_points[0],
     flueloft_lower_outer_points[flueSteps-1],
     [-outCut, 0, ground + tubeInsert]];
     
+// labum cut points
+    
 labium_line=[
-    for (i =[(270+labium_angle_45*0.5) : (-labium_angle_45/flueSteps) : (270-labium_angle_45*0.5)]) 
+    for (i =[(270-labium_angle_45*0.5) : (labium_angle_45/flueSteps) : (270+labium_angle_45*0.5)]) 
         concat(
             cos(i)*outerDiameter/2, 
             sin(i)*outerDiameter/2, 
@@ -119,7 +121,7 @@ labium_line=[
 ];
     
 lower_inner_labium_cut=[
-    for (i =[(270+labium_angle_45*0.5) : (-labium_angle_45/flueSteps) : (270-labium_angle_45*0.5)]) 
+    for (i =[(270-labium_angle_45*0.5) : (labium_angle_45/flueSteps) : (270+labium_angle_45*0.5)]) 
         concat(
             cos(i)*outerDiameter/4 - outCut / sqrt(2), 
             sin(i)*outerDiameter/4, 
@@ -127,7 +129,7 @@ lower_inner_labium_cut=[
 ];
 
 lower_outer_labium_cut=[
-    for (i =[(270+labium_angle_45*0.5) : (-labium_angle_45/flueSteps) : (270-labium_angle_45*0.5)]) 
+    for (i =[(270-labium_angle_45*0.5) : (labium_angle_45/flueSteps) : (270+labium_angle_45*0.5)]) 
         concat(
             cos(i)*outerDiameter*3/4 - outCut / sqrt(2), 
             sin(i)*outerDiameter*3/4, 
@@ -135,7 +137,7 @@ lower_outer_labium_cut=[
 ];
     
 upper_inner_labium_cut=[
-    for (i =[(270+labium_angle_45*0.5) : (-labium_angle_45/flueSteps) : (270-labium_angle_45*0.5)]) 
+    for (i =[(270-labium_angle_45*0.5) : (labium_angle_45/flueSteps) : (270+labium_angle_45*0.5)]) 
         concat(
             cos(i)*outerDiameter/4 + outerDiameter/2 - outCut / sqrt(2), 
             sin(i)*outerDiameter/4, 
@@ -143,7 +145,7 @@ upper_inner_labium_cut=[
 ];
     
 upper_outer_labium_cut=[
-    for (i =[(270+labium_angle_45*0.5) : (-labium_angle_45/flueSteps) : (270-labium_angle_45*0.5)]) 
+    for (i =[(270-labium_angle_45*0.5) : (labium_angle_45/flueSteps) : (270+labium_angle_45*0.5)]) 
         concat(
             cos(i)*outerDiameter*3/4 + outerDiameter/2 - outCut / sqrt(2), 
             sin(i)*outerDiameter*3/4, 
@@ -187,7 +189,7 @@ vertical_version_number ("0.17 sketch");
 //rainbows
 module rainbow 
     (points,		    // A vector of points, the only must-have
-	many_colors = 10,   // Determins width of gradient
+	many_colors = 30,   // Determins width of gradient
 	size_sphere = 1)    // Depends on the size of your model
 {
 for (i= [0 : len(points)-1 ])
