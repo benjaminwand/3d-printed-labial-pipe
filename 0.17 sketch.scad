@@ -163,24 +163,41 @@ labium_cut_points=[
                 
 	];
                
-                
 echo(labium_cut_points=len(labium_cut_points));
-
-polyhedron(points=labium_cut_points, 
-	faces=[                     // Copying from loft module
+                
+labium_cut_faces=[                     // Copying from loft module
         [for (i= [0 : 4]) i], // Upper plane
-        for (i = [0 : flueSteps -1])
+        for (i = [0 : flueSteps -2])
             for (j = [0 : 4]) // Towards lower points
                 [5 * i + (j+1)%5, 
                 5 * i + j, 
                 5 * (i+1) + j],
-        for (i = [1 : flueSteps])
+        for (i = [1 : (flueSteps-1)])
             for (j = [0 : 4]) // Towards upper points
                 [5 * i + j, 
                 5 * i + (j+1) % 5, 
                 5 * (i-1) + (j+1) % 5],
-        [for (i= [5 * (flueSteps+1) -1  : -1 : 5 * flueSteps ]) i], // Lower plane
-    ]);
+        [for (i= [5 * (flueSteps) -1  : -1 : 5 * (flueSteps-1) ]) i], // Lower plane
+    ];
+
+echo(labium_cut_faces=labium_cut_faces);
+
+difference(){
+polyhedron(points=labium_cut_points, 
+	faces=labium_cut_faces);
+        
+
+
+// correction so it doesn't cut through pipe in undesired place
+color("blue", alpha=0.5)
+	scale([1, 1, 1])
+	translate([0, 0, outerDiameter-labium_angle_45/ sqrt(2)])
+		difference(){
+			cylinder(h=outerDiameter, d=outerDiameter, center=false, $fn=(30+outerDiameter));
+			sphere(d=outerDiameter, $fn=(30+outerDiameter));
+		}
+    }
+
     
 
 
@@ -222,6 +239,5 @@ echo(version = version());
 
 /*
 todo:
-* elliptical labium cut polyhedron 
 * bugfix because it cuts the pipe (already started)
 */
