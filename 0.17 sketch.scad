@@ -162,8 +162,6 @@ labium_cut_points=[
                 else lower_outer_labium_cut[i]
                 
 	];
-               
-//echo(labium_cut_points=len(labium_cut_points));
                 
 labium_cut_faces=[                     // Copying from loft module
         [for (i= [0 : 4]) i], // Upper plane
@@ -177,14 +175,8 @@ labium_cut_faces=[                     // Copying from loft module
                 [5 * i + j, 
                 5 * i + (j+1) % 5, 
                 5 * (i-1) + (j+1) % 5],
-        [for (i= [5 * (flueSteps) -1  : -1 : 5 * (flueSteps-1) ]) i], // Lower plane
-    ];
-
-//echo(labium_cut_faces=labium_cut_faces);
-
-
-
-
+        [for (i= [5 * (flueSteps) -1  : -1 : 5 * (flueSteps-1) ]) i], // Lower plane    
+];
 
 // logic
 difference(){
@@ -200,52 +192,14 @@ difference(){
         elliptic_labium_cut();
     };
 };
-/*
-	difference(){
-		polyhedron(
-			points=labium_cut_points, 
-			faces=labium_cut_faces);
-	    difference(){
-	        translate([0, 0, outerDiameter-labium_angle_45/ sqrt(2)])
-	            cylinder(h=outerDiameter, d=outerDiameter, center=false, $fn=(30+outerDiameter));
-	        union(){
-			translate([-outerDiameter/sqrt(2), 0, -outerDiameter/sqrt(2)])
-				rotate ([0,45,0])                
-					cube ([outerDiameter*2, outerDiameter*2, outerDiameter*2], center=true);
-	        rotate([0,45,0])
-	            resize(newsize=[outerDiameter*sqrt(2),outerDiameter,outerDiameter/sqrt(2)]) 
-	                sphere(r=10);
-			};
-	    };
-	};
-*/
 
 // version number
 vertical_version_number ("0.17 sketch");
-
-/*
-//rainbows
-module rainbow 
-    (points,		    // A vector of points, the only must-have
-	many_colors = 30,   // Determins width of gradient
-	size_sphere = 1)    // Depends on the size of your model
-{
-for (i= [0 : len(points)-1 ])
-    color([cos(many_colors*i)/2+0.5, 
-        -sin(many_colors*i)/2+0.5, 
-        -cos(many_colors*i)/2+0.5, 
-        1])
-    translate(points[i]) sphere(size_sphere);
-}
-
-rainbow(labium_cut_points);
-*/
-
 
 echo(version = version());
 
 /*
 todo:
-* implement labium cut
+* airSupplyY
 * beard
 */
