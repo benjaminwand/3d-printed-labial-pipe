@@ -162,9 +162,25 @@ labium_cut_points=[
                 else lower_outer_labium_cut[i]
                 
 	];
+               
+                
+echo(labium_cut_points=len(labium_cut_points));
 
-//polyhedron(points=labium_cut_points, 
-	//faces=[]);
+polyhedron(points=labium_cut_points, 
+	faces=[                     // Copying from loft module
+        [for (i= [0 : 4]) i], // Upper plane
+        for (i = [0 : flueSteps -1])
+            for (j = [0 : 4]) // Towards lower points
+                [5 * i + (j+1)%5, 
+                5 * i + j, 
+                5 * (i+1) + j],
+        for (i = [1 : flueSteps])
+            for (j = [0 : 4]) // Towards upper points
+                [5 * i + j, 
+                5 * i + (j+1) % 5, 
+                5 * (i-1) + (j+1) % 5],
+        [for (i= [5 * (flueSteps+1) -1  : -1 : 5 * flueSteps ]) i], // Lower plane
+    ]);
     
 
 
