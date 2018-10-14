@@ -2,7 +2,8 @@
 
 include <OpenSCAD_support/common.scad>
 include <OpenSCAD_support/loft.scad>
-include <OpenSCAD_support/0.17_flue_polyhedron.scad>
+include <OpenSCAD_support/elliptic_flue_polyhedron.scad>
+include <OpenSCAD_support/elliptic_labium.scad>
 include <OpenSCAD_support/pipe_version.scad>
 
 // variables
@@ -153,7 +154,7 @@ upper_outer_labium_cut=[
 
 
 // logic
-%difference(){
+*difference(){
     union(){
         basicShapeRound(height); 
         outer_elliptic_loft();
@@ -197,5 +198,5 @@ echo(version = version());
 /*
 todo:
 * elliptical labium cut polyhedron 
-* bugfix because it cuts the pipe
+* bugfix because it cuts the pipe (already started)
 */
