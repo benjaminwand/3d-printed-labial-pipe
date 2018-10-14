@@ -70,7 +70,7 @@ flueloft_upper_inner_points = [
 flueloft_lower_inner_points=[
     for (i =[1 : (2*flueSteps)]) 
         concat(
-            cos(alpha(i))*innerTube/2 + airSupplyY, 
+            cos(alpha(i))*innerTube/2 + airSupplyX, 
             -sin(alpha(i))*innerTube/2 + airSupplyY, 
             ground+tubeInsert)
 ];
@@ -95,7 +95,7 @@ flueloft_upper_outer_points=[
 flueloft_lower_outer_points=[
     for (i =[1 : (2*flueSteps)]) 
         concat(
-            cos(alpha(i))*(outerTube/2+minWallThickness) + airSupplyY, 
+            cos(alpha(i))*(outerTube/2+minWallThickness) + airSupplyX, 
             -sin(alpha(i))*(outerTube/2+minWallThickness) + airSupplyY, 
             ground+tubeInsert)
 ];
