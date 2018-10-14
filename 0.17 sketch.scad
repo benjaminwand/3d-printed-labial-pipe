@@ -3,7 +3,7 @@
 include <OpenSCAD_support/common.scad>
 include <OpenSCAD_support/loft.scad>
 include <OpenSCAD_support/elliptic_flue_polyhedron.scad>
-//include <OpenSCAD_support/elliptic_labium.scad>
+include <OpenSCAD_support/elliptic_labium.scad>
 include <OpenSCAD_support/pipe_version.scad>
 
 // variables
@@ -182,23 +182,12 @@ labium_cut_faces=[                     // Copying from loft module
 
 //echo(labium_cut_faces=labium_cut_faces);
 
-difference(){
-polyhedron(points=labium_cut_points, 
-	faces=labium_cut_faces);
-    difference(){
-        translate([0, 0, outerDiameter-labium_angle_45/ sqrt(2)])
-            cylinder(h=outerDiameter, d=outerDiameter, center=false, $fn=(30+outerDiameter));
-        rotate([0,45,0])
-            resize(newsize=[outerDiameter*sqrt(2),outerDiameter,outerDiameter]) 
-                sphere(r=10);
-    };
-};
 
 
 
 
 // logic
-*difference(){
+difference(){
     union(){
         basicShapeRound(height); 
         outer_elliptic_loft();
@@ -208,9 +197,28 @@ polyhedron(points=labium_cut_points,
  //       curved_labium_cut();
         inner_elliptic_loft(); 
         airSupplySpacer(x=airSupplyY);
+        elliptic_labium_cut();
     };
 };
-
+/*
+	difference(){
+		polyhedron(
+			points=labium_cut_points, 
+			faces=labium_cut_faces);
+	    difference(){
+	        translate([0, 0, outerDiameter-labium_angle_45/ sqrt(2)])
+	            cylinder(h=outerDiameter, d=outerDiameter, center=false, $fn=(30+outerDiameter));
+	        union(){
+			translate([-outerDiameter/sqrt(2), 0, -outerDiameter/sqrt(2)])
+				rotate ([0,45,0])                
+					cube ([outerDiameter*2, outerDiameter*2, outerDiameter*2], center=true);
+	        rotate([0,45,0])
+	            resize(newsize=[outerDiameter*sqrt(2),outerDiameter,outerDiameter/sqrt(2)]) 
+	                sphere(r=10);
+			};
+	    };
+	};
+*/
 
 // version number
 vertical_version_number ("0.17 sketch");
@@ -239,4 +247,5 @@ echo(version = version());
 /*
 todo:
 * implement labium cut
+* beard
 */
