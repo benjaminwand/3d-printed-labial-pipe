@@ -23,7 +23,6 @@ number_of_layers = 8 ;   // .. of the flue loft
 // proportions, are most likely good like that
 tubeInsert = outerTube + 2.5;       // length
 pipeInsert = innerDiameter * 0.1 + 5; // length
-airSupplyY = -outerDiameter/2/sqrt(2);    // y position of air supply
 height = floorThickness
     + lengthFlue
     + outCut / sqrt(2)
@@ -34,6 +33,7 @@ labiumX = sin(labiumWidth * 180 / outerDiameter / PI) * outerDiameter;
 labium_angle_45 = labiumWidth * 360 / outerDiameter / PI / sqrt(2);
 ground = (lengthFlue + floorThickness)*-1;
 airSupplyX = (ground + tubeInsert) / sqrt(2);
+airSupplyY = sin(270+labium_angle_45*0.4)*(outerDiameter+flueWidth)/4 - outerDiameter/4;
 soundingLength = height - pipeInsert - floorThickness;
 labium_polygon_points = 
     [[-outCut/sqrt(2), -outerDiameter/4, -outCut/sqrt(2)],
