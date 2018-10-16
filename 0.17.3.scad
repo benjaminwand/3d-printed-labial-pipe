@@ -25,8 +25,8 @@ tubeInsert = outerTube + 2.5;       // length
 pipeInsert = innerDiameter * 0.1 + 5; // length
 height = floorThickness
     + lengthFlue
-    + outCut / sqrt(2)
-    + outerDiameter / sqrt(2); 
+    + labiumWidth / 2
+    + (outerDiameter - innerDiameter) * 2; 
     
 // calculations, don't touch in production use
 labiumX = sin(labiumWidth * 180 / outerDiameter / PI) * outerDiameter; 
@@ -233,5 +233,6 @@ echo(version = version());
 
 /*
 todo:
-bugfix regarding "may not be a valid 2-manifold"
+* bugfix regarding "may not be a valid 2-manifold"
+* flue vs labium cut correction, most likely labium cut ponts problem
 */
