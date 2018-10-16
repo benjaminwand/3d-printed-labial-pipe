@@ -13,7 +13,7 @@ module elliptic_labium_cut(){
 				rotate ([0,45,0])                
 					cube ([outerDiameter*2, outerDiameter*2, outerDiameter*2], center=true);
 	        rotate([0,45,0])
-	            resize(newsize=[outerDiameter*sqrt(2),outerDiameter,outerDiameter/2]) 
+	            resize(newsize=[outerDiameter*sqrt(2),outerDiameter,outerDiameter/sqrt(2)]) 
 	                sphere(r=10);
 			};
 	    };

@@ -80,15 +80,15 @@ flueloft_lower_inner_points=[
 flueloft_upper_outer_points=[
     for (i =[(270+labium_angle_45*0.55) : (-labium_angle_45*1.1/(flueSteps-1)) : (270-labium_angle_45*0.55)]) 
         concat(
-            cos(i)*((outerDiameter+flueWidth)/2+minWallThickness) - outCut/sqrt(2), 
+            cos(i)*((outerDiameter+flueWidth)/2+minWallThickness) - (outCut-0.05)/sqrt(2), 
             sin(i)*((outerDiameter+flueWidth)/2+minWallThickness), 
-            -cos(i)*((outerDiameter+flueWidth)/2+minWallThickness) - outCut/sqrt(2)
+            -cos(i)*((outerDiameter+flueWidth)/2+minWallThickness) - (outCut-0.05)/sqrt(2)
         ),
     for (i =[(270-labium_angle_45*0.55) : (labium_angle_45*1.1/(flueSteps-1)) : (270+labium_angle_45*0.55)]) 
         concat(
-            cos(i)*((outerDiameter-flueWidth)/2-minWallThickness) - outCut/sqrt(2), 
+            cos(i)*((outerDiameter-flueWidth)/2-minWallThickness) - (outCut-0.05)/sqrt(2), 
             sin(i)*((outerDiameter-flueWidth)/2-minWallThickness), 
-            -cos(i)*((outerDiameter-flueWidth)/2-minWallThickness) - outCut/sqrt(2)
+            -cos(i)*((outerDiameter-flueWidth)/2-minWallThickness) - (outCut-0.05)/sqrt(2)
         )
 ];
    
@@ -132,10 +132,10 @@ lower_beard_points=[
 ];
     
 // elliptic loft filler
-fill_upper_points = [flueloft_upper_outer_points[0],
-    flueloft_upper_outer_points[round(flueSteps/2)],
-    flueloft_upper_outer_points[flueSteps-1],
-    [-outCut/sqrt(2), 0, -outCut/sqrt(2)]];
+fill_upper_points = [flueloft_upper_outer_points[0] + [0.1, 0, 0.1],
+    flueloft_upper_outer_points[round(flueSteps/2)] + [0.1, 0, 0.1],
+    (flueloft_upper_outer_points[flueSteps-1] + [0.1, 0, 0.1]),
+    [-outCut/sqrt(2), 0, -outCut/sqrt(2)] + [0.1, 0, 0.1]];
 
 fill_lower_points = [flueloft_lower_outer_points[0],
     flueloft_lower_outer_points[round(flueSteps/2)],
@@ -233,6 +233,5 @@ echo(version = version());
 
 /*
 todo:
-* bugfix regarding "may not be a valid 2-manifold"
 * flue vs labium cut correction, most likely labium cut ponts problem
 */
