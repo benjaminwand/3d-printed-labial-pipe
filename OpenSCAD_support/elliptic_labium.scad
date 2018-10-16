@@ -20,3 +20,14 @@ module elliptic_labium_cut(){
 	};
 }
 
+module elliptic_beard(){
+    intersection(){
+    loft(upper_beard_points, lower_beard_points, number_of_layers); // hier Bart teil einführen
+    translate([0, 0, ground])
+        difference(){
+            cylinder(height, d=(2*outerDiameter)); 
+            translate([0, 0, -0.1])cylinder((height + 0.2), d=(outerDiameter)); 
+        }
+    }  
+}
+
