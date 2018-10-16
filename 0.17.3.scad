@@ -145,7 +145,7 @@ fill_lower_points = [flueloft_lower_outer_points[0],
 // labum cut points
     
 labium_line=[
-    for (i =[(270-labium_angle_45*0.5) : (labium_angle_45/flueSteps) : (270+labium_angle_45*0.5)]) 
+    for (i =[(270-labium_angle_45*0.5) : (labium_angle_45*1.1/flueSteps) : (270+labium_angle_45*0.6)]) 
         concat(
             cos(i)*outerDiameter/2, 
             sin(i)*outerDiameter/2, 
@@ -153,7 +153,7 @@ labium_line=[
 ];
     
 lower_inner_labium_cut=[
-    for (i =[(270-labium_angle_45*0.5) : (labium_angle_45/flueSteps) : (270+labium_angle_45*0.5)]) 
+    for (i =[(270-labium_angle_45*0.5) : (labium_angle_45*1.1/flueSteps) : (270+labium_angle_45*0.6)]) 
         concat(
             cos(i)*outerDiameter/4 - outCut / sqrt(2), 
             sin(i)*outerDiameter/4, 
@@ -161,7 +161,7 @@ lower_inner_labium_cut=[
 ];
 
 lower_outer_labium_cut=[
-    for (i =[(270-labium_angle_45*0.5) : (labium_angle_45/flueSteps) : (270+labium_angle_45*0.5)]) 
+    for (i =[(270-labium_angle_45*0.5) : (labium_angle_45*1.1/flueSteps) : (270+labium_angle_45*0.6)]) 
         concat(
             cos(i)*outerDiameter*3/4 - outCut / sqrt(2), 
             sin(i)*outerDiameter*3/4, 
@@ -169,7 +169,7 @@ lower_outer_labium_cut=[
 ];
     
 upper_inner_labium_cut=[
-    for (i =[(270-labium_angle_45*0.5) : (labium_angle_45/flueSteps) : (270+labium_angle_45*0.5)]) 
+    for (i =[(270-labium_angle_45*0.5) : (labium_angle_45*1.1/flueSteps) : (270+labium_angle_45*0.6)]) 
         concat(
             cos(i)*outerDiameter/4 + outerDiameter/2 - outCut / sqrt(2), 
             sin(i)*outerDiameter/4, 
@@ -177,7 +177,7 @@ upper_inner_labium_cut=[
 ];
     
 upper_outer_labium_cut=[
-    for (i =[(270-labium_angle_45*0.5) : (labium_angle_45/flueSteps) : (270+labium_angle_45*0.5)]) 
+    for (i =[(270-labium_angle_45*0.5) : (labium_angle_45*1.1/flueSteps) : (270+labium_angle_45*0.6)]) 
         concat(
             cos(i)*outerDiameter*3/4 + outerDiameter/2 - outCut / sqrt(2), 
             sin(i)*outerDiameter*3/4, 
@@ -233,5 +233,5 @@ echo(version = version());
 
 /*
 todo:
-* flue vs labium cut correction, most likely labium cut ponts problem
+* what is this weird bug where flueSteps can only have certain values?
 */
