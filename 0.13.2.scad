@@ -1,4 +1,4 @@
-// flue pippe. work in progress.
+// flue pipe
 
 include <OpenSCAD_support/common.scad>
 include <OpenSCAD_support/curved_flue_hull.scad>
