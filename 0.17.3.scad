@@ -7,17 +7,17 @@ include <OpenSCAD_support/elliptic_labium.scad>
 include <OpenSCAD_support/pipe_version.scad>
 
 // variables
-outerDiameter = 40;
-innerDiameter = 36;
-labiumWidth = 35;
-outCut = 10;
-lengthFlue = 40;
-outerTube = 16;
-innerTube = 13;
+outerDiameter = 25;
+innerDiameter = 23;
+labiumWidth = 16;
+outCut = 4;
+lengthFlue = 24;
+outerTube = 11;
+innerTube = 8;
 minWallThickness = 1.2;
 floorThickness = 2;
 flueWidth = 0.8;
-flueSteps = 20;         // only works well for few values of flueSteps, zb 20
+flueSteps = 20;         // only works well for few values
 number_of_layers = 8 ;   // .. of the flue loft
 
 // proportions, are most likely good like that
@@ -25,7 +25,7 @@ tubeInsert = outerTube + 2.5;       // length
 pipeInsert = innerDiameter * 0.1 + 5; // length
 height = floorThickness
     + lengthFlue
-    + labiumWidth / 2
+    + labiumWidth / sqrt(2)
     + (outerDiameter - innerDiameter) * 2; 
     
 // calculations, don't touch in production use
@@ -132,10 +132,10 @@ lower_beard_points=[
 ];
     
 // elliptic loft filler
-fill_upper_points = [flueloft_upper_outer_points[0] + [0.1, 0, 0.1],
-    flueloft_upper_outer_points[round(flueSteps/2)] + [0.1, 0, 0.1],
-    (flueloft_upper_outer_points[flueSteps-1] + [0.1, 0, 0.1]),
-    [-outCut/sqrt(2), 0, -outCut/sqrt(2)] + [0.1, 0, 0.1]];
+fill_upper_points = [flueloft_upper_outer_points[0] + [0.01, 0, 0.01],
+    flueloft_upper_outer_points[round(flueSteps/2)] + [0.01, 0, 0.01],
+    (flueloft_upper_outer_points[flueSteps-1] + [0.01, 0, 0.01]),
+    [-outCut/sqrt(2), 0, -outCut/sqrt(2)] + [0.01, 0, 0.01]];
 
 fill_lower_points = [flueloft_lower_outer_points[0],
     flueloft_lower_outer_points[round(flueSteps/2)],
@@ -155,33 +155,33 @@ labium_line=[
 lower_inner_labium_cut=[
     for (i =[(270-labium_angle_45*0.5) : (labium_angle_45*1.1/flueSteps) : (270+labium_angle_45*0.6)]) 
         concat(
-            cos(i)*outerDiameter/4 - outCut / sqrt(2), 
-            sin(i)*outerDiameter/4, 
-            -cos(i)*outerDiameter/4 - outCut / sqrt(2))
+            cos(i)*outerDiameter/8 - outCut / sqrt(2), 
+            sin(i)*outerDiameter/8, 
+            -cos(i)*outerDiameter/8 - outCut / sqrt(2))
 ];
 
 lower_outer_labium_cut=[
     for (i =[(270-labium_angle_45*0.5) : (labium_angle_45*1.1/flueSteps) : (270+labium_angle_45*0.6)]) 
         concat(
-            cos(i)*outerDiameter*3/4 - outCut / sqrt(2), 
-            sin(i)*outerDiameter*3/4, 
-            -cos(i)*outerDiameter*3/4 - outCut / sqrt(2))
+            cos(i)*outerDiameter*7/8 - outCut / sqrt(2), 
+            sin(i)*outerDiameter*7/8, 
+            -cos(i)*outerDiameter*7/8 - outCut / sqrt(2))
 ];
     
 upper_inner_labium_cut=[
     for (i =[(270-labium_angle_45*0.5) : (labium_angle_45*1.1/flueSteps) : (270+labium_angle_45*0.6)]) 
         concat(
-            cos(i)*outerDiameter/4 + outerDiameter/2 - outCut / sqrt(2), 
-            sin(i)*outerDiameter/4, 
-            -cos(i)*outerDiameter/4 + outerDiameter/2 - outCut / sqrt(2))
+            cos(i)*outerDiameter/8 + outerDiameter/2 - outCut / sqrt(2), 
+            sin(i)*outerDiameter/8, 
+            -cos(i)*outerDiameter/8 + outerDiameter/2 - outCut / sqrt(2))
 ];
     
 upper_outer_labium_cut=[
     for (i =[(270-labium_angle_45*0.5) : (labium_angle_45*1.1/flueSteps) : (270+labium_angle_45*0.6)]) 
         concat(
-            cos(i)*outerDiameter*3/4 + outerDiameter/2 - outCut / sqrt(2), 
-            sin(i)*outerDiameter*3/4, 
-            -cos(i)*outerDiameter*3/4 + outerDiameter/2 - outCut / sqrt(2))
+            cos(i)*outerDiameter*7/8 + outerDiameter/2 - outCut / sqrt(2), 
+            sin(i)*outerDiameter*7/8, 
+            -cos(i)*outerDiameter*7/8 + outerDiameter/2 - outCut / sqrt(2))
 ];
 
 labium_cut_points=[
