@@ -219,7 +219,6 @@ difference(){
         elliptic_beard();
     };
     union(){
- //       curved_labium_cut();
         inner_elliptic_loft(); 
         airSupplySpacer(x=airSupplyX);
         elliptic_labium_cut();
@@ -234,4 +233,5 @@ echo(version = version());
 /*
 todo:
 * what is this weird bug where flueSteps can only have certain values?
+* what is this bug with "PolySet has nonplanar faces"? beard oder loft_fill schient das Prolem zu sein
 */

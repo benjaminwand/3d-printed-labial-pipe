@@ -30,4 +30,3 @@ module elliptic_beard(){
         }
     }  
 }
-
