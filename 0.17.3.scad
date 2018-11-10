@@ -29,18 +29,11 @@ height = floorThickness
     + (outerDiameter - innerDiameter) * 2; 
     
 // calculations, don't touch in production use
-labiumX = sin(labiumWidth * 180 / outerDiameter / PI) * outerDiameter; 
 labium_angle_45 = labiumWidth * 360 / outerDiameter / PI / sqrt(2);
 ground = (lengthFlue + floorThickness)*-1;
 airSupplyX = (ground + tubeInsert) / sqrt(2);
 airSupplyY = sin(270+labium_angle_45*0.4)*(outerDiameter+flueWidth)/4 - outerDiameter/4;
 soundingLength = height - pipeInsert - floorThickness;
-labium_polygon_points = 
-    [[-outCut/sqrt(2), -outerDiameter/4, -outCut/sqrt(2)],
-    [outerDiameter/2-outCut/sqrt(2), -outerDiameter/4, outerDiameter/2-outCut/sqrt(2)],
-    [0, -outerDiameter/2, 0],
-    [outerDiameter/2-outCut/sqrt(2) , -outerDiameter*3/4, outerDiameter/2-outCut/sqrt(2)],
-    [-outCut/sqrt(2) , -outerDiameter*3/4, -outCut/sqrt(2)]];
 
 // announcing sounding length
 echo(str("the sounding length inside the model in mm: ", soundingLength));
