@@ -6,19 +6,47 @@ include <OpenSCAD_support/elliptic_flue_polyhedron.scad>
 include <OpenSCAD_support/elliptic_labium.scad>
 include <OpenSCAD_support/pipe_version.scad>
 
-// variables
-outerDiameter = 25;
-innerDiameter = 23;
-labiumWidth = 16;
-outCut = 4;
-lengthFlue = 24;
-outerTube = 11;
-innerTube = 8;
-minWallThickness = 1.2;
-floorThickness = 2;
-flueWidth = 0.8;
-flueSteps = 20;         // only works well for few values
-number_of_layers = 8 ;   // .. of the flue loft
+outerDiameterIdx = 1;
+innerDiameterIdx = 2;
+labiumWidthIdx = 3;
+outCutIdx = 4;
+lengthFlueIdx = 5;
+outerTubeIdx = 6;
+innerTubeIdx = 7;
+minWallThicknessIdx = 8;
+floorThicknessIdx = 9;
+flueWidthIdx = 10;
+flueStepsIdx = 11;         // only works well for few values
+number_of_layersIdx = 12 ;   // .. of the flue loft
+
+pipe =  [ [ outerDiameterIdx, 25],
+[ innerDiameterIdx, 23],
+[ labiumWidthIdx, 16],
+[ outCutIdx, 4],
+[ lengthFlueIdx, 24],
+[ outerTubeIdx, 11],
+[ innerTubeIdx, 8],
+[ minWallThicknessIdx, 1.2],
+[ floorThicknessIdx, 2],
+[ flueWidthIdx, 0.8],
+[ flueStepsIdx, 20],
+[ number_of_layersIdx, 8]];
+
+pipes = [ pipe ];
+
+/* Below take out as a function */
+outerDiameter = lookup(outerDiameterIdx, pipe);
+innerDiameter = lookup(innerDiameterIdx, pipe);
+labiumWidth = lookup(labiumWidthIdx, pipe);
+outCut = lookup(outCutIdx, pipe);
+lengthFlue = lookup(lengthFlueIdx, pipe);
+outerTube = lookup(outerTubeIdx, pipe);
+innerTube = lookup(innerTubeIdx, pipe);
+minWallThickness = lookup(minWallThicknessIdx, pipe);
+floorThickness = lookup(floorThicknessIdx, pipe);
+flueWidth = lookup(flueWidthIdx, pipe);
+flueSteps = lookup(flueStepsIdx, pipe);         // only works well for few values
+number_of_layers = lookup(number_of_layersIdx, pipe);  
 
 // proportions, are most likely good like that
 tubeInsert = outerTube + 2.5;       // length
