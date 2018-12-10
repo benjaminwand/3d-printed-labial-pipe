@@ -6,7 +6,7 @@ include <OpenSCAD_support/labium45.scad>
 include <OpenSCAD_support/pipe_version.scad>
 
 // variables
-outerDiameter = 25;
+outerDiameter = 25.2;
 innerDiameter = 23;
 labiumWidth = 16;
 outCut = 4;
