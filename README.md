@@ -27,6 +27,8 @@ Not necessarily the latest file is the one you want. Every 0.x has distinct feat
 * 0.2.3 (is filled below the mouth).
 * 0.15.10 or 0.17.3 (45° labium for easier 3d printing)
 
+The OpenSCAD files work with 2018.11.25 and 2018.03-17, some also work with 2015.03-3. 
+
 At some point I became tired of deploying the latest features into all files, if you want a pipe with specific features -> GitHub issue. I’m somewhat motivated to make OpenSCAD files of pipes that so far only exist as FreeCAD version, tell me which one you want. I’m not motivated in the opposite direction.
 
 0.1 First attempt for pipes with 60mm diameter, made with tinkercad.com , here for sentimental reasons <br>
