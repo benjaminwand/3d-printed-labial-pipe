@@ -1,12 +1,13 @@
 # 3d-printed labial pipe
 
 ## General
-This is a collection of FreeCAD files that will help you to 3D-print a part of a labial pipe, to be used with a piece of tube. Because most organ pipes don't fit into most 3d-printers.
+This is a collection of FreeCAD and OpenSCAD files that will help you to 3D-print a part of a labial pipe, to be used with a piece of tube. Because most organ pipes don't fit into most 3d-printers.
 
-Please start by adding the desired measurements into the spreadsheet. Picking the exact measurements for organ pipes is an advanced subject that includes experience and opinion. If you don’t know where to start, [webpipecalc](https://cuervo.phoenix.uberspace.de/webpipecalc/) can help. You are limited by the diameters of the tubes you can buy. 
+Please start by adding the desired measurements into the spreadsheet (FreeCAD) or ‘variables’ section (OpenSCAD). Picking the exact measurements for organ pipes is an advanced subject that includes experience and opinion. If you don’t know where to start, [webpipecalc](https://cuervo.phoenix.uberspace.de/webpipecalc/) can help. You are limited by the diameters of the tubes you can buy. ‘Diameter’ in webpipecalc (or what ever design choice you make) means inner diameter of the tube.
 
-I got the best printing results when slicing at a 45° angle and ‘support touching build plate’, so that there is no support structure under the labium. (Since the whole point of 0.15 is not slicing it at a 45°angle, don’t slice it at a 45° angle.)<br>
+For most pipes I got the best printing results when slicing at a 45° angle and ‘support touching build plate’, so that there is no support structure under the labium. <br>
 ![https://cdn.thingiverse.com/renders/2a/03/54/e3/72/e935fcfeddd0d054e9dca2f05e988bd0_preview_featured.jpg](https://cdn.thingiverse.com/renders/2a/03/54/e3/72/e935fcfeddd0d054e9dca2f05e988bd0_preview_featured.jpg)
+Some pipes (0.15 and 0.17) should be printed in normal orientation, that is the whole point of the 45° labium.<br>
 
 [There are reversed free reed pipes as well.](https://github.com/benjaminwand/3d-printed-reversed-free-reed-pipe)
 
