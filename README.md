@@ -6,7 +6,7 @@ This is a collection of FreeCAD and OpenSCAD files that will help you to 3D-prin
 Please start by adding the desired measurements into the spreadsheet (FreeCAD) or ‘variables’ section (OpenSCAD). Picking the exact measurements for organ pipes is an advanced subject that includes experience and opinion. If you don’t know where to start, [webpipecalc](https://cuervo.phoenix.uberspace.de/webpipecalc/) can help. You are limited by the diameters of the tubes you can buy. ‘Diameter’ in webpipecalc (or what ever design choice you make) means inner diameter of the tube.
 
 For most pipes I got the best printing results when slicing at a 45° angle and ‘support touching build plate’, so that there is no support structure under the labium. <br>
-![https://cdn.thingiverse.com/renders/2a/03/54/e3/72/e935fcfeddd0d054e9dca2f05e988bd0_preview_featured.jpg](https://cdn.thingiverse.com/renders/2a/03/54/e3/72/e935fcfeddd0d054e9dca2f05e988bd0_preview_featured.jpg)
+![https://cdn.thingiverse.com/renders/2a/03/54/e3/72/e935fcfeddd0d054e9dca2f05e988bd0_preview_featured.jpg](https://cdn.thingiverse.com/renders/2a/03/54/e3/72/e935fcfeddd0d054e9dca2f05e988bd0_preview_featured.jpg)<br>
 Some pipes (0.15 and 0.17) should be printed in normal orientation, that is the whole point of the 45° labium.<br>
 
 [There are reversed free reed pipes as well.](https://github.com/benjaminwand/3d-printed-reversed-free-reed-pipe)
@@ -17,7 +17,7 @@ Licensed under CC-BY <br>
 https://creativecommons.org/licenses/by/4.0/legalcode
 
 ## Versions
-The development is ongoing, and not necessarily the latest file is the one you want. Every 0.x has distinct features and then bugfixes. You probably want file 
+Not necessarily the latest file is the one you want. Every 0.x has distinct features and then bugfixes. You probably want file 
 * 0.5.1 (no block chamfer) or 
 * 0.7.2 (block chamfer) or 
 * 0.8 (has ears) or 
@@ -25,8 +25,9 @@ The development is ongoing, and not necessarily the latest file is the one you w
 * 0.13.1 (curved labium) or
 * 0.16.2 (has nicks) or
 * 0.2.3 (is filled below the mouth).
+* 0.15.10 or 0.17.3 (45° labium for easier 3d printing)
 
-At some point I became tired of deploying the latest features into all files, if you want a pipe with specific features -> GitHub issue
+At some point I became tired of deploying the latest features into all files, if you want a pipe with specific features -> GitHub issue. I’m somewhat motivated to make OpenSCAD files of pipes that so far only exist as FreeCAD version, tell me which one you want. I’m not motivated in the opposite direction.
 
 0.1 First attempt for pipes with 60mm diameter, made with tinkercad.com , here for sentimental reasons <br>
 ![/pics/0.01.png](/pics/0.01.png)<br>
@@ -87,9 +88,9 @@ At some point I became tired of deploying the latest features into all files, if
 ![/pics/0.19.x.png](/pics/0.19.x.png) <br>
 
 ## Design thoughts
-I was pondering the design of flue pipes from wood and metal, and came to the conclusion that the design has a lot to do with the material. Wooden pipes are built angular because that is easier than woodturning, and metal pipes are made in a round shape because less soldering. So, what would be a good design for 3D-printing? Well, something with a flat base would be handy. But then, most 3D-printers can’t print large enough for most organ pipes, organ pipes get really large you know. So I decided to use tubes from the hardware store and only 3D-print the intricate part, therefore the 3D-printed organ pipes would be round. I made the outside hexagonal because that offers the best ratio of stability vs. little space consuming.
-In order to be compatible with organ builders (and people who work with wood in general), the foot would be round like in wooden organ pipes, so it would be compatible with a somewhat traditional wind-chest design. However, I don’t think it is necessary to have the foot in the middle of the cup, having it off, like in a recorder, made the design easier (I was thinking of getting the support structure removed after printing) while I’m not aware of substantial disadvantages.
-I didn’t consider the size of the foot hole so far, will do so when I’ll experiment with an actual wind-chest.
+I was pondering the design of flue pipes from wood and metal, and came to the conclusion that the design has a lot to do with the material. Wooden pipes are built angular because that is easier than woodturning, and metal pipes are made in a round shape because less soldering. So, what would be a good design for 3D-printing? Well, something with a flat base would be handy. But then, most 3D-printers can’t print large enough for most organ pipes, organ pipes get really large you know. So I decided to use tubes from the hardware store and only 3D-print the intricate part, therefore the 3D-printed organ pipes would be round. I made the outside of many pipes hexagonal because that offers the best ratio of stability vs. little space consuming. <br>
+Initially, in order to be compatible with organ builders (and people who work with wood in general), the foot was round like in wooden organ pipes, so it would be compatible with a somewhat traditional wind-chest design. Later I went for designs where one could stick in a pipe. Which can be a short pipe as well and then it fits a wind chest again. <br>
+However, I don’t think it is necessary to have the foot in the middle of the cup, having it off, like in a recorder, made the design easier (I was thinking of getting the support structure removed after printing) while I couldn’t find substantial disadvantages. Also it enabled pipes that were hollow below the labium, which means the generator can be somewhere in the resonator (for instance at ⅞, like Helmholtz suggested).
 
 ## More online info about flue pipes (German only)
 http://www.arndt-bruenner.de/hausorgel/CalcMens.htm <br>
@@ -102,9 +103,12 @@ http://orgelromantik.aeoline.de/2011/01/14/orgel-stimmen-mit-dem-ipad/ <br>
 ## Spectrogramm
 Looking at what you are doing (mac): <br>
 ffmpeg -f avfoundation -i ":0" -lavfi showspectrum=s=1440x900:slide=rscroll -c:v rawvideo -r 25 -pix_fmt yuv420p -f matroska - | mpv -
+<br>
+Linux: ffplay -f pulse -i "default"
+
 
 ## other files
-### flutes and labium only
+### flue and labium only
 To figure out the generator sound/frequency <br>
 ![/pics/straight.png](/pics/straight.png) <br>
 ### tuning and misc
