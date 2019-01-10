@@ -92,7 +92,7 @@ At some point I became tired of deploying the latest features into all files, if
 ## Design thoughts
 I was pondering the design of flue pipes from wood and metal, and came to the conclusion that the design has a lot to do with the material. Wooden pipes are built angular because that is easier than woodturning, and metal pipes are made in a round shape because less soldering. So, what would be a good design for 3D-printing? Well, something with a flat base would be handy. But then, most 3D-printers can’t print large enough for most organ pipes, organ pipes get really large you know. So I decided to use tubes from the hardware store and only 3D-print the intricate part, therefore the 3D-printed organ pipes would be round. I made the outside of many pipes hexagonal because that offers the best ratio of stability vs. little space consuming. <br>
 Initially, in order to be compatible with organ builders (and people who work with wood in general), the foot was round like in wooden organ pipes, so it would be compatible with a somewhat traditional wind-chest design. Later I went for designs where one could stick in a pipe. Which can be a short pipe as well and then it fits a wind chest again. <br>
-However, I don’t think it is necessary to have the foot in the middle of the cup, having it off, like in a recorder, made the design easier (I was thinking of getting the support structure removed after printing) while I couldn’t find substantial disadvantages. Also it enabled pipes that were hollow below the labium, which means the generator can be somewhere in the resonator (for instance at ⅞, like Helmholtz suggested).
+However, I don’t think it is necessary to have the foot in the middle of the cup, having it off, like in a recorder, made the design easier (I was thinking of getting the support structure removed after printing) while I couldn’t find substantial disadvantages. Also it enabled pipes that were hollow below the labium, which means the generator can be somewhere in the resonator.
 
 ## More online info about flue pipes (German only)
 http://www.arndt-bruenner.de/hausorgel/CalcMens.htm <br>
@@ -102,7 +102,7 @@ http://orgelromantik.aeoline.de/2009/02/06/uber-labien-aufschnitte-und-kerne-der
 http://orgelromantik.aeoline.de/2009/12/02/die-zehn-wichtigsten-tabellen-zu-pfeifenmasen/ <br>
 http://orgelromantik.aeoline.de/2011/01/14/orgel-stimmen-mit-dem-ipad/ <br>
 
-## Spectrogramm
+## Spektrogramm
 Looking at what you are doing (mac): <br>
 ffmpeg -f avfoundation -i ":0" -lavfi showspectrum=s=1440x900:slide=rscroll -c:v rawvideo -r 25 -pix_fmt yuv420p -f matroska - | mpv -
 <br>
