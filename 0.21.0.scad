@@ -60,6 +60,6 @@ difference(){
 };
 
 // version number
-vertical_version_number ("0.11.7");
+vertical_version_number ("0.21");
 
 echo(version = version());
