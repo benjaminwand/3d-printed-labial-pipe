@@ -83,3 +83,7 @@ module airSupplySpacer(x=0){
     translate ([x, airSupplyY, (ground-0.1)]) 
     cylinder (tubeInsert, d=outerTube, center=false, $fn=(20+outerTube));
 }
+module airSupplySpacerTraverse(x=0){
+    translate ([x, - outerDiameter/2, (ground-0.1)]) 
+    cylinder (tubeInsert, d=outerTube, center=false, $fn=(20+outerTube));
+}
