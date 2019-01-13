@@ -23,3 +23,10 @@ module straight_labium_fill(){
         cylinder(outerDiameter, d=outerDiameter);
     }
 }
+
+module straight_labium_cut_20(){
+    translate ([-labiumWidth/2,0,0])
+        rotate([90, 0, 90])
+            linear_extrude(labiumWidth, $fn=50) 
+                polygon(points = labium_polygon_points);
+ };
