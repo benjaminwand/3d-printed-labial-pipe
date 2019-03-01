@@ -29,7 +29,7 @@ height = floorThickness
     
 // calculations, don't touch in production use
 ground = (lengthFlue + floorThickness)*-1;
-airSupplyY = - outerDiameter/2;
+airSupplyY = - outerDiameter/4 - innerDiameter/4 - minWallThickness/2;
 soundingLength = height - pipeInsert - floorThickness;
 labium_polygon_points = 
     [[airSupplyY - 2*minWallThickness, -outCut],

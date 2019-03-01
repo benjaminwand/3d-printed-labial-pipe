@@ -19,17 +19,17 @@ flueWidthIdx = 10;
 flueStepsIdx = 11;         // only works well for few values
 number_of_layersIdx = 12 ;   // .. of the flue loft
 
-pipe =  [ [ outerDiameterIdx, 40],
-[ innerDiameterIdx, 36],
-[ labiumWidthIdx, 30],
-[ outCutIdx, 8],
-[ lengthFlueIdx, 40],
-[ outerTubeIdx, 16],
-[ innerTubeIdx, 13],
+pipe =  [ [ outerDiameterIdx, 25],
+[ innerDiameterIdx, 23],
+[ labiumWidthIdx, 16],
+[ outCutIdx, 4],
+[ lengthFlueIdx, 25],
+[ outerTubeIdx, 11],
+[ innerTubeIdx, 8],
 [ minWallThicknessIdx, 1.2],
 [ floorThicknessIdx, 2],
-[ flueWidthIdx, 0.8],
-[ flueStepsIdx, 17],
+[ flueWidthIdx, 0.5],
+[ flueStepsIdx, 20],
 [ number_of_layersIdx, 8]];
 
 pipes = [ pipe ];
