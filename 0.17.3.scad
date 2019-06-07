@@ -19,17 +19,17 @@ flueWidthIdx = 10;
 flueStepsIdx = 11;         // only works well for few values
 number_of_layersIdx = 12 ;   // .. of the flue loft
 
-pipe =  [ [ outerDiameterIdx, 25],
-[ innerDiameterIdx, 23],
-[ labiumWidthIdx, 16],
-[ outCutIdx, 4],
-[ lengthFlueIdx, 25],
+pipe =  [ [ outerDiameterIdx, 30.3],
+[ innerDiameterIdx, 26],
+[ labiumWidthIdx, 20.5],
+[ outCutIdx, 6.1],
+[ lengthFlueIdx, 28],
 [ outerTubeIdx, 11],
 [ innerTubeIdx, 8],
 [ minWallThicknessIdx, 1.2],
 [ floorThicknessIdx, 2],
-[ flueWidthIdx, 0.5],
-[ flueStepsIdx, 20],
+[ flueWidthIdx, 0.6],
+[ flueStepsIdx, 31],
 [ number_of_layersIdx, 8]];
 
 pipes = [ pipe ];
@@ -250,6 +250,8 @@ difference(){
 vertical_version_number ("0.17.3");
 
 echo(version = version());
+
+
 
 /*
 todo:

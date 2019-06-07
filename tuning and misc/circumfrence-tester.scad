@@ -1,4 +1,4 @@
-data = [[30.2, 10]];  // heights and diameters of tubes
+data = [[30.35, 110]];  // heights and diameters of tubes
 
 for (i = [0 : len(data) - 1])
 difference(){

@@ -6,11 +6,11 @@ include <OpenSCAD_support/labium45.scad>
 include <OpenSCAD_support/pipe_version.scad>
 
 // variables
-outerDiameter = 16;
-innerDiameter = 13;
-labiumWidth = 10;
-outCut = 3;
-lengthFlue = 20;
+outerDiameter = 32.2;
+innerDiameter = 28;
+labiumWidth = 22.4;
+outCut = 6.7;
+lengthFlue = 30;
 outerTube = 11;
 innerTube = 8;
 minWallThickness = 1.2;
@@ -28,7 +28,7 @@ height = floorThickness
 // calculations, don't touch in production use
 ground = (lengthFlue + floorThickness)*-1;
 airSupplyX = (ground + tubeInsert) / sqrt(2);
-airSupplyY = - outerDiameter/2;
+airSupplyY = - outerDiameter/4 - innerDiameter/4 - minWallThickness/2;
 soundingLength = height - pipeInsert - floorThickness;
 labium_polygon_points = 
     [[airSupplyY - 4*minWallThickness,0],
