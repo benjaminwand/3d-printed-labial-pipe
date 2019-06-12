@@ -1,3 +1,4 @@
+  
 // flue pipe
 
 include <OpenSCAD_support/common.scad>
@@ -19,18 +20,18 @@ flueWidthIdx = 10;
 flueStepsIdx = 11;         // only works well for few values
 number_of_layersIdx = 12 ;   // .. of the flue loft
 
-pipe =  [ [ outerDiameterIdx, 30.3],
-[ innerDiameterIdx, 26],
-[ labiumWidthIdx, 20.5],
-[ outCutIdx, 6.1],
-[ lengthFlueIdx, 28],
-[ outerTubeIdx, 11],
-[ innerTubeIdx, 8],
-[ minWallThicknessIdx, 1.2],
+pipe =  [ [ outerDiameterIdx, 110],
+[ innerDiameterIdx, 103],
+[ labiumWidthIdx, 83],
+[ outCutIdx, 25],
+[ lengthFlueIdx, 100],
+[ outerTubeIdx, 25],
+[ innerTubeIdx, 23],
+[ minWallThicknessIdx, 1.8],
 [ floorThicknessIdx, 2],
-[ flueWidthIdx, 0.6],
+[ flueWidthIdx, 1],
 [ flueStepsIdx, 31],
-[ number_of_layersIdx, 8]];
+[ number_of_layersIdx, 15]];
 
 pipes = [ pipe ];
 
@@ -257,4 +258,5 @@ echo(version = version());
 todo:
 * what is this weird bug where flueSteps can only have certain values?
 * what is this bug with "PolySet has nonplanar faces"? beard oder loft_fill schient das Prolem zu sein
+* add eliptic loft fill inside for very large pipes
 */
