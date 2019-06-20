@@ -25,8 +25,8 @@ pipe =  [ [ outerDiameterIdx, 110],
 [ labiumWidthIdx, 83],
 [ outCutIdx, 25],
 [ lengthFlueIdx, 100],
-[ outerTubeIdx, 25],
-[ innerTubeIdx, 23],
+[ outerTubeIdx, 16],
+[ innerTubeIdx, 15],
 [ minWallThicknessIdx, 1.8],
 [ floorThicknessIdx, 2],
 [ flueWidthIdx, 0.8],
@@ -162,7 +162,7 @@ fill_upper_points = [flueloft_upper_outer_points[0] + [0.01, 0, 0.01],
 fill_lower_points = [flueloft_lower_outer_points[0],
     flueloft_lower_outer_points[round(flueSteps/2)],
     flueloft_lower_outer_points[flueSteps-1],
-    [-outCut, 0, ground + tubeInsert]];
+    flueloft_lower_outer_points[flueSteps]];
     
 // labum cut points
     
