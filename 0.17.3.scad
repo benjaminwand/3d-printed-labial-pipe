@@ -29,7 +29,7 @@ pipe =  [ [ outerDiameterIdx, 110],
 [ innerTubeIdx, 23],
 [ minWallThicknessIdx, 1.8],
 [ floorThicknessIdx, 2],
-[ flueWidthIdx, 1],
+[ flueWidthIdx, 0.8],
 [ flueStepsIdx, 31],
 [ number_of_layersIdx, 15]];
 
@@ -253,10 +253,8 @@ vertical_version_number ("0.17.3");
 echo(version = version());
 
 
-
 /*
 todo:
 * what is this weird bug where flueSteps can only have certain values?
-* what is this bug with "PolySet has nonplanar faces"? beard oder loft_fill schient das Prolem zu sein
 * add eliptic loft fill inside for very large pipes
 */
