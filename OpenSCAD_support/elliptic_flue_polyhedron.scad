@@ -33,7 +33,16 @@ module elliptic_loft_fill(){
         translate([0, 0, ground])
             difference(){
                 cylinder(height, d=(2*outerDiameter)); 
-                translate([0, 0, -0.1])cylinder((height + 0.2), d=(outerDiameter)); 
+                translate([0, 0, -0.1]) cylinder((height + 0.2), d=(outerDiameter)); 
         }
     }    
-}
+};
+
+
+
+module inner_elliptic_loft_fill(){
+    intersection(){
+        loft(inner_fill_lower_points, inner_fill_upper_points, number_of_layers);          
+        cylinder(height, outerDiameter/2, outerDiameter/2, true); 
+    };    
+};

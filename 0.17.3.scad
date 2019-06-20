@@ -152,7 +152,8 @@ lower_beard_points=[
             -cos(i)*outerDiameter/4 - outCut/sqrt(2)
         )
 ];
-    
+ 
+        
 // elliptic loft filler
 fill_upper_points = [flueloft_upper_outer_points[0] + [0.01, 0, 0.01],
     flueloft_upper_outer_points[round(flueSteps/2)] + [0.01, 0, 0.01],
@@ -163,7 +164,6 @@ fill_lower_points = [(flueloft_lower_outer_points[0]) * 0.2 + (flueloft_upper_ou
     (flueloft_lower_outer_points[round(flueSteps/2)]) * 0.2 + flueloft_upper_outer_points[round(flueSteps/2)] * 0.8,
     (flueloft_lower_outer_points[flueSteps-1]) * 0.2 + flueloft_upper_outer_points[round(flueSteps/2)] * 0.8,
     (flueloft_lower_outer_points[flueSteps]) * 0.2 + ([-outCut/sqrt(2), 0, -outCut/sqrt(2)] + flueloft_upper_outer_points[flueSteps]) * 0.4];
- 
  
 // labum cut points
     
@@ -232,6 +232,15 @@ labium_cut_faces=[                     // Copying from loft module
                 5 * (i-1) + (j+1) % 5],
         [for (i= [5 * (flueSteps) -1  : -1 : 5 * (flueSteps-1) ]) i], // Lower plane    
 ];
+    
+// inner elliptic loft filler    
+inner_fill_upper_points = [flueloft_upper_outer_points[0] + [0.01, 0, 0.01],
+    flueloft_upper_outer_points[round(flueSteps/2)] + [0.01, 0, 0.01],
+    labium_cut_points[len(labium_cut_points) -1]];
+
+inner_fill_lower_points = [flueloft_lower_outer_points[0] + [0.01, 0, 0.01],
+    flueloft_lower_outer_points[round(flueSteps/2)] + [0.01, 0, 0.01],
+    [0, -outerDiameter * 0.5, ground]];
 
 // logic
 difference(){
@@ -240,6 +249,7 @@ difference(){
         outer_elliptic_loft();
         elliptic_loft_fill();
         elliptic_beard();
+        inner_elliptic_loft_fill();
     };
     union(){
         inner_elliptic_loft(); 
@@ -253,9 +263,7 @@ vertical_version_number ("0.17.3");
 
 echo(version = version());
 
-
 /*
 todo:
 * what is this weird bug where flueSteps can only have certain values?
-* add eliptic loft fill inside for very large pipes
 */
