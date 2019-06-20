@@ -157,13 +157,14 @@ lower_beard_points=[
 fill_upper_points = [flueloft_upper_outer_points[0] + [0.01, 0, 0.01],
     flueloft_upper_outer_points[round(flueSteps/2)] + [0.01, 0, 0.01],
     (flueloft_upper_outer_points[flueSteps-1] + [0.01, 0, 0.01]),
-    [-outCut/sqrt(2), 0, -outCut/sqrt(2)] + [0.01, 0, 0.01]];
+    ([-outCut/sqrt(2), 0, -outCut/sqrt(2)] + flueloft_upper_outer_points[flueSteps])/2 + [0.01, 0, 0.01]];
 
-fill_lower_points = [flueloft_lower_outer_points[0],
-    flueloft_lower_outer_points[round(flueSteps/2)],
-    flueloft_lower_outer_points[flueSteps-1],
-    flueloft_lower_outer_points[flueSteps]];
-    
+fill_lower_points = [(flueloft_lower_outer_points[0]) * 0.2 + (flueloft_upper_outer_points[0]) * 0.8,
+    (flueloft_lower_outer_points[round(flueSteps/2)]) * 0.2 + flueloft_upper_outer_points[round(flueSteps/2)] * 0.8,
+    (flueloft_lower_outer_points[flueSteps-1]) * 0.2 + flueloft_upper_outer_points[round(flueSteps/2)] * 0.8,
+    (flueloft_lower_outer_points[flueSteps]) * 0.2 + ([-outCut/sqrt(2), 0, -outCut/sqrt(2)] + flueloft_upper_outer_points[flueSteps]) * 0.4];
+ 
+ 
 // labum cut points
     
 labium_line=[
