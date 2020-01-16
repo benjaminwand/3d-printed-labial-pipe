@@ -9,7 +9,7 @@ For most pipes I got the best printing results when slicing at a 45° angle and 
 ![https://cdn.thingiverse.com/renders/2a/03/54/e3/72/e935fcfeddd0d054e9dca2f05e988bd0_preview_featured.jpg](https://cdn.thingiverse.com/renders/2a/03/54/e3/72/e935fcfeddd0d054e9dca2f05e988bd0_preview_featured.jpg)<br>
 Some pipes (0.15 and 0.17) should be printed in normal orientation, that is the whole point of the 45° labium.<br>
 
-If you are unfamiliar with both FreeCAD and OpenSCAD and just want an .stl file [you can find them amongst my Thingiverse publications.](https://www.thingiverse.com/bettercallitart/designs)
+If you are unfamiliar with both FreeCAD and OpenSCAD and just want an .stl file [you can find them amongst my Thingiverse publications.](https://www.thingiverse.com/bettercallitart/designs) I’ve also made [an introduction video.](https://youtu.be/g_tp1z9HByQ)
 
 [There are reversed free reed pipes as well.](https://github.com/benjaminwand/3d-printed-reversed-free-reed-pipe)
 
