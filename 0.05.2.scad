@@ -1,5 +1,4 @@
 // flue pipe
-
 include <OpenSCAD_support/common.scad>
 include <OpenSCAD_support/straight_labium.scad>
 include <OpenSCAD_support/straight_flue.scad>
