@@ -96,7 +96,7 @@ At some point I became tired of deploying the latest features into all files, if
 0.21 traverse pipe with air supply from below <br>
 ![/pics/0.21.x.png](/pics/0.21.x.png) <br>
 0.22 pipe with 360° labium that prints in one piece <br>
-![/pics/0.22.x.png](/pics/0.22.x.png)! [/pics/0.22photo.png](/pics/0.22photo.png) <br>
+![/pics/0.22.x.png](/pics/0.22.x.png) ![/pics/0.22photo.png](/pics/0.22photo.png) <br>
 0.23 pipe with 360° labium that prints in two pieces, please use a screw to connect them <br>
 ![/pics/0.23.x.png](/pics/0.23.x.png) ![/pics/0.23photo.png](/pics/0.23photo.png) <br>
 
