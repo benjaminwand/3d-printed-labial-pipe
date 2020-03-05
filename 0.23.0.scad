@@ -6,12 +6,20 @@ innerTube = 6;
 minWallThickness = 0.8;
 minAirway = 2.5;
 flueWidth = 0.35;
+screwDiameter = 3;
+screwHeadDiameter = 5.6; // be a bit generous here / round up
 
 // proportions, don't touch!
 midDiameter = (outerDiameter + innerDiameter)/2;
+innerPartHeight = 3 + innerDiameter/4;
 
 // lower part
-difference(){
+rotate_extrude($fn = 50)        // spacer for screw
+    polygon(points=[
+            [screwHeadDiameter/2 - minWallThickness, outerTube + minAirway + minWallThickness],
+            [screwHeadDiameter/2 - minWallThickness, outerTube + minAirway + 2 * minWallThickness],
+            [innerDiameter/2, outerTube + minAirway + minWallThickness]]); 
+difference(){           // plus
     hull(){rotate_extrude($fn = 50)        
         hull(){
             translate([midDiameter/2, minWallThickness + minAirway/2, 0]) circle(minAirway/2 + minWallThickness, $fn = 30);
@@ -44,27 +52,19 @@ difference(){
     };
 };
 
+
 // upper part
-translate([0, 0, outerTube + minAirway]) cylinder (outerDiameter/2, outerDiameter/20 +  minWallThickness * 2, minWallThickness * 2, false, $fn = 20);
-intersection(){
-    for (i = [0, 120, 240])
-        rotate([0, 0, i])
-            hull(){
-                translate([0, innerDiameter/2, outerTube + outerDiameter 
-               * 0.6 + innerDiameter/2 + minWallThickness]) sphere (minWallThickness, $fn = 10);
-                translate([0, 0, outerTube + minAirway + outerDiameter/2]) sphere (minWallThickness * 2, $fn = 10);
-            };  
-    translate([0, 0, outerTube + outerDiameter/2]) cylinder(outerDiameter, innerDiameter/2, innerDiameter/2);        
-};
-intersection(){
-    for (i = [30 : 120 : 280])
-        rotate([0, 0, i])
-    rotate([0, 270, 0])linear_extrude(height=innerDiameter/2, center = false) 
-        polygon(points=[
-            [outerTube + outerDiameter * 0.6 + innerDiameter/2 + minWallThickness, -minWallThickness],
-    [outerTube + outerDiameter * 0.6 + innerDiameter/2 + minWallThickness, minWallThickness],
-            [outerTube + outerDiameter * 1.25  + innerDiameter/2 , outerDiameter/2],
-            [outerTube + outerDiameter * 1.25 + innerDiameter/2 ,-outerDiameter/2]]);
+translate([outerDiameter + minWallThickness, 0, 0])
+difference(){
+    union(){
         rotate_extrude($fn = 50)        
-            translate([innerDiameter/2 - minWallThickness, outerTube +  outerDiameter * 0.6 + innerDiameter/2, 0]) square([minWallThickness, innerDiameter], false);   
-};    
+                    translate([innerDiameter/2 - minWallThickness, 0, 0]) square([minWallThickness, innerPartHeight], false);   
+        for (i = [0, 120, 240]) rotate([0, 0, i]) 
+            linear_extrude (innerPartHeight) 
+                translate([- minWallThickness/2, 0, 0]) 
+                    square([minWallThickness, innerDiameter/2], false);
+        cylinder(innerPartHeight, screwDiameter/2 + minWallThickness, screwDiameter/2 + minWallThickness, false, $fn = 20);
+    };
+    translate([0, 0, -1]) cylinder(innerPartHeight + 2, screwDiameter/2, screwDiameter/2, false, $fn = 20);
+};
+
