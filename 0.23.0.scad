@@ -8,6 +8,7 @@ minAirway = 2.5;
 flueWidth = 0.35;
 screwDiameter = 3;
 screwHeadDiameter = 5.6; // be a bit generous here / round up
+screwHeadHeight = 2.5;
 
 // proportions, don't touch!
 midDiameter = (outerDiameter + innerDiameter)/2;
@@ -15,10 +16,10 @@ innerPartHeight = 3 + innerDiameter/4;
 
 // lower part
 rotate_extrude($fn = 50)        // spacer for screw
-    polygon(points=[
-            [screwHeadDiameter/2 - minWallThickness, outerTube + minAirway + minWallThickness],
-            [screwHeadDiameter/2 - minWallThickness, outerTube + minAirway + 2 * minWallThickness],
-            [innerDiameter/2, outerTube + minAirway + minWallThickness]]); 
+difference(){
+    translate([screwDiameter/2, outerTube + minAirway + minWallThickness]) square(midDiameter/2 - flueWidth/2 - screwDiameter/2);
+    translate([midDiameter/2 - flueWidth/2, outerTube + minAirway + minWallThickness + midDiameter/2 - flueWidth/2 - screwDiameter/2]) circle(midDiameter/2 - flueWidth/2 - screwDiameter/2);
+};
 difference(){           // plus
     hull(){rotate_extrude($fn = 50)        
         hull(){
@@ -50,9 +51,10 @@ difference(){           // plus
         rotate_extrude($fn = 50)        
             translate([midDiameter/2 - flueWidth/2, outerTube, 0]) square([flueWidth, outerTube * 2], false);   
     };
+    translate([0, 0, outerTube]) cylinder (screwHeadHeight + minAirway, screwHeadDiameter/2, screwHeadDiameter/2, false, $fn = 20);
 };
 
-
+/*
 // upper part
 translate([outerDiameter + minWallThickness, 0, 0])
 difference(){
@@ -67,4 +69,5 @@ difference(){
     };
     translate([0, 0, -1]) cylinder(innerPartHeight + 2, screwDiameter/2, screwDiameter/2, false, $fn = 20);
 };
+*/
 
