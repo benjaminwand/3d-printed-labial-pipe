@@ -1,4 +1,6 @@
-// flauto mirabilis (Kuhn), possibly similar to Vox Maris ???
+// Flauto mirabilis (Kuhn), possibly similar to Vox Maris
+// Instructions: find a screw you want to use, insert values, render, print. The screw needs to be screwed into the lower part first.
+
 outerDiameter = 25;
 innerDiameter = 22.5;
 outerTube = 8;
@@ -54,7 +56,7 @@ difference(){           // plus
     translate([0, 0, outerTube]) cylinder (screwHeadHeight + minAirway, screwHeadDiameter/2, screwHeadDiameter/2, false, $fn = 20);
 };
 
-/*
+
 // upper part
 translate([outerDiameter + minWallThickness, 0, 0])
 difference(){
@@ -69,5 +71,5 @@ difference(){
     };
     translate([0, 0, -1]) cylinder(innerPartHeight + 2, screwDiameter/2, screwDiameter/2, false, $fn = 20);
 };
-*/
+
 

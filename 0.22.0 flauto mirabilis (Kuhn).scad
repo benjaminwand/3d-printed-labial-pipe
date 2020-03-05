@@ -1,4 +1,6 @@
-// flauto mirabilis (Kuhn), possibly similar to Vox Maris ???
+// Flauto mirabilis (Kuhn), possibly similar to Vox Maris
+// Instructions: insert values, render, print, test. In case your print fails, use file 0.23 which will five you a similar pipe but you need a screw and it is easier to print.
+
 outerDiameter = 25;
 innerDiameter = 22.5;
 outerTube = 8;

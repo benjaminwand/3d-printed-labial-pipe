@@ -1,15 +1,15 @@
 # 3d-printed labial pipe
 
 ## General
-This is a collection of FreeCAD and OpenSCAD files that will help you to 3D-print a part of a labial pipe, to be used with a piece of tube. Because most organ pipes don't fit into most 3d-printers.
+This is a collection of FreeCAD and OpenSCAD files that will help you to 3D-print a part of a labial pipe, to be used with a piece of tube. 
 
-Please start by adding the desired measurements into the spreadsheet (FreeCAD) or ‘variables’ section (OpenSCAD). Picking the exact measurements for organ pipes is an advanced subject that includes experience and opinion. If you don’t know where to start, [webpipecalc](https://cuervo.phoenix.uberspace.de/webpipecalc/) can help. You are limited by the diameters of the tubes you can buy. ‘Diameter’ in webpipecalc (or what ever design choice you make) means inner diameter of the tube.
+Please start by adding the desired measurements into the spreadsheet (FreeCAD) or ‘variables’ section (OpenSCAD). If you are unfamiliar with both FreeCAD and OpenSCAD and just want an .stl file [you can find them amongst my Thingiverse publications.](https://www.thingiverse.com/bettercallitart/designs) I’ve also made [an introduction video.](https://youtu.be/g_tp1z9HByQ)
+
+Picking the exact measurements for organ pipes is an advanced subject that includes experience and opinion. If you don’t know where to start, [webpipecalc](https://cuervo.phoenix.uberspace.de/webpipecalc/) can help. You are limited by the diameters of the tubes you can buy. ‘Diameter’ in webpipecalc (or what ever design choice you make) means inner diameter of the tube.
 
 For most pipes I got the best printing results when slicing at a 45° angle and ‘support touching build plate’, so that there is no support structure under the labium. <br>
 ![https://cdn.thingiverse.com/renders/2a/03/54/e3/72/e935fcfeddd0d054e9dca2f05e988bd0_preview_featured.jpg](https://cdn.thingiverse.com/renders/2a/03/54/e3/72/e935fcfeddd0d054e9dca2f05e988bd0_preview_featured.jpg)<br>
 Some pipes (0.15 and 0.17) should be printed in normal orientation, that is the whole point of the 45° labium.<br>
-
-If you are unfamiliar with both FreeCAD and OpenSCAD and just want an .stl file [you can find them amongst my Thingiverse publications.](https://www.thingiverse.com/bettercallitart/designs) I’ve also made [an introduction video.](https://youtu.be/g_tp1z9HByQ)
 
 [There are reversed free reed pipes as well.](https://github.com/benjaminwand/3d-printed-reversed-free-reed-pipe)
 
@@ -28,10 +28,11 @@ Not necessarily the latest file is the one you want. Every 0.x has distinct feat
 * 0.16.2 (has nicks) or
 * 0.2.3 (is filled below the mouth).
 * 0.15.10 or 0.17.3 (45° labium for easier 3d printing)
+* 0.22 or 0.23 for 360° labium (Kuhn: Flauto mirabilis / Hey: Vox Maris)
 
-The OpenSCAD files work with 2018.11.25 and 2018.03-17, some also work with 2015.03-3. 
+Some OpenSCAD files require at least Version 2018.
 
-At some point I became tired of deploying the latest features into all files, if you want a pipe with specific features -> GitHub issue. I’m somewhat motivated to make OpenSCAD files of pipes that so far only exist as FreeCAD version, tell me which one you want. I’m not motivated in the opposite direction.
+At some point I became tired of deploying the latest features into all files, if you want a pipe with specific features, please file a GitHub issue. I’m somewhat motivated to make OpenSCAD files of pipes that so far only exist as FreeCAD version, tell me which one you want. I’m not motivated in the opposite direction.
 
 0.1 First attempt for pipes with 60mm diameter, made with tinkercad.com , here for sentimental reasons <br>
 ![/pics/0.01.png](/pics/0.01.png)<br>
@@ -94,6 +95,10 @@ At some point I became tired of deploying the latest features into all files, if
 ![/pics/0.20.x.png](/pics/0.20.x.png) <br>
 0.21 traverse pipe with air supply from below <br>
 ![/pics/0.21.x.png](/pics/0.21.x.png) <br>
+0.22 pipe with 360° labium that prints in one piece <br>
+![/pics/0.22.x.png](/pics/0.22.x.png) <br>
+0.23 pipe with 360° labium that prints in two pieces, please use a screw to connect them <br>
+![/pics/0.23.x.png](/pics/0.23.x.png) <br>
 
 ## Design thoughts
 I was pondering the design of flue pipes from wood and metal, and came to the conclusion that the design has a lot to do with the material. Wooden pipes are built angular because that is easier than woodturning, and metal pipes are made in a round shape because less soldering. So, what would be a good design for 3D-printing? Well, something with a flat base would be handy. But then, most 3D-printers can’t print large enough for most organ pipes, organ pipes get really large you know. So I decided to use tubes from the hardware store and only 3D-print the intricate part, therefore the 3D-printed organ pipes would be round. I made the outside of many pipes hexagonal because that offers the best ratio of stability vs. little space consuming. <br>
@@ -123,5 +128,4 @@ To figure out the generator sound/frequency <br>
 Parametric tuning devices
 
 ## Future plans
-* Currently I'm printing pipes with different parameters and filaments to see which sounds how and I continue designing flue pipes. 
-* I actually want to build a small organ.
+* Currently I don’t have any but I’m happy to help you with your files.
