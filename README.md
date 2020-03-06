@@ -1,12 +1,11 @@
 # 3d-printed labial pipe
 
-## General
 This is a collection of FreeCAD and OpenSCAD files that will help you to 3D-print a part of a labial pipe, to be used with a piece of tube. 
 
 ## Howto
 This is how to go from here:
 1. pick a file
-2. add measurements
+2. choose and add measurements
 3. export .stl
 4. print. 
 
@@ -59,12 +58,12 @@ Not necessarily the latest file is the one you want. Every 0.x has distinct feat
 0.14 new experimental traverse flute <br> 
 ![/pics/0.14.x.png](/pics/0.14.x.png) <br>
 0.14.2 bugfix for larger pipes <br>
-0.15 pipe with 45° labium, for the purpose of easier slicing <br> 
+0.15 pipe with 45° (diagonal) labium, for the purpose of easier slicing <br> 
 ![/pics/0.15.x.png](/pics/0.15.x.png) <br>
 0.15.1 - 0.15.9 several ways of 45° labium <br>
 0.16 like 0.5 but has nicks <br> 
 ![/pics/0.16.x.png](/pics/0.16.x.png) <br>
-0.17 curved 45° labium <br>
+0.17 curved 45° (diagonal) labium <br>
 ![/pics/0.17.x.png](/pics/0.17.x.png) <br>
 0.18 traverse flute with nicks <br>
 ![/pics/0.18.x.png](/pics/0.18.x.png) <br>
@@ -82,22 +81,19 @@ Not necessarily the latest file is the one you want. Every 0.x has distinct feat
 [There are reversed free reed pipes as well.](https://github.com/benjaminwand/3d-printed-reversed-free-reed-pipe)
 
 ### choosing measurements
+Picking the exact measurements for organ pipes is an advanced subject that includes experience and opinion. If you don’t know where to start, [webpipecalc](https://cuervo.phoenix.uberspace.de/webpipecalc/) can help. You are limited by the diameters of the tubes you can buy. ‘Diameter’ in webpipecalc means inner diameter of the tube.
 
-Picking the exact measurements for organ pipes is an advanced subject that includes experience and opinion. If you don’t know where to start, [webpipecalc](https://cuervo.phoenix.uberspace.de/webpipecalc/) can help. You are limited by the diameters of the tubes you can buy. ‘Diameter’ in webpipecalc (or what ever design choice you make) means inner diameter of the tube.
+You can avoid picking measurements (other then for your pipe, which is given) by choosing file 0.22 or 0.23 because they don’t have cut up and labium width measurements.
 
-You can avoid picking measurements (other then for your pipe, which is given) by choosing 0.22 or 0.23 because they don’t have  a cut up and labium width.
-
-### add meaurements
-
+### adding measurements and exporting .stl
 Please add the desired measurements into the spreadsheet (FreeCAD) or ‘variables’ section (OpenSCAD). If you are unfamiliar with both FreeCAD and OpenSCAD and just want an .stl file [you can find them amongst my Thingiverse publications.](https://www.thingiverse.com/bettercallitart/designs) I’ve also made [an introduction video for using the FreeCAD and OpenSCAD files in this repository.](https://youtu.be/g_tp1z9HByQ)
 
 Some OpenSCAD files require at least Version 2018.
 
 ### printing
-
 For most pipes I got the best printing results when slicing at a 45° angle and ‘support touching build plate’, so that there is no support structure under the labium. <br>
 ![https://cdn.thingiverse.com/renders/2a/03/54/e3/72/e935fcfeddd0d054e9dca2f05e988bd0_preview_featured.jpg](https://cdn.thingiverse.com/renders/2a/03/54/e3/72/e935fcfeddd0d054e9dca2f05e988bd0_preview_featured.jpg)<br>
-Some pipes (0.10, 0.11, 0.12, 0.15, 0.17, 0.18, 0.19, 0.21, 0.22, 0.23) should be printed in normal orientation though.<br>
+Some pipes (0.10, 0.11, 0.12, 0.15, 0.17, 0.18, 0.19, 0.21, 0.22, 0.23) should be printed in normal orientation though.
 
 ## Design thoughts
 I was pondering the design of flue pipes from wood and metal, and came to the conclusion that the design has a lot to do with the material. Wooden pipes are built angular because that is easier than woodturning, and metal pipes are made in a round shape because less soldering. So, what would be a good design for 3D-printing? Well, something with a flat base would be handy. But then, most 3D-printers can’t print large enough for most organ pipes, organ pipes get really large you know. So I decided to use tubes from the hardware store and only 3D-print the intricate part, therefore the 3D-printed organ pipes would be round. I made the outside of many pipes hexagonal because that offers the best ratio of stability vs. little space consuming. <br>
