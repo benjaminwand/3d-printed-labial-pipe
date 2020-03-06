@@ -11,6 +11,7 @@ flueWidth = 0.35;
 
 // proportions, don't touch!
 midDiameter = (outerDiameter + innerDiameter)/2;
+stuckWidth = 3 + outerDiameter/20;  // for labium
 
 // lower part
 difference(){
@@ -70,3 +71,17 @@ intersection(){
         rotate_extrude($fn = 50)        
             translate([innerDiameter/2 - minWallThickness, outerTube +  outerDiameter * 0.6 + innerDiameter/2, 0]) square([minWallThickness, innerDiameter], false);   
 };    
+
+// labium
+translate([outerDiameter * 0.8, - outerDiameter * 0.8, stuckWidth])
+    rotate([180, 0, 0])
+        rotate_extrude($fn = 50)  
+polygon(points=[
+        [innerDiameter/2, 0],
+        [outerDiameter/2, 0],
+        [outerDiameter/2, stuckWidth],
+        [outerDiameter/2 + minWallThickness, stuckWidth],
+        [outerDiameter/2 + minWallThickness, stuckWidth],
+        [outerDiameter/2 + minWallThickness, - minWallThickness],
+        [midDiameter/2, - stuckWidth]
+    ]);

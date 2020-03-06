@@ -15,6 +15,7 @@ screwHeadHeight = 2.5;
 // proportions, don't touch!
 midDiameter = (outerDiameter + innerDiameter)/2;
 innerPartHeight = 3 + innerDiameter/4;
+stuckWidth = 3 + outerDiameter/20;  // for labium
 
 // lower part
 rotate_extrude($fn = 50)        // spacer for screw
@@ -71,5 +72,18 @@ difference(){
     };
     translate([0, 0, -1]) cylinder(innerPartHeight + 2, screwDiameter/2, screwDiameter/2, false, $fn = 20);
 };
+ 
 
-
+// labium
+translate([outerDiameter * 0.6, - outerDiameter, stuckWidth])
+    rotate([180, 0, 0])
+        rotate_extrude($fn = 50)  
+polygon(points=[
+        [innerDiameter/2, 0],
+        [outerDiameter/2, 0],
+        [outerDiameter/2, stuckWidth],
+        [outerDiameter/2 + minWallThickness, stuckWidth],
+        [outerDiameter/2 + minWallThickness, stuckWidth],
+        [outerDiameter/2 + minWallThickness, - minWallThickness],
+        [midDiameter/2, - stuckWidth]
+    ]);
