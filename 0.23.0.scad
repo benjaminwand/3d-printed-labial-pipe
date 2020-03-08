@@ -26,46 +26,48 @@ stuckIn = tube/2 + outerDiameter/20;
 echo(stuckIn=stuckIn);
 
 // lower part
-rotate_extrude($fn = 50)        // spacer for screw
-difference(){
-    translate([screwDiameter/2, tube + minAirway + minWallThickness]) square(midDiameter/2 - flueWidth/2 - screwDiameter/2);
-    translate([midDiameter/2 - flueWidth/2, tube + minAirway + minWallThickness + midDiameter/2 - flueWidth/2 - screwDiameter/2]) circle(midDiameter/2 - flueWidth/2 - screwDiameter/2);
-};
 difference(){           // plus
-    hull(){rotate_extrude($fn = 50)        
-        hull(){
-            translate([midDiameter/2, minWallThickness + minAirway/2, 0]) circle(minAirway/2 + minWallThickness, $fn = 30);
-            translate([midDiameter/2, tube + minAirway, 0]) square([minWallThickness * 2 + flueWidth, minWallThickness * 2], true);  
-        };  
+    union(){
+        hull(){rotate_extrude($fn = 50)        
+            hull(){
+                translate([midDiameter/2, minWallThickness + minAirway/2, 0]) circle(minAirway/2 + minWallThickness, $fn = 30);
+                translate([midDiameter/2, stuckIn + minAirway, 0]) square([minWallThickness * 2 + flueWidth, minWallThickness * 2], true);  
+            };  
+        };
+        rotate_extrude($fn = 50)        // curved spacer for screw
+            difference(){
+                translate([screwDiameter/2, stuckIn + minAirway + minWallThickness]) square(midDiameter/2 - flueWidth/2 - screwDiameter/2);
+                translate([midDiameter/2 - flueWidth/2, stuckIn + minAirway + minWallThickness + midDiameter/2 - flueWidth/2 - screwDiameter/2]) circle(midDiameter/2 - flueWidth/2 - screwDiameter/2);
+            };    
     };   
 // minus
     union(){
-        translate([0, 0, -0.1]) cylinder(tube + 0.2, tube/2 + 0.1, tube/2, false, $fn = 30);
-        translate([0, 0, tube])cylinder(minAirway, tube/2, minAirway, false);
+        translate([0, 0, -0.1]) cylinder(stuckIn + 0.2, tube/2 + 0.1, tube/2, false, $fn = 30);
+        translate([0, 0, stuckIn])cylinder(minAirway, tube/2, minAirway, false);
         for (i = [0 : 30 : 330])
             rotate([0, 0, i])
                 hull(){
                     translate([midDiameter/2, 0, minWallThickness + minAirway/2]) sphere(minAirway/2, $fn = 10);
-                    translate([tube/2, 0, tube + minAirway/2]) sphere(minAirway/2, $fn = 10);
+                    translate([tube/2, 0, stuckIn + minAirway/2]) sphere(minAirway/2, $fn = 10);
                 };    
         for (i = [0 : 30 : 150])
             rotate([0, 0, i])
                 hull(){
-                    translate([-tube/2, 0, tube + minAirway/2]) sphere(minAirway/2, $fn = 10);
-                    translate([tube/2, 0, tube + minAirway/2]) sphere(minAirway/2, $fn = 10);
+                    translate([-tube/2, 0, stuckIn + minAirway/2]) sphere(minAirway/2, $fn = 10);
+                    translate([tube/2, 0, stuckIn + minAirway/2]) sphere(minAirway/2, $fn = 10);
                 };
         rotate_extrude($fn = 50)        
             hull(){
                 translate([midDiameter/2, minWallThickness + minAirway/2, 0]) circle(minAirway/2, $fn = 10);
-                translate([midDiameter/2, tube + minAirway, 0]) square(flueWidth, true);  
+                translate([midDiameter/2, stuckIn + minAirway, 0]) square(flueWidth, true);  
             };
         rotate_extrude($fn = 50)        
-            translate([midDiameter/2 - flueWidth/2, tube, 0]) square([flueWidth, tube * 2], false);   
-    };
-    translate([0, 0, tube]) cylinder (screwHeadHeight + minAirway, screwHeadDiameter/2, screwHeadDiameter/2, false, $fn = 20);
+            translate([midDiameter/2 - flueWidth/2, stuckIn, 0]) square([flueWidth, tube * 2], false);  
+         translate([0, 0, stuckIn]) cylinder (screwHeadHeight + minAirway, screwHeadDiameter/2, screwHeadDiameter/2, false, $fn = 20); 
+    };  
 };
 
-/*
+
 // upper part
 translate([outerDiameter + minWallThickness, 0, 0])
 difference(){
@@ -95,4 +97,3 @@ polygon(points=[
         [outerDiameter/2 + minWallThickness, - minWallThickness],
         [midDiameter/2, - stuckWidth]
     ]);
-*/
