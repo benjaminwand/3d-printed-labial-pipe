@@ -1,9 +1,14 @@
-// Flauto mirabilis (Kuhn), possibly similar to Vox Maris
+// Flauto mirabilis (Kuhn) / Vox Maris (Hey)
 // Instructions: insert values, render, print, test. In case your print fails, use file 0.23 which will five you a similar pipe but you need a screw and it is easier to print.
 
+// variables
+
+// tube and pipe
 outerDiameter = 25;
 innerDiameter = 22.5;
 tube = 8;
+
+// pipe specefics
 minWallThickness = 0.8;
 minAirway = 2.5;
 flueWidth = 0.35;
@@ -11,6 +16,8 @@ flueWidth = 0.35;
 // proportions, don't touch!
 midDiameter = (outerDiameter + innerDiameter)/2;
 stuckWidth = 3 + outerDiameter/20;  // for labium
+stuckIn = tube/2 + outerDiameter/20;
+echo(stuckIn=stuckIn);
 
 // lower part
 difference(){

@@ -1,12 +1,19 @@
-// Flauto mirabilis (Kuhn), possibly similar to Vox Maris
-// Instructions: find a screw you want to use, insert values, render, print. The screw needs to be screwed into the lower part first.
+// Flauto mirabilis (Kuhn) / Vox Maris (Hey)
+// Instructions: find a screw you want to use, insert values, render, print. The screw needs to be screwed into the lower part from below.
 
-outerDiameter = 110.15;
+// variables
+
+// tube and pipe
+outerDiameter = 110.15;     
 innerDiameter = 102.7;
 tube = 18;          // air tube diameter, should be at least as thick as screw head
+
+// pipe specifics
 minWallThickness = 1.2;
 minAirway = 3;
 flueWidth = 0.5;
+
+// screw
 screwDiameter = 8;
 screwHeadDiameter = 14.75; // be a bit generous here / round up
 screwHeadHeight = 5.7;
@@ -15,7 +22,8 @@ screwHeadHeight = 5.7;
 midDiameter = (outerDiameter + innerDiameter)/2;
 innerPartHeight = 3 + innerDiameter/4;
 stuckWidth = 3 + outerDiameter/20;  // for labium
-stuckIn = 
+stuckIn = tube/2 + outerDiameter/20;
+echo(stuckIn=stuckIn);
 
 // lower part
 rotate_extrude($fn = 50)        // spacer for screw
