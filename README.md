@@ -127,6 +127,8 @@ Parametric tuning devices
 ## state of the project
 At some point I became tired of deploying the latest features into all files, if you want a pipe with specific features, please file a GitHub issue. I’m somewhat motivated to make OpenSCAD files of pipes that so far only exist as FreeCAD version, tell me which one you want. I’m not motivated in the opposite direction.
 
+I’m happy to answer questions.
+
 I'd be happy to hear about your instrument!
 
 Licensed under CC-BY <br>
