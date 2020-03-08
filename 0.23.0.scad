@@ -42,7 +42,7 @@ difference(){           // plus
     };   
 // minus
     union(){
-        translate([0, 0, -0.1]) cylinder(stuckIn + 0.2, tube/2 + 0.1, tube/2, false, $fn = 30);
+        translate([0, 0, -0.1]) cylinder(stuckIn + 0.1, tube/2 + 0.1, tube/2, false, $fn = 30);
         translate([0, 0, stuckIn])cylinder(minAirway, tube/2, minAirway, false);
         for (i = [0 : 30 : 330])
             rotate([0, 0, i])
