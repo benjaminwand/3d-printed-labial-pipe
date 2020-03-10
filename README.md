@@ -77,6 +77,8 @@ Not necessarily the latest file is the one you want. Every 0.x has distinct feat
 ![/pics/0.22.x.png](/pics/0.22.x.png) ![/pics/0.22photo.png](/pics/0.22photo.png) <br>
 0.23 pipe with 360° labium that prints in two pieces, please use a screw to connect them <br>
 ![/pics/0.23.x.png](/pics/0.23.x.png) ![/pics/0.23photo.png](/pics/0.23photo.png) <br>
+0.24 pipe with 360° labium that prints in two pieces and also prints the labium <br>
+![/pics/0.20.x.png](/pics/0.20.x.png) <br>
 
 [There are reversed free reed pipes as well.](https://github.com/benjaminwand/3d-printed-reversed-free-reed-pipe)
 
