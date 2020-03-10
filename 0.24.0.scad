@@ -87,12 +87,11 @@ difference(){
 };
 // labium
 translate([outerDiameter + minWallThickness, 0, innerPartHeight])
-    //rotate([180, 0, 0])
-        rotate_extrude($fn = 50)  
-polygon(points=[
-        [innerDiameter/2 - minWallThickness, 0],
-        [innerDiameter/2, labiumSideHeight],
-        [midDiameter/2, labiumSideHeight + labiumEdge],
-        [outerDiameter/2, labiumSideHeight],
-        [outerDiameter/2, 0]
-    ]);
+    rotate_extrude($fn = 50)  
+        polygon(points=[
+            [innerDiameter/2 - minWallThickness, 0],
+            [innerDiameter/2, labiumSideHeight],
+            [midDiameter/2, labiumSideHeight + labiumEdge],
+            [outerDiameter/2, labiumSideHeight],
+            [outerDiameter/2, 0]
+        ]);
