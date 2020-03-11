@@ -24,7 +24,7 @@ innerPartHeight = 3 + innerDiameter/4;  // where the screw goes in
 stuckIn = tube/2 + outerDiameter/25;    // of tube
 echo(stuckIn=stuckIn);
 labiumEdge = 3 + outerDiameter/20;      
-labiumSideHeight = 10 + outerDiameter/5;
+labiumSideHeight = outerDiameter/2.25 - labiumEdge;
 echo(labiumSideHeight=labiumSideHeight);
 
 
@@ -45,7 +45,7 @@ difference(){           // plus
     };   
 // minus
     union(){
-        translate([0, 0, -0.1]) cylinder(stuckIn + 0.1, tube/2 + 0.1, tube/2, false, $fn = 30);
+        translate([0, 0, -0.09]) cylinder(stuckIn + 0.1, tube/2 + 0.1, tube/2, false, $fn = 30);
         translate([0, 0, stuckIn])cylinder(minAirway, tube/2, minAirway, false);
         for (i = [0 : 30 : 330])
             rotate([0, 0, i])
@@ -72,7 +72,7 @@ difference(){           // plus
 
 
 // inner part
-translate([outerDiameter + minWallThickness, 0, 0])
+translate([outerDiameter + 2*minWallThickness, 0, 0])
 difference(){
     union(){
         rotate_extrude($fn = 50)        
@@ -86,7 +86,7 @@ difference(){
     translate([0, 0, -1]) cylinder(innerPartHeight + 2, screwDiameter/2, screwDiameter/2, false, $fn = 20);
 };
 // labium
-translate([outerDiameter + minWallThickness, 0, innerPartHeight])
+translate([outerDiameter + 2*minWallThickness, 0, innerPartHeight])
     rotate_extrude($fn = 50)  
         polygon(points=[
             [innerDiameter/2 - minWallThickness, 0],
