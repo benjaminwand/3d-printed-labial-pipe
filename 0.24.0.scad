@@ -24,7 +24,7 @@ innerPartHeight = 3 + innerDiameter/4;  // where the screw goes in
 stuckIn = tube/2 + outerDiameter/25;    // of tube
 echo(stuckIn=stuckIn);
 labiumEdge = 3 + outerDiameter/20;      
-labiumSideHeight = 10 + outerDiameter/10;
+labiumSideHeight = 10 + outerDiameter/5;
 echo(labiumSideHeight=labiumSideHeight);
 
 
