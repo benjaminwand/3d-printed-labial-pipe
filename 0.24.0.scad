@@ -1,22 +1,11 @@
 // Flauto mirabilis (Kuhn) / Vox Maris (Hey)
-// Instructions: find a screw you want to use, insert values, render, print. The screw needs to be screwed into the lower part from below.
+// Instructions: 
+// * Find pipe and screw, the screw needs to be a bit longer than the diameter of the pipe. The air tube needs to be at least as thick as the head of the screw.
+// * Insert values into the config file, safe, render this file, print.
+// * The screw needs to be screwed into the lower part from below.
 
-// variables
-
-// tube and pipe
-outerDiameter = 110.15;     
-innerDiameter = 103.2;
-tube = 18;          // air tube diameter, should be at least as thick as screw head
-
-// pipe specifics
-minWallThickness = 1.2;
-minAirway = 3;
-flueWidth = 0.35;
-
-// screw
-screwDiameter = 7.8;
-screwHeadDiameter = 15; // be a bit generous here / round up
-screwHeadHeight = 5.7;
+// import config
+include <OpenSCAD_config/config_grauplastik_25mm.scad>  
 
 // proportions, don't touch!
 fnBig = round(outerDiameter/2 + tube/15) + 30;
@@ -27,7 +16,8 @@ midDiameter = (outerDiameter + innerDiameter)/2;
 innerPartHeight = 3 + innerDiameter/4;  // where the screw goes in
 stuckIn = tube/2 + outerDiameter/25;    // of tube
 echo(stuckIn=stuckIn);
-labiumEdge = 3 + outerDiameter/20;      
+labiumEdge = 3 + outerDiameter/25;
+echo(labiumEdge=labiumEdge);
 labiumSideHeight = outerDiameter/2.25 - labiumEdge;
 
 
