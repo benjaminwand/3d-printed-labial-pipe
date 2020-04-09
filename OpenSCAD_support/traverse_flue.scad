@@ -47,22 +47,30 @@ module high_cut_up_connector(){
                     rotate([0, 90, 0]) cylinder (minWallThickness, minWallThickness, minWallThickness);
                 translate ([-outCut - minWallThickness, - outerDiameter/2, labiumWidth*-0.45]) 
                     rotate([0, 90, 0]) cylinder (minWallThickness, minWallThickness, minWallThickness);
-                translate ([-outCut - minWallThickness,  0, ground])
+                translate ([-outCut - minWallThickness, 0, ground])
                     cube(minWallThickness);
                 translate ([-outCut - minWallThickness, 0, labiumWidth*0.45]) 
                     rotate([0, 90, 0]) cylinder (minWallThickness, minWallThickness, minWallThickness);
             };
             if (connector == 1) 
-            hull(){
-                translate ([airSupplyX, minWallThickness/2 - outerDiameter/2, ground]) 
-                    cube(minWallThickness);
-                translate([airSupplyX, - outerDiameter/2, 0])
-                    cylinder(h=0.01, minWallThickness + flueWidth/2, minWallThickness + flueWidth/2, $fn = 15); 
-               translate ([-outCut, - outerDiameter/2, /*-labiumWidth*0.45*/0]) 
-                    rotate([0, 90, 0]) cylinder (0.01, minWallThickness + flueWidth/2, minWallThickness + flueWidth/2, $fn = 15);
-                translate ([-outCut - minWallThickness, minWallThickness/2 - outerDiameter/2, ground]) 
-                    cube(minWallThickness);
-            };
+                union(){
+                    hull(){
+                        translate ([airSupplyX, - outerDiameter/2, ground]) 
+                            cube(minWallThickness);
+                        translate([airSupplyX, - outerDiameter/2, 0])
+                            cylinder(h=0.01, innerTube/2, innerTube/2, $fn = 15); 
+                        translate ([-outCut, - outerDiameter/2, - labiumWidth*0.45]) 
+                            rotate([0, 90, 0]) cylinder (0.01, minWallThickness, minWallThickness, $fn = 15);
+                    };
+                    hull(){
+                        translate ([airSupplyX, - outerDiameter/2, ground]) 
+                            cube(minWallThickness);
+                        translate ([-outCut -minWallThickness, -outCut -minWallThickness, ground]) 
+                            cube(minWallThickness);
+                        translate ([-outCut, - outerDiameter/2, - labiumWidth*0.45]) 
+                            rotate([0, 90, 0]) cylinder (0.01, minWallThickness, minWallThickness, $fn = 15);
+                    };
+                }
         };
         cylinder(2 * height, innerDiameter/2 + 0.1, innerDiameter/2 + 0.1, true);
     };

@@ -9,7 +9,8 @@ screwDiameter = 3;
 minWallThickness = 0.8;
 
 // proportions, don't touch!
-innerPartHeight = 5 + innerDiameter/3;
+innerPartHeight = 5 + innerDiameter/4;
+capHeight = innerDiameter;
 fnBig = round(outerDiameter/2) + 30;
 echo(fnBig=fnBig);
 fnSmall = round(outerDiameter/15) + 20;
@@ -46,8 +47,8 @@ translate([outerDiameter + 2 * minWallThickness, 0, 0])
         polygon(points=[
             [screwDiameter/2, 0],
             [outerDiameter * 0.5 + minWallThickness + 0.1, 0],
-            [outerDiameter * 0.5 + minWallThickness + 0.1, innerPartHeight],
-            [outerDiameter * 0.5 + 0.1, innerPartHeight],
+            [outerDiameter * 0.5 + minWallThickness + 0.1, capHeight],
+            [outerDiameter * 0.5 + 0.1, capHeight],
             [outerDiameter * 0.5 + 0.1, minWallThickness],
             [screwDiameter/2 + minWallThickness, minWallThickness],
             [screwDiameter/2 + minWallThickness, 3 * minWallThickness],

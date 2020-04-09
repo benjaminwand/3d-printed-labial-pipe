@@ -11,8 +11,8 @@ innerDiameter = 23;
 labiumWidth = 16;
 outCut = 5.4;
 totalLength = 200;
-outerTube = 11;         // air supply tube
-innerTube = 10;
+outerTube = 8;         // air supply tube
+innerTube = 6;
 minWallThickness = 0.8;
 floorThickness =1.5;
 flueWidth = 0.3;
@@ -22,10 +22,21 @@ connector = 1;          // 1 for on/existing
 lengthFlue = totalLength / 8;
 tubeInsert = outerTube + 2.5;       // length
 pipeInsert = innerDiameter * 0.1 + 5; // length
-height = floorThickness
-    + lengthFlue
-    + labiumWidth / 2
-    + tubeInsert; 
+
+// calculations, don't touch in production use
+ground = -(lengthFlue + floorThickness);
+airSupplyX = -innerDiameter/2 - outCut;
+labium_polygon_points = 
+    [[0,-outerDiameter/2],
+    [innerDiameter/2, -outerDiameter],
+    [-outCut, -outerDiameter],
+    [-outCut, 0],
+    [innerDiameter/2,0]];
+height = - ground
+    + labiumWidth/2
+    + minWallThickness
+    + pipeInsert;
+echo (height=height);
 soundingLength = height - pipeInsert - floorThickness;
 
 // announcing sounding length
@@ -34,20 +45,10 @@ echo(str("the sounding length inside the model in mm: ", soundingLength));
 // announcing tube length
 echo(str("tube needed (in mm): ", totalLength - soundingLength));
     
-// calculations, don't touch in production use
-ground = (lengthFlue + floorThickness)*-1;
-airSupplyX = -innerDiameter/2 - outCut;
-labium_polygon_points = 
-    [[0,-outerDiameter/2],
-    [innerDiameter/2, -outerDiameter],
-    [-outCut, -outerDiameter],
-    [-outCut, 0],
-    [innerDiameter/2,0]];
-
 // logic
 difference(){
     union(){
-        basicShapeRound(height); 
+        basicShape21(); 
         outer_traverse_flue();
         high_cut_up_connector();
     };

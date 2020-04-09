@@ -1,5 +1,5 @@
 // pipe
-outerDiameter = 25;     
+outerDiameter = 24.9;
 innerDiameter = 22.5;
 
 // screw
@@ -10,6 +10,7 @@ minWallThickness = 0.8;
 
 // proportions, don't touch!
 innerPartHeight = 5 + innerDiameter/4;
+sliderHeight = innerDiameter;
 fnBig = round(outerDiameter/2) + 30;
 echo(fnBig=fnBig);
 fnSmall = round(outerDiameter/15) + 20;
@@ -46,7 +47,7 @@ difference(){
     union(){
         rotate_extrude($fn = fnBig)        
             translate([outerDiameter/2 + 0.1, 0, 0]) // 0.1mm air gap
-                square([minWallThickness, innerPartHeight], false);   
+                square([minWallThickness, sliderHeight], false);   
         for (i = [0, 120, 240]) rotate([0, 0, i]) 
             linear_extrude (2 * minWallThickness) 
                 translate([- minWallThickness/2, 0, 0]) 

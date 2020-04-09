@@ -100,6 +100,19 @@ translate ([0, 0, ground]) union(){
     };
 }
 
+module basicShape21()
+translate ([0, 0, ground]) union(){
+    difference(){   
+	    cylinder(height, d=(outerDiameter + 2* minWallThickness), $fn=(30+outerDiameter)); 
+        union(){
+        	translate ([0, 0, floorThickness]) 
+                cylinder(height, d=innerDiameter, center=false, $fn=(10+outerDiameter));
+        	translate ([0, 0, (height - pipeInsert)]) 
+                cylinder(height, d=outerDiameter, center=false, $fn=(10+outerDiameter));
+        };
+    };
+};
+
 module cylinder_outer(height,radius,fn){  	//from https://en.wikibooks.org/wiki/OpenSCAD_User_Manual/undersized_circular_objects
    fudge = 1/cos(180/fn);
    cylinder(h=height,r=radius*fudge,$fn=fn);
