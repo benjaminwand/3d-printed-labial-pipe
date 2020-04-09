@@ -16,7 +16,7 @@ innerTube = 10;
 minWallThickness = 0.8;
 floorThickness =1.5;
 flueWidth = 0.3;
-connector = 0;          // 1 for on/existing
+connector = 1;          // 1 for on/existing
 
 // proportions, are most likely good like that
 lengthFlue = totalLength / 8;

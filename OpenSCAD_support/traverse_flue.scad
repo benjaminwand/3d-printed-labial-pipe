@@ -54,14 +54,14 @@ module high_cut_up_connector(){
             };
             if (connector == 1) 
             hull(){
-                translate([airSupplyX, - outerDiameter/2, ground]) 
-                    cylinder(h=0.01, d=innerTube, center=true);
-                translate([airSupplyX * 0.7 , - outerDiameter/2, 0])
-                    cylinder(h=0.01, d=innerTube, center=true); 
-                translate ([-outCut - minWallThickness, - outerDiameter/2, labiumWidth*0.45]) 
-                    rotate([0, 90, 0]) cylinder (minWallThickness, minWallThickness, minWallThickness);
-                translate ([0, 0, ground]) 
-                    cylinder (0.01, innerDiameter/2 - minWallThickness);
+                translate ([airSupplyX, minWallThickness/2 - outerDiameter/2, ground]) 
+                    cube(minWallThickness);
+                translate([airSupplyX, - outerDiameter/2, 0])
+                    cylinder(h=0.01, minWallThickness + flueWidth/2, minWallThickness + flueWidth/2, $fn = 15); 
+               translate ([-outCut, - outerDiameter/2, /*-labiumWidth*0.45*/0]) 
+                    rotate([0, 90, 0]) cylinder (0.01, minWallThickness + flueWidth/2, minWallThickness + flueWidth/2, $fn = 15);
+                translate ([-outCut - minWallThickness, minWallThickness/2 - outerDiameter/2, ground]) 
+                    cube(minWallThickness);
             };
         };
         cylinder(2 * height, innerDiameter/2 + 0.1, innerDiameter/2 + 0.1, true);
