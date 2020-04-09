@@ -1,5 +1,5 @@
 // pipe
-outerDiameter = 25;     
+outerDiameter = 24.9;     
 innerDiameter = 22.5;
 
 // screw
@@ -9,7 +9,7 @@ screwDiameter = 3;
 minWallThickness = 0.8;
 
 // proportions, don't touch!
-innerPartHeight = 5 + innerDiameter/4;
+innerPartHeight = 5 + innerDiameter/3;
 fnBig = round(outerDiameter/2) + 30;
 echo(fnBig=fnBig);
 fnSmall = round(outerDiameter/15) + 20;
@@ -50,6 +50,6 @@ translate([outerDiameter + 2 * minWallThickness, 0, 0])
             [outerDiameter * 0.5 + 0.1, innerPartHeight],
             [outerDiameter * 0.5 + 0.1, minWallThickness],
             [screwDiameter/2 + minWallThickness, minWallThickness],
-            [screwDiameter/2 + minWallThickness, 2 * minWallThickness],
-            [screwDiameter/2, 2 * minWallThickness],
+            [screwDiameter/2 + minWallThickness, 3 * minWallThickness],
+            [screwDiameter/2, 3 * minWallThickness],
         ]);

@@ -6,16 +6,16 @@ include <OpenSCAD_support/traverse_labium.scad>
 include <OpenSCAD_support/pipe_version.scad>
 
 // variables
-outerDiameter = 32;
-innerDiameter = 28;
-labiumWidth = 23.4158;
-outCut = 7.0248;
-totalLength = 279.6128;
-outerTube = 12;         // air supply tube
-innerTube = 8;
-minWallThickness = 1.2;
-floorThickness = 2;
-flueWidth = 0.6;
+outerDiameter = 25;
+innerDiameter = 23;
+labiumWidth = 16;
+outCut = 5.4;
+totalLength = 200;
+outerTube = 11;         // air supply tube
+innerTube = 10;
+minWallThickness = 0.8;
+floorThickness =1.5;
+flueWidth = 0.3;
 connector = 0;          // 1 for on/existing
 
 // proportions, are most likely good like that
@@ -60,6 +60,6 @@ difference(){
 };
 
 // version number
-vertical_version_number ("0.21");
+vertical_version_number ("0.21 gedackt");
 
 echo(version = version());

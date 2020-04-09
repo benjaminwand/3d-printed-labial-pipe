@@ -4,14 +4,14 @@ module version_number (number)
 	translate ([outerDiameter*0.5 + minWallThickness, 0, -lengthFlue])
 		rotate ([90,0,90])
 			linear_extrude(1) 
-				text(text=str(number), size=outerDiameter*0.13, halign = "center");
+				text(text=str(number), size=outerDiameter*0.13, halign = "center", font =  "Arial Rounded MT Bold:style=Regular");
 
 module vertical_version_number (number)
     intersection(){
         translate ([outerDiameter * 0.5, 0, -lengthFlue])
             rotate ([90,-90,90])
                 linear_extrude(10) 
-                    text(text=str(number), size=outerDiameter*0.18, valign = "center");
+                    text(text=str(number), size=outerDiameter*0.18, valign = "center", font =  "Arial Rounded MT Bold:style=Regular");
     cylinder(height * 2, outerDiameter*0.5 + minWallThickness + 0.5, outerDiameter*0.5 + minWallThickness + 0.5, true, $fn=(10+outerDiameter))    ;
     }
 
@@ -21,6 +21,6 @@ module vertical_version_number_20 (number, corpus_angle = 0)
 			rotate ([90,-90,-90])
 				linear_extrude(1) 
 union(){
-	text(text=str("pipe: ", number), size=outerDiameter*0.18, valign = "bottom");
-	text(text=str("angle: ", corpus_angle, "\u00B0"), size=outerDiameter*0.18, valign = "top");
+	text(text=str("pipe: ", number), size=outerDiameter*0.18, valign = "bottom", font =  "Arial Rounded MT Bold:style=Regular");
+	text(text=str("angle: ", corpus_angle, "\u00B0"), size=outerDiameter*0.18, valign = "top", font =  "Arial Rounded MT Bold:style=Regular");
 }
