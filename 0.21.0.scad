@@ -9,14 +9,14 @@ include <OpenSCAD_support/pipe_version.scad>
 outerDiameter = 25;
 innerDiameter = 23;
 labiumWidth = 16;
-outCut = 5.4;
+outCut = 6.4;
 totalLength = 200;
 outerTube = 8;         // air supply tube
 innerTube = 6;
 minWallThickness = 0.8;
 floorThickness =1.5;
 flueWidth = 0.3;
-connector = 1;          // 1 for on/existing
+connector = 2;          // [0 / 1 / 2]
 
 // proportions, are most likely good like that
 lengthFlue = totalLength / 8;
@@ -44,7 +44,16 @@ echo(str("the sounding length inside the model in mm: ", soundingLength));
 
 // announcing tube length
 echo(str("tube needed (in mm): ", totalLength - soundingLength));
-    
+
+// connector points if connector ==2
+allP = [[airSupplyX, - outerDiameter/2, ground],
+    [airSupplyX, - outerDiameter/2, 0],
+    [-outCut, - outerDiameter/2, - labiumWidth*0.45],
+    [-outCut -minWallThickness, -outCut -minWallThickness, ground]];
+middlePoint = [(allP[0][0] + allP[2][0] + allP[2][0] + allP[3][0]) /4,
+(allP[0][1] + allP[2][1] + allP[2][1] + allP[3][1]) /4,
+(allP[0][2] + allP[2][2] + allP[2][2] + allP[3][2]) /4];
+
 // logic
 difference(){
     union(){

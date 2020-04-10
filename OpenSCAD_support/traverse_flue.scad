@@ -39,6 +39,8 @@ module inner_traverse_flue(){
     ); 
 }
 
+function add_up_to(n) = ( n==0 ? 0 : n + add_up_to(n-1) );
+
 module high_cut_up_connector(){
     difference(){
         union(){
@@ -71,6 +73,38 @@ module high_cut_up_connector(){
                             rotate([0, 90, 0]) cylinder (0.01, minWallThickness, minWallThickness, $fn = 15);
                     };
                 }
+            if (connector == 2) {
+                union(){
+                    hull(){
+                        translate ([airSupplyX, - outerDiameter/2, ground]) 
+                            cube(minWallThickness);
+                        translate([airSupplyX, - outerDiameter/2, 0])
+                            cylinder(h=0.01, innerTube/2, innerTube/2, $fn = 15); 
+                        translate (middlePoint) sphere(minWallThickness/2);
+                    };
+                    hull(){
+                        translate ([airSupplyX, - outerDiameter/2, ground]) 
+                            cube(minWallThickness);
+                        translate ([-outCut -minWallThickness, -outCut -minWallThickness, ground]) 
+                            cube(minWallThickness);
+                        translate (middlePoint) sphere(minWallThickness/2);
+                    };
+                    hull(){
+                        translate (middlePoint) sphere(minWallThickness/2);
+                        translate([airSupplyX, - outerDiameter/2, 0])
+                            cylinder(h=0.01, innerTube/2, innerTube/2, $fn = 15); 
+                        translate ([-outCut, - outerDiameter/2, - labiumWidth*0.45]) 
+                            rotate([0, 90, 0]) cylinder (0.01, minWallThickness, minWallThickness, $fn = 15);
+                    };
+                    hull(){
+                        translate (middlePoint) sphere(minWallThickness/2);
+                        translate ([-outCut -minWallThickness, -outCut -minWallThickness, ground]) 
+                            cube(minWallThickness);
+                        translate ([-outCut, - outerDiameter/2, - labiumWidth*0.45]) 
+                            rotate([0, 90, 0]) cylinder (0.01, minWallThickness, minWallThickness, $fn = 15);
+                    };
+                }
+            };            
         };
         cylinder(2 * height, innerDiameter/2 + 0.1, innerDiameter/2 + 0.1, true);
     };
