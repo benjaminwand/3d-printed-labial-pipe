@@ -83,7 +83,8 @@ translate([outerDiameter + minWallThickness, 0, 0])
 difference(){
     union(){
         rotate_extrude($fn = fnBig)        
-                    translate([innerDiameter/2 - minWallThickness, 0, 0]) square([minWallThickness, innerPartHeight], false);   
+            translate([innerDiameter/2 - minWallThickness, 0, 0]) 
+                square([minWallThickness, innerPartHeight], false);   
         for (i = [0, 120, 240]) rotate([0, 0, i]) 
             linear_extrude (innerPartHeight) 
                 translate([- minWallThickness/2, 0, 0]) 
@@ -93,7 +94,7 @@ difference(){
     translate([0, 0, -1]) cylinder(innerPartHeight + 2, screwDiameter/2, screwDiameter/2, false, $fn = fnSmall);
 };
  
-
+/*
 // labium
 translate([outerDiameter + minWallThickness, 0, innerPartHeight])
     rotate([180, 0, 0])
@@ -107,3 +108,4 @@ polygon(points=[
         [outerDiameter/2 + minWallThickness, - minWallThickness],
         [midDiameter/2, - labiumEdge]
     ]);
+*/
