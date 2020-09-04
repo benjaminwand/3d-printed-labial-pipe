@@ -74,6 +74,28 @@ translate ([0, 0, ground]) union(){
     };
 };
 
+module basicShape15_11(height)
+translate ([0, 0, ground]) union(){
+    difference(){   
+	    hull(){
+            cylinder(height, d=(outerDiameter + 2* minWallThickness), $fn=(30+outerDiameter)); 
+            translate([0, airSupplyY +minWallThickness, -ground])rotate([90, 0, 0])
+                rotate_extrude($fn = 2*outerDiameter) translate([ccle, 0, 0]) 
+                    circle(r = 2*minWallThickness );
+        };
+        union(){
+        	translate ([0, 0, (height - pipeInsert)]) 
+                cylinder(height, d=outerDiameter, center=false, $fn=(10+outerDiameter));
+            hull(){
+        	translate ([0, 0, floorThickness]) 
+                cylinder(height - pipeInsert, d=innerDiameter, center=false, $fn=(10+outerDiameter));
+            translate([0, airSupplyY +minWallThickness, -ground])rotate([90, 0, 0])
+                rotate_extrude($fn = 2*outerDiameter) translate([ccle, 0, 0]) 
+                    circle(r = 0.01 );
+            };
+        };
+    };
+};
 module basicShape20(height, corpus_angle)
 rotate ([0, corpus_angle, 0])
 translate ([0, 0, ground]) union(){

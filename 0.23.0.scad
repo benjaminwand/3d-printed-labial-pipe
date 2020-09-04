@@ -4,8 +4,8 @@
 // variables
 
 // tube and pipe
-outerDiameter = 110.15;     
-innerDiameter = 103.2;
+outerDiameter = 60;//110.15;     
+innerDiameter = 55;//103.2;
 tube = 18;          // air tube diameter, should be at least as thick as screw head
 
 // pipe specifics
@@ -79,7 +79,7 @@ difference(){           // plus
 
 
 // upper part
-translate([outerDiameter + minWallThickness, 0, 0])
+translate([outerDiameter + 3* minWallThickness, 0, 0])
 difference(){
     union(){
         rotate_extrude($fn = fnBig)        
@@ -94,9 +94,10 @@ difference(){
     translate([0, 0, -1]) cylinder(innerPartHeight + 2, screwDiameter/2, screwDiameter/2, false, $fn = fnSmall);
 };
  
-/*
+
 // labium
-translate([outerDiameter + minWallThickness, 0, innerPartHeight])
+/*
+translate([outerDiameter + 3* minWallThickness, 0, innerPartHeight])
     rotate([180, 0, 0])
         rotate_extrude($fn = fnBig)  
 polygon(points=[
@@ -107,5 +108,4 @@ polygon(points=[
         [outerDiameter/2 + minWallThickness, labiumEdge],
         [outerDiameter/2 + minWallThickness, - minWallThickness],
         [midDiameter/2, - labiumEdge]
-    ]);
-*/
+    ]);*/

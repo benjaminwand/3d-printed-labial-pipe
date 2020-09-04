@@ -5,7 +5,7 @@
 // * The screw needs to be screwed into the lower part from below.
 
 // import config
-include <OpenSCAD_config/config_Wasserrohr.scad>  
+include <OpenSCAD_config/config_60mm_acryl.scad>  
 //include <OpenSCAD_config/config_grauplastik_25mm.scad> 
 
 // proportions, don't touch!
