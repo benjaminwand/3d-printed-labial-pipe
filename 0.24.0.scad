@@ -77,10 +77,10 @@ difference(){
     union(){
         rotate_extrude($fn = fnBig)        
                     translate([innerDiameter/2 - minWallThickness, 0, 0]) square([minWallThickness, innerPartHeight], false);   
-        for (i = [0, 120, 240]) rotate([0, 0, i]) 
-            linear_extrude (innerPartHeight) 
-                translate([- minWallThickness/2, 0, 0]) 
-                    square([minWallThickness, innerDiameter/2], false);
+        for (i = [0, 120, 240]) rotate([0, 0, i])  
+            translate([- minWallThickness/2, -0.1, 0])  
+                cube([minWallThickness, innerDiameter/2, innerPartHeight]);
+        
         cylinder(innerPartHeight, screwDiameter/2 + minWallThickness, screwDiameter/2 + minWallThickness, false, $fn = fnSmall);
     };
     translate([0, 0, -1]) cylinder(innerPartHeight + 2, screwDiameter/2, screwDiameter/2, false, $fn = fnSmall);
@@ -95,3 +95,4 @@ translate([outerDiameter + 2*minWallThickness, 0, innerPartHeight])
             [outerDiameter/2, labiumSideHeight],
             [outerDiameter/2, 0]
         ]);
+
