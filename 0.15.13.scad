@@ -16,6 +16,8 @@ innerTube = 14;
 minWallThickness = 1.2;
 floorThickness = 2;
 flueWidth = 0.5;
+shapeAngle = 20;
+curveHeight = 0.75;
 
 // proportions, are most likely good like that3
 tubeInsert = outerTube + 2.5;       // length
@@ -29,9 +31,6 @@ height = floorThickness
 ground = (lengthFlue + floorThickness)*-1;
 airSupplyX = (ground + tubeInsert) / sqrt(2);
 airSupplyY = - outerDiameter/4 - innerDiameter/4 - minWallThickness/2; 
-
-ccle = labiumWidth*0.6;
-shapeAngle = 20;
 soundingLength = height - pipeInsert - floorThickness;
 labium_polygon_points = 
     [[airSupplyY - 2*minWallThickness, outCut*0.5],

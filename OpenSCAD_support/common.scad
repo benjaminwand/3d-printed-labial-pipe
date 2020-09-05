@@ -134,8 +134,10 @@ translate ([0, 0, ground]) union(){
             translate([0, airSupplyY+2*minWallThickness,-ground])rotate ([0, 45, 0])
                 cube([labiumWidth + 2*minWallThickness, 6*minWallThickness, outCut+2*minWallThickness], true);
             translate([outCut/2/sqrt(2), airSupplyY +2*minWallThickness, outCut/2/sqrt(2) -ground])
-                rotate([0, 45, 0])rotate([90-shapeAngle, 0, 0])
-                    rotate_extrude($fn = 2*outerDiameter, angle = 180) translate([labiumWidth/2, 0, 0]) 
+                rotate([0, 45, 0])rotate([90-shapeAngle, 0, 0]) 
+                    scale([1, curveHeight, 1]) 
+            rotate_extrude($fn = 2*outerDiameter, angle = 180) 
+                translate([labiumWidth/2, 0, 0]) 
                         circle(r = 3*minWallThickness);
             
         };
@@ -149,7 +151,7 @@ translate ([0, 0, ground]) union(){
                 cube([labiumWidth, 2*minWallThickness, outCut], true);
             translate([outCut/2/sqrt(2), airSupplyY +2*minWallThickness, outCut/2/sqrt(2) -ground])
                 rotate([0, 45, 0])rotate([90-shapeAngle, 0, 0])
-                    rotate_extrude($fn = 2*outerDiameter, angle = 180) translate([labiumWidth/2, 0, 0]) 
+                   scale([1, curveHeight, 1])  rotate_extrude($fn = 2*outerDiameter, angle = 180) translate([labiumWidth/2, 0, 0]) 
                     circle(r = minWallThickness);
             };
         };
