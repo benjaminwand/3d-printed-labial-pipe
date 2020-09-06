@@ -6,18 +6,18 @@ include <OpenSCAD_support/labium45_11.scad>
 include <OpenSCAD_support/pipe_version.scad>
 
 // variables
-outerDiameter = 60;
-innerDiameter = 55;
-labiumWidth = 47;
-outCut = 14;
-lengthFlue = 50;
+outerDiameter = 50;
+innerDiameter = 46;
+labiumWidth = 39;
+outCut = 12;
+lengthFlue = 45;
 outerTube = 16;
-innerTube = 14;
+innerTube = 15;
 minWallThickness = 1.2;
 floorThickness = 2;
-flueWidth = 0.5;
-shapeAngle = 20;
-curveHeight = 0.75;
+flueWidth = 0.45;
+shapeAngle = 0;     // between 0 and 30
+curveHeight = 0.7;  // between 0.5 and 1
 
 // proportions, are most likely good like that3
 tubeInsert = outerTube + 2.5;       // length
@@ -54,7 +54,6 @@ difference(){
         labium_cut();
     };
 };
-
 
 // version number
 rotate([0, 0, 10])vertical_version_number ("0.15.13");

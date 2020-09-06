@@ -4,19 +4,19 @@
 // variables
 
 // tube and pipe
-outerDiameter = 60;//110.15;     
-innerDiameter = 55;//103.2;
-tube = 18;          // air tube diameter, should be at least as thick as screw head
+outerDiameter = 15.3;//60;//110.15;     
+innerDiameter = 12.9;//55;//103.2;
+tube = 6.5;//18;          // air tube diameter, should be at least as thick as screw head
 
 // pipe specifics
-minWallThickness = 1.2;
-minAirway = 3;
-flueWidth = 0.5;
+minWallThickness = 0.8;//1.2;
+minAirway = 1.5;//3;
+flueWidth = 0.4;
 
 // screw
-screwDiameter = 8;
-screwHeadDiameter = 15; // be a bit generous here / round up
-screwHeadHeight = 5.7;
+screwDiameter = 3;//8;
+screwHeadDiameter = 6;//15; // be a bit generous here / round up
+screwHeadHeight = 1.5;//5.7;
 
 // proportions, don't touch!
 fnBig = round(outerDiameter/2 + tube/15) + 30;
