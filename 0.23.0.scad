@@ -3,20 +3,8 @@
 
 // variables
 
-// tube and pipe
-outerDiameter = 15.3;//60;//110.15;     
-innerDiameter = 12.9;//55;//103.2;
-tube = 6.5;//18;          // air tube diameter, should be at least as thick as screw head
-
-// pipe specifics
-minWallThickness = 0.8;//1.2;
-minAirway = 1.5;//3;
-flueWidth = 0.4;
-
-// screw
-screwDiameter = 3;//8;
-screwHeadDiameter = 6;//15; // be a bit generous here / round up
-screwHeadHeight = 1.5;//5.7;
+// import config tube and pipe
+include <OpenSCAD_config/config_15pvc.scad>  
 
 // proportions, don't touch!
 fnBig = round(outerDiameter/2 + tube/15) + 30;
@@ -87,7 +75,7 @@ difference(){
                 square([minWallThickness, innerPartHeight], false);   
         for (i = [0, 120, 240]) rotate([0, 0, i]) 
             linear_extrude (innerPartHeight) 
-                translate([- minWallThickness/2, 0, 0]) 
+                translate([- minWallThickness/2, -0.1, 0]) 
                     square([minWallThickness, innerDiameter/2], false);
         cylinder(innerPartHeight, screwDiameter/2 + minWallThickness, screwDiameter/2 + minWallThickness, false, $fn = fnSmall);
     };

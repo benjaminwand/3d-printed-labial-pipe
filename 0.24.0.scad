@@ -6,7 +6,6 @@
 
 // import config
 include <OpenSCAD_config/config_60mm_acryl.scad>  
-//include <OpenSCAD_config/config_grauplastik_25mm.scad> 
 
 // proportions, don't touch!
 fnBig = round(outerDiameter/2 + tube/15) + 30;
