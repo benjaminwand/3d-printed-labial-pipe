@@ -74,24 +74,21 @@ difference(){           // plus
 translate([outerDiameter + 2*minWallThickness, 0, 0])
 difference(){
     union(){
-        rotate_extrude($fn = fnBig)        
-                    translate([innerDiameter/2 - minWallThickness, 0, 0]) square([minWallThickness, innerPartHeight], false);   
         for (i = [0, 120, 240]) rotate([0, 0, i])  
             translate([- minWallThickness/2, -0.1, 0])  
                 cube([minWallThickness, innerDiameter/2, innerPartHeight]);
-        
         cylinder(innerPartHeight, screwDiameter/2 + minWallThickness, screwDiameter/2 + minWallThickness, false, $fn = fnSmall);
+        rotate_extrude($fn = fnBig)  
+            polygon(points=[
+                [innerDiameter/2 - minWallThickness, 0],
+                [innerDiameter/2 - minWallThickness, innerPartHeight],
+                [innerDiameter/2, innerPartHeight + labiumSideHeight],
+                [midDiameter/2, innerPartHeight + labiumSideHeight + labiumEdge],
+                [outerDiameter/2, innerPartHeight + labiumSideHeight],
+                [outerDiameter/2, innerPartHeight],
+                [innerDiameter/2, innerPartHeight],
+                [innerDiameter/2, 0],
+            ]);
     };
     translate([0, 0, -1]) cylinder(innerPartHeight + 2, screwDiameter/2, screwDiameter/2, false, $fn = fnSmall);
 };
-// labium
-translate([outerDiameter + 2*minWallThickness, 0, innerPartHeight])
-    rotate_extrude($fn = fnBig)  
-        polygon(points=[
-            [innerDiameter/2 - minWallThickness, 0],
-            [innerDiameter/2, labiumSideHeight],
-            [midDiameter/2, labiumSideHeight + labiumEdge],
-            [outerDiameter/2, labiumSideHeight],
-            [outerDiameter/2, 0]
-        ]);
-
