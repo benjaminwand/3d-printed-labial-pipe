@@ -6,18 +6,20 @@ include <OpenSCAD_support/labium45_11.scad>
 include <OpenSCAD_support/pipe_version.scad>
 
 // variables
-outerDiameter = 60;
-innerDiameter = 55;
-labiumWidth = 47;
-outCut = 14;
-lengthFlue = 50;
+outerDiameter = 50;
+innerDiameter = 46;
+labiumWidth = 39;
+outCut = 12;
+lengthFlue = 45;
 outerTube = 16;
-innerTube = 14;
+innerTube = 15;
 minWallThickness = 1.2;
 floorThickness = 2;
-flueWidth = 0.5;
+flueWidth = 0.45;
+shapeAngle = 0;     // between 0 and 30
+curveHeight = 0.7;  // between 0.5 and 1
 
-// proportions, are most likely good like that
+// proportions, are most likely good like that3
 tubeInsert = outerTube + 2.5;       // length
 pipeInsert = innerDiameter * 0.1 + 5; // length
 height = floorThickness
@@ -25,17 +27,16 @@ height = floorThickness
     + labiumWidth / sqrt(2)
     + tubeInsert; 
     
-// calculations, don't touch in production use
+// calculations, dson't touch in production use
 ground = (lengthFlue + floorThickness)*-1;
 airSupplyX = (ground + tubeInsert) / sqrt(2);
 airSupplyY = - outerDiameter/4 - innerDiameter/4 - minWallThickness/2; 
-ccle = labiumWidth*0.6;
 soundingLength = height - pipeInsert - floorThickness;
 labium_polygon_points = 
     [[airSupplyY - 2*minWallThickness, outCut*0.5],
-    [airSupplyY - 2*minWallThickness, outCut*2],
+    [airSupplyY - 2*minWallThickness, outCut*1.5 + 2*minWallThickness],
     [airSupplyY, outCut*1.5],
-    [airSupplyY + 2*minWallThickness, outCut*2],
+    [airSupplyY + 2*minWallThickness, outCut*1.5+2*minWallThickness],
     [airSupplyY + 2*minWallThickness, outCut*0.5]];
 
 // announcing sounding length
@@ -44,7 +45,7 @@ echo(str("the sounding length inside the model in mm: ", soundingLength));
 // logic
 difference(){
     union(){
-        basicShape15_11(height); 
+        basicShape15_13(height); 
         outer_45_flue_11();
     };
     union(){
@@ -54,8 +55,7 @@ difference(){
     };
 };
 
-
 // version number
-rotate([0, 0, 10])vertical_version_number ("0.15.11");
+rotate([0, 0, 10])vertical_version_number ("0.25.2");
 
 echo(version = version());

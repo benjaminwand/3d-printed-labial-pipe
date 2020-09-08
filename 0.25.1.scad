@@ -56,6 +56,6 @@ difference(){
 
 
 // version number
-rotate([0, 0, 10])vertical_version_number ("0.15.12");
+rotate([0, 0, 10])vertical_version_number ("0.25.1");
 
 echo(version = version());

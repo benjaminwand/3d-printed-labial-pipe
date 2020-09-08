@@ -79,8 +79,12 @@ Not necessarily the latest file is the one you want. Every 0.x has distinct feat
 ![/pics/0.23.x.png](/pics/0.23.x.png) ![/pics/0.23photo.png](/pics/0.23photo.png) <br>
 0.24 pipe with 360° labium that prints in two pieces and also prints the labium <br>
 ![/pics/0.24.x.png](/pics/0.24.x.png) <br>
+0.24 pipe with 45° (diagonal) labium (similar to 0.15) but looking like a slightly squashed beverage can <br>
+![/pics/0.25.x.png](/pics/0.25.x.png) <br>
 
 [There are reversed free reed pipes as well.](https://github.com/benjaminwand/3d-printed-reversed-free-reed-pipe)
+
+[And there are diaphone pipes.](https://github.com/benjaminwand/3d-printed-diaphone-pipe)
 
 ### choosing measurements
 Picking the exact measurements for organ pipes is an advanced subject that includes experience and opinion. If you don’t know where to start, [webpipecalc](https://cuervo.phoenix.uberspace.de/webpipecalc/) can help. You are limited by the diameters of the tubes you can buy. ‘Diameter’ in webpipecalc means inner diameter of the tube.
