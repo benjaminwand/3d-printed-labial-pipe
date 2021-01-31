@@ -82,6 +82,8 @@ Not necessarily the latest file is the one you want. Every 0.x has distinct feat
 0.24 pipe with 45° (diagonal) labium (similar to 0.15) but looking like a slightly squashed beverage can <br>
 ![/pics/0.25.x.png](/pics/0.25.x.png) <br>
 
+[THe 360° files (0.22 - 0.24) got their own blog article.](https://benjaminwand.github.io/verbose-cv/projects/flauto_mirabilis.html)
+
 [There are reversed free reed pipes as well.](https://github.com/benjaminwand/3d-printed-reversed-free-reed-pipe)
 
 [And there are diaphone pipes.](https://github.com/benjaminwand/3d-printed-diaphone-pipe)
@@ -128,7 +130,7 @@ Linux: ffplay -f pulse -i "default"
 To figure out the generator sound/frequency <br>
 ![/pics/straight.png](/pics/straight.png) <br>
 ### tuning and misc
-Parametric tuning devices
+Parametric tuning devices, [some of which got their own blog article.](https://benjaminwand.github.io/verbose-cv/projects/introducing_tuning.html)
 
 ## state of the project
 At some point I became tired of deploying the latest features into all files, if you want a pipe with specific features, please file a GitHub issue. I’m somewhat motivated to make OpenSCAD files of pipes that so far only exist as FreeCAD version, tell me which one you want. I’m not motivated in the opposite direction.
