@@ -89,7 +89,7 @@ Not necessarily the latest file is the one you want. Every 0.x has distinct feat
 [And there are diaphone pipes.](https://github.com/benjaminwand/3d-printed-diaphone-pipe)
 
 ### choosing measurements
-Picking the exact measurements for organ pipes is an advanced subject that includes experience and opinion. If you don’t know where to start, [webpipecalc](https://cuervo.phoenix.uberspace.de/webpipecalc/) can help. You are limited by the diameters of the tubes you can buy. ‘Diameter’ in webpipecalc means inner diameter of the tube.
+Picking the exact measurements for organ pipes is an advanced subject that includes experience and opinion. If you don’t know where to start, [webpipecalc](https://www.ccoors.de/webpipecalc/) can help. You are limited by the diameters of the tubes you can buy. ‘Diameter’ in webpipecalc means inner diameter of the tube.
 
 You can avoid picking measurements (other then for your pipe, which is given) by choosing file 0.22 or 0.23 because they don’t have cut up and labium width measurements.
 
