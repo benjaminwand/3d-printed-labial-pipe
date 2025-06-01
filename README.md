@@ -120,9 +120,21 @@ http://orgelromantik.aeoline.de/2011/01/14/orgel-stimmen-mit-dem-ipad/ <br>
 
 ## Spektrogramm
 Looking at what you are doing (mac): <br>
-ffmpeg -f avfoundation -i ":0" -lavfi showspectrum=s=1440x900:slide=rscroll -c:v rawvideo -r 25 -pix_fmt yuv420p -f matroska - | mpv -
+    ffmpeg -f avfoundation -i ":0" -lavfi showspectrum=s=1440x900:slide=rscroll -c:v rawvideo -r 25 -pix_fmt yuv420p -f matroska - | mpv -
 <br>
-Linux: ffplay -f pulse -i "default"
+or
+<br>
+    ffmpeg -f avfoundation -i ":0" \
+    -lavfi showspectrum=s=1440x900:slide=rscroll \
+    -pix_fmt yuv420p -f rawvideo -r 25 - | \
+    mpv --demuxer=rawvideo --demuxer-rawvideo-w=1440 --demuxer-rawvideo-h=900 --demuxer-rawvideo-fps=25 --demuxer-rawvideo-mp-format=yuv420p -
+<br>
+or
+<br>
+    ffplay -f avfoundation -i ":0" -vf showspectrum=s=1440x900:slide=rscroll
+<br>
+Linux: 
+    ffplay -f pulse -i "default"
 
 
 ## other files
